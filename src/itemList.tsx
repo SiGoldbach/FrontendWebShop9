@@ -6,6 +6,7 @@ function DisplayItem(item: CompleteItem){
     return(
         <>
         <div>
+
     
         </div>
         </>
@@ -37,7 +38,7 @@ function ItemList(items: Item[]){
 
 
 interface CompleteItem{
-    itemInfor: ItemInfo;
+    itemInfo: ItemInfo;
     item: Item;
 }
 

@@ -1,14 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+//import { useState } from 'react'
 import './App.css'
+import './displayItem.tsx'
+import DisplayItem from "./displayItem.tsx";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  //const [basket] = useState(0)
 
   return (
     <>
-     
+      <p>This is a test</p>
+      <div>
+        <DisplayItem />
+      </div>
     </>
   )
 }
