@@ -21,16 +21,51 @@ function DisplayItem(item: CompleteItem){
 
 function ItemList(){
     const [CompleteItem,setCompleteItems] = useState<CompleteItem[]>([]);
-
-
-
+//Making a temporary array with input items 
+    const currentItemList: Array<Item> = []
+    const item1: Item = {
+        id: "vitamin-d-90-100",
+        quantity: 2,
+        giftWrap: true
+    }
+    const item2: Item = {
+        id: "vitamin-c-500-250",
+        quantity: 1,
+        giftWrap: false
+    }
+    const item3: Item ={
+        id: "vitamin-c-depot-500-250",
+        quantity: 7,
+        giftWrap: false
+    }
+    currentItemList.push(item1,item2,item3)    
+// This function is a temprorary solution when the backend is up and running the https request will go there. 
     async function fecthCompleteItems(){
         console.log("Trying to fetch items")
-        const dataRoute= 'https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json'
-        const response = await fetch(dataRoute)
+        const response = await fetch('https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json')
         const returnedItems = await response.text()
-        const parsedItems = JSON.parse(returnedItems);
-        console.log(parsedItems)
+        const parsedItems = JSON.parse(returnedItems)
+        const chosenItems:Array<CompleteItem> = []
+        console.log(parsedItems.length)
+        console.log(currentItemList.length)
+        for(let i=0;i++;i<parsedItems.length){
+            console.log("In loop iteration: ", i)
+            for(let j=0;j++;j<currentItemList.length){
+                console.log("in loop iteration: ", j)
+                if(parsedItems[i].id===currentItemList[j].id){
+                    parsedItems[i].description = ""
+                    parsedItems[i].weight = 0
+                    const completeItem: CompleteItem ={
+                        itemInfo: parsedItems[i],
+                        item: currentItemList[j]
+                    }
+                    chosenItems.push(completeItem)
+
+                }
+            }
+        }
+        console.log("the chosen items are: ", chosenItems)
+
 
         
         
