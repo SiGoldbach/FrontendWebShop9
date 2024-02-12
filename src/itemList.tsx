@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 
 
@@ -17,15 +17,39 @@ function DisplayItem(item: CompleteItem){
 
 
 
-function ItemList(items: Item[]){
+function ItemList(){
+    const [CompleteItem,setCompleteItems] = useState<CompleteItem[]>([]);
+
+
+
+    async function fecthCompleteItems(){
+        console.log("Trying to fetch items")
+        const dataRoute= 'Data/product.json'
+        const response = await fetch(dataRoute)
+        const returnedItems = (await response.json())
+        console.log(returnedItems);
+
+        
+        
+
+
+    }
     return(
-        <><div>
+        <>
+            <div>
+                <p> Hi </p>
+                <button onClick={()=>{
+                    fecthCompleteItems()
+                }}></button>
 
 
-        </div>
+            </div>
 
         </>
     )
+
+
+
     
 
 
@@ -37,25 +61,25 @@ function ItemList(items: Item[]){
 
 
 interface CompleteItem{
-    itemInfor: ItemInfo;
+    itemInfo: ItemInfo;
     item: Item;
 }
 
 interface ItemInfo {
-    id: String;
-    name: String;
-    description: String;
+    id: string;
+    name: string;
+    description: string;
     weight: number;
     price: number;
-    currency: String;
+    currency: string;
     rebateQuantity: number;
     rebatePercent: number;
     upsellProductId: string;
 }
 interface Item{
-    id: String;
+    id: string;
     quantity: number;
-    giftWrap: Boolean;
+    giftWrap: boolean;
 }
 
 
