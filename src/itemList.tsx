@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import './Data/product.json'
+
 
 
 
@@ -24,10 +26,11 @@ function ItemList(){
 
     async function fecthCompleteItems(){
         console.log("Trying to fetch items")
-        const dataRoute= 'Data/product.json'
+        const dataRoute= 'https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json'
         const response = await fetch(dataRoute)
-        const returnedItems = (await response.json())
-        console.log(returnedItems);
+        const returnedItems = await response.text()
+        const parsedItems = JSON.parse(returnedItems);
+        console.log(parsedItems)
 
         
         
