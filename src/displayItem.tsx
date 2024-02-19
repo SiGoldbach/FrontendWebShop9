@@ -1,22 +1,22 @@
 import './displayItem.css'
 
-function makeDummyItem() {
-    const item:MyDisplayItemProps = {
-    id: "vitamin-d-90-100",
-    name: "vitamin",
-    description: "hej",
-    price: 20,
-    currency: "DKK",
-    quantity: 5,
-    giftWrap: true
+/*function makeDummyItem() {
+    const item: MyDisplayItemProps = {
+        id: "vitamin-d-90-100",
+        name: "vitamin",
+        description: "hej",
+        price: 20,
+        currency: "DKK",
+        quantity: 5,
+        giftWrap: true,
     };
     return item;
 }
+*/
 
-
-function DisplayItem(item:MyDisplayItemProps){
+function DisplayItem(item: MyDisplayItemProps) {
     //const item = makeDummyItem();
-    return(
+    return (
         <>
             <div className="displayItem">
                 <div className="column">
@@ -29,19 +29,19 @@ function DisplayItem(item:MyDisplayItemProps){
                 </div>
                 <div className="column">
                     <div className="displayItemQuant">
-                        <button className="quantityButton">-</button>
+                        <button className="quantityButton" onClick={()=>item.decreaseQuantity(item.id)}>-</button>
                         {item.quantity}
-                        <button className="quantityButton">+</button>
+                        <button className="quantityButton" onClick={()=>item.increaseQuantity(item.id)}>+</button>
                     </div>
                     <div className="displayItemPrice">
-                        {item.price} {item.currency}
+                        {item.price * item.quantity} {item.currency}
                     </div>
                 </div>
             </div>
         </>
     )
 }
-type MyDisplayItemProps={
+type MyDisplayItemProps = {
     id: string;
     name: string;
     description: string;
@@ -49,7 +49,8 @@ type MyDisplayItemProps={
     currency: string;
     quantity: number;
     giftWrap: boolean;
-
+    decreaseQuantity: (id: string) => void;
+    increaseQuantity: (id: string) => void;
 
 }
 
