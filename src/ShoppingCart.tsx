@@ -100,11 +100,16 @@ function ShoppingCart() {
         calculateTotalPrice()
     }
     //Decrease the amount of a certain item by one 
-    function decreaseQuantity(id: string) {
-        const currentItems: CompleteItem[] = CompleteItem;
-        for (let i = 0; i < currentItems.length; i++) {
-            if (CompleteItem[i].item.id === id) {
+
+    function decreaseQuantity(id: string){
+        const currentItems:CompleteItem[] = CompleteItem;
+        for(let i=0;i<currentItems.length;i++){
+            if (CompleteItem[i].item.id===id){
+                if(CompleteItem[i].item.quantity===1){
+                    break;
+                }
                 currentItems[i].item.quantity--;
+                
 
             }
 
