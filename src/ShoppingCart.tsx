@@ -21,7 +21,7 @@ function ShoppingCart(){
         let price: number=0;
         console.log("Calculating total price")
         for(let i=0;i<CompleteItem.length;i++){
-            price=price+CompleteItem[0].itemInfo.price;
+            price=price+CompleteItem[i].itemInfo.price*CompleteItem[i].item.quantity;
         }
         setTotalPrice(price)
     } 
