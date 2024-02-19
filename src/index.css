@@ -66,3 +66,26 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/*
+Should probably not be in this file
+*/
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: whitesmoke;
+  border: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* for being able to click on the image later */
+}
