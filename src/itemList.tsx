@@ -20,7 +20,7 @@ function DisplayItem(item: CompleteItem){
 
 
 function ItemList(){
-    const [CompleteItem,setCompleteItems] = useState<CompleteItem[]>([]);
+    const [CompleteItem,setCompleteItems] = useState(Array<CompleteItem>)
 //Making a temporary array with input items 
     const currentItemList: Array<Item> = []
     const item1: Item = {
@@ -38,7 +38,8 @@ function ItemList(){
         quantity: 7,
         giftWrap: false
     }
-    currentItemList.push(item1,item2,item3)    
+    currentItemList.push(item1,item2,item3)
+    console.log(currentItemList)
 // This function is a temprorary solution when the backend is up and running the https request will go there. 
     async function fecthCompleteItems(){
         console.log("Trying to fetch items")
@@ -48,18 +49,16 @@ function ItemList(){
         const chosenItems:Array<CompleteItem> = []
         console.log(parsedItems.length)
         console.log(currentItemList.length)
-        for(let i=0;i++;i<parsedItems.length){
-            console.log("In loop iteration: ", i)
-            for(let j=0;j++;j<currentItemList.length){
+        for(let i=0;i<parsedItems.length;i++){
+            for(let j=0;j<currentItemList.length;j++){
                 console.log("in loop iteration: ", j)
                 if(parsedItems[i].id===currentItemList[j].id){
-                    parsedItems[i].description = ""
-                    parsedItems[i].weight = 0
                     const completeItem: CompleteItem ={
                         itemInfo: parsedItems[i],
                         item: currentItemList[j]
                     }
                     chosenItems.push(completeItem)
+                    setCompleteItems(chosenItems)
 
                 }
             }
@@ -106,8 +105,6 @@ interface CompleteItem{
 interface ItemInfo {
     id: string;
     name: string;
-    description: string;
-    weight: number;
     price: number;
     currency: string;
     rebateQuantity: number;
