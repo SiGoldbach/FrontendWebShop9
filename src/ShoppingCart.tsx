@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import './Data/product.json'
 import './index.css'
 import DisplayItem from "./displayItem.jsx";
@@ -6,17 +6,20 @@ import DisplayItem from "./displayItem.jsx";
 
 
 function ShoppingCart(){
+    //Theese two consts define the state of this component
     const [TotalPrice,setTotalPrice] = useState(0)
-
     const [CompleteItem,setCompleteItems] = useState(Array<CompleteItem>)
+    //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
     const itemsToDisplay = CompleteItem.map(CompleteItemInList =>
-        <li>
+        <li key={CompleteItemInList.item.id}>
+            
             <DisplayItem id={CompleteItemInList.item.id} name={CompleteItemInList.itemInfo.name} 
                 description={""} price={CompleteItemInList.itemInfo.price}
                 currency={CompleteItemInList.itemInfo.currency} quantity={CompleteItemInList.item.quantity} giftWrap={CompleteItemInList.item.giftWrap}/>
 
         </li>
         )
+    //Function for calculating the total price of the shopping cart 
     function calculateTotalPrice(){
         let price: number=0;
         console.log("Calculating total price")
@@ -25,7 +28,7 @@ function ShoppingCart(){
         }
         setTotalPrice(price)
     } 
-//Making a temporary array with input items 
+//Making the shopping cart 
     const currentItemList: Item[] = []
     const item1: Item = {
         id: "vitamin-d-90-100",
@@ -72,7 +75,11 @@ function ShoppingCart(){
         console.log("The items in complete items are: ", CompleteItem)
         console.log(CompleteItem[0].item.id," should be the same ",CompleteItem[0].itemInfo.id)
     }
-
+    /**
+     * Theese next four function are passed along to display item,
+     * with the purpose of chaning state of the shopping basket.
+     */
+    //Function used for removing an item from the basket
     function removeItem(id: string){
         const currentItems:CompleteItem[] = CompleteItem;
         for(let i=0;i<currentItems.length;i++){
@@ -83,7 +90,9 @@ function ShoppingCart(){
 
         }
         setCompleteItems(currentItems)
+        calculateTotalPrice()
     }
+    //Decrease the amount of a certain item by one 
     function decreaseAmountOfItems(id: string){
         const currentItems:CompleteItem[] = CompleteItem;
         for(let i=0;i<currentItems.length;i++){
@@ -94,9 +103,12 @@ function ShoppingCart(){
 
         }
         setCompleteItems(currentItems)
+        calculateTotalPrice()
+
 
 
     }
+    //Increase the amount of a certain item by one 
     function increaseAmountOfItems(id: string){
         const currentItems:CompleteItem[] = CompleteItem;
         for(let i=0;i<currentItems.length;i++){
@@ -107,8 +119,11 @@ function ShoppingCart(){
 
         }
         setCompleteItems(currentItems)
+        calculateTotalPrice()
+
 
     }
+    //Change the gift wrap boolean 
     function chageGiftWrap(id: string){
         const currentItems:CompleteItem[] = CompleteItem;
         for(let i=0;i<currentItems.length;i++){
@@ -124,10 +139,10 @@ function ShoppingCart(){
 
             }
         setCompleteItems(currentItems)
-
+        calculateTotalPrice()
     }
 
-    
+    // Returning the component ##STYLE HERE##
     return(
         <>
             <div className="container">
@@ -157,17 +172,13 @@ function ShoppingCart(){
 
 
 }
-type DisplayItemProps={
-    id: string;
-    price: number;
-}
-
+//TSX interfaces used for this component
 
 interface CompleteItem{
     itemInfo: ItemInfo;
     item: Item;
 }
-
+//Item fetched directly from server
 interface ItemInfo {
     id: string;
     name: string;
@@ -177,6 +188,7 @@ interface ItemInfo {
     rebatePercent: number;
     upsellProductId: string;
 }
+//Item given from as the customer to this page. 
 interface Item{
     id: string;
     quantity: number;
