@@ -29,7 +29,9 @@ function DisplayItem(item:MyDisplayItemProps){
                 </div>
                 <div className="column">
                     <div className="displayItemQuant">
-                        Quantity: {item.quantity}
+                        <button className="quantityButton">-</button>
+                        {item.quantity}
+                        <button className="quantityButton">+</button>
                     </div>
                     <div className="displayItemPrice">
                         {item.price} {item.currency}
