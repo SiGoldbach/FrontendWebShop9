@@ -42,16 +42,16 @@ function ItemList(){
     console.log(currentItemList)
 // This function is a temprorary solution when the backend is up and running the https request will go there. 
     async function fecthCompleteItems(){
-        console.log("Trying to fetch items")
+        //console.log("Trying to fetch items")
         const response = await fetch('https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json')
         const returnedItems = await response.text()
         const parsedItems = JSON.parse(returnedItems)
         const chosenItems:Array<CompleteItem> = []
-        console.log(parsedItems.length)
-        console.log(currentItemList.length)
+        //console.log(parsedItems.length)
+        //console.log(currentItemList.length)
         for(let i=0;i<parsedItems.length;i++){
             for(let j=0;j<currentItemList.length;j++){
-                console.log("in loop iteration: ", j)
+                //console.log("in loop iteration: ", j)
                 if(parsedItems[i].id===currentItemList[j].id){
                     const completeItem: CompleteItem ={
                         itemInfo: parsedItems[i],
