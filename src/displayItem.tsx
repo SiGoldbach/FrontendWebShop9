@@ -1,7 +1,7 @@
 import './displayItem.css'
 
 function makeDummyItem() {
-    const item:Item = {
+    const item:MyDisplayItemProps = {
     id: "vitamin-d-90-100",
     name: "vitamin",
     description: "hej",
@@ -14,8 +14,8 @@ function makeDummyItem() {
 }
 
 
-function DisplayItem(){
-    const item = makeDummyItem();
+function DisplayItem(item:MyDisplayItemProps){
+    //const item = makeDummyItem();
     return(
         <>
             <div className="displayItem">
@@ -39,7 +39,7 @@ function DisplayItem(){
         </>
     )
 }
-type Item={
+type MyDisplayItemProps={
     id: string;
     name: string;
     description: string;
