@@ -19,7 +19,7 @@ function DisplayItem(item: MyDisplayItemProps) {
     return (
         <>
             <div className="displayItem">
-                <div className="column">
+                <div className="leftColumn">
                     <div className="displayItemName">
                         <b>{item.name}</b>
                     </div>
@@ -27,12 +27,15 @@ function DisplayItem(item: MyDisplayItemProps) {
                         {item.description}
                     </div>
                 </div>
-                <div className="column">
+                <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={()=>item.decreaseQuantity(item.id)}>-</button>
+                        <button className="quantityButton" onClick={()=>item.decreaseQuantity(item.id)}>
+                            <span style={ item.quantity === 1 ? {color: "#b5b5b5"} : {}}>-</span>
+                            </button>
                         {item.quantity}
                         <button className="quantityButton" onClick={()=>item.increaseQuantity(item.id)}>+</button>
                     </div>
+                    <button className="removeItemButton">x</button>
                     <div className="displayItemPrice">
                         {item.price * item.quantity} {item.currency}
                     </div>
