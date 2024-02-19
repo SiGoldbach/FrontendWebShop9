@@ -8,9 +8,9 @@ import DisplayItem from "./displayItem.jsx";
 function ShoppingCart() {
     //Theese two consts define the state of this component
     const [TotalPrice, setTotalPrice] = useState(0)
-    const [CompleteItem, setCompleteItems] = useState(Array<CompleteItem>)
+    const [completeItem, setCompleteItems] = useState(Array<CompleteItem>)
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
-    const itemsToDisplay = CompleteItem.map(CompleteItemInList =>
+    const itemsToDisplay = completeItem.map(CompleteItemInList =>
         <li key={CompleteItemInList.item.id}>
 
             <DisplayItem 
@@ -22,7 +22,8 @@ function ShoppingCart() {
                 quantity={CompleteItemInList.item.quantity} 
                 giftWrap={CompleteItemInList.item.giftWrap}
                 increaseQuantity={increaseQuantity} 
-                decreaseQuantity={decreaseQuantity} />
+                decreaseQuantity={decreaseQuantity}
+                removeItem={removeItem} />
 
         </li>
     )
@@ -30,8 +31,8 @@ function ShoppingCart() {
     function calculateTotalPrice() {
         let price: number = 0;
         console.log("Calculating total price")
-        for (let i = 0; i < CompleteItem.length; i++) {
-            price = price + CompleteItem[i].itemInfo.price * CompleteItem[i].item.quantity;
+        for (let i = 0; i < completeItem.length; i++) {
+            price = price + completeItem[i].itemInfo.price * completeItem[i].item.quantity;
         }
         setTotalPrice(price)
     }
@@ -79,8 +80,8 @@ function ShoppingCart() {
         setCompleteItems(chosenItems)
         //console.log("the chosen items are: ", chosenItems)
         //console.log(CompleteItem)
-        console.log("The items in complete items are: ", CompleteItem)
-        console.log(CompleteItem[0].item.id, " should be the same ", CompleteItem[0].itemInfo.id)
+        console.log("The items in complete items are: ", completeItem)
+        console.log(completeItem[0].item.id, " should be the same ", completeItem[0].itemInfo.id)
     }
     /**
      * Theese next four function are passed along to display item,
@@ -88,24 +89,25 @@ function ShoppingCart() {
      */
     //Function used for removing an item from the basket
     function removeItem(id: string) {
-        const currentItems: CompleteItem[] = CompleteItem;
+
+        const currentItems: CompleteItem[] = completeItem;
+        const tempCurrentItems: CompleteItem[] = [];
         for (let i = 0; i < currentItems.length; i++) {
-            if (CompleteItem[i].item.id === id) {
-                CompleteItem.splice(i, i);
-
+            if (completeItem[i].item.id === id) {
+                continue;
             }
-
+            tempCurrentItems.push(completeItem[i]);
         }
-        setCompleteItems(currentItems)
+        setCompleteItems(tempCurrentItems)
         calculateTotalPrice()
     }
     //Decrease the amount of a certain item by one 
 
     function decreaseQuantity(id: string){
-        const currentItems:CompleteItem[] = CompleteItem;
+        const currentItems:CompleteItem[] = completeItem;
         for(let i=0;i<currentItems.length;i++){
-            if (CompleteItem[i].item.id===id){
-                if(CompleteItem[i].item.quantity===1){
+            if (completeItem[i].item.id===id){
+                if(completeItem[i].item.quantity===1){
                     break;
                 }
                 currentItems[i].item.quantity--;
@@ -120,9 +122,9 @@ function ShoppingCart() {
     }
     //Increase the amount of a certain item by one 
     function increaseQuantity(id: string) {
-        const currentItems: CompleteItem[] = CompleteItem;
+        const currentItems: CompleteItem[] = completeItem;
         for (let i = 0; i < currentItems.length; i++) {
-            if (CompleteItem[i].item.id === id) {
+            if (completeItem[i].item.id === id) {
                 currentItems[i].item.quantity++;
 
             }
@@ -135,14 +137,14 @@ function ShoppingCart() {
     }
     //Change the gift wrap boolean 
     function chageGiftWrap(id: string) {
-        const currentItems: CompleteItem[] = CompleteItem;
+        const currentItems: CompleteItem[] = completeItem;
         for (let i = 0; i < currentItems.length; i++) {
-            if (CompleteItem[i].item.id === id) {
-                if (CompleteItem[i].item.giftWrap === true) {
-                    CompleteItem[i].item.giftWrap = false;
+            if (completeItem[i].item.id === id) {
+                if (completeItem[i].item.giftWrap === true) {
+                    completeItem[i].item.giftWrap = false;
                 }
                 else {
-                    CompleteItem[i].item.giftWrap = true
+                    completeItem[i].item.giftWrap = true
                 }
 
             }

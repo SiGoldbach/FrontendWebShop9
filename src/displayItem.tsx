@@ -35,7 +35,7 @@ function DisplayItem(item: MyDisplayItemProps) {
                         {item.quantity}
                         <button className="quantityButton" onClick={()=>item.increaseQuantity(item.id)}>+</button>
                     </div>
-                    <button className="removeItemButton">x</button>
+                    <button className="removeItemButton" onClick={()=>item.removeItem(item.id)}>x</button>
                     <div className="displayItemPrice">
                         {item.price * item.quantity} {item.currency}
                     </div>
@@ -54,6 +54,7 @@ type MyDisplayItemProps = {
     giftWrap: boolean;
     decreaseQuantity: (id: string) => void;
     increaseQuantity: (id: string) => void;
+    removeItem: (id: string) => void;
 
 }
 
