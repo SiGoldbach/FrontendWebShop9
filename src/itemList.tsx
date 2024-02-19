@@ -180,7 +180,6 @@ type DisplayItemProps={
 
 interface CompleteItem{
     itemInfo: ItemInfo;
-    itemInfo: ItemInfo;
     item: Item;
 }
 
