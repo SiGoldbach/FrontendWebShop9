@@ -89,13 +89,10 @@ function ShoppingCart() {
      */
     //Function used for removing an item from the basket
     function removeItem(id: string) {
-        const tempCurrentItems: CompleteItem[] = [];
-        for (let i = 0; i < completeItem.length; i++) {
-            if (completeItem[i].item.id === id) {
-                continue;
-            }
-            tempCurrentItems.push(completeItem[i]);
-        }
+
+        // works by creating a new set of items and filtering out the one with matching id
+        const tempCurrentItems: CompleteItem[] = completeItem.filter(item => item.item.id !== id);
+        
         setCompleteItems(tempCurrentItems)
         calculateTotalPrice()
     }
