@@ -148,7 +148,7 @@ function ItemList(){
                 <button onClick={()=>{
                     fecthCompleteItems().then(()=>calculateTotalPrice())
                     }
-                }></button>
+                }>placeholder</button>
                 <ul>
                     {itemsToDisplay}
                 </ul> 
