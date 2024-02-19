@@ -90,13 +90,6 @@ function ShoppingCart() {
 
         </li>
     )
-    //Function for calculating the total price of the shopping cart 
-
-    //Making the shopping cart 
-
-    //console.log(currentItemList)
-    // This function is a temprorary solution when the backend is up and running the https request will go there. 
-
     /**
      * Theese next four function are passed along to display item,
      * with the purpose of chaning state of the shopping basket.
