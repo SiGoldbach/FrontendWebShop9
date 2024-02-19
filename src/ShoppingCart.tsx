@@ -1,23 +1,7 @@
 import React, { useState } from "react";
 import './Data/product.json'
 import './index.css'
-
-
-
-
-function DisplayItem(props: DisplayItemProps){
-    return(
-        <>
-        <div>
-            <p> "Item"{props.id} has price: {props.price} </p>
-    
-        </div>
-        </>
-
-    )
-   
-
-}
+import DisplayItem from "./displayItem.jsx";
 
 
 
@@ -27,7 +11,9 @@ function ShoppingCart(){
     const [CompleteItem,setCompleteItems] = useState(Array<CompleteItem>)
     const itemsToDisplay = CompleteItem.map(CompleteItemInList =>
         <li>
-            <DisplayItem id={CompleteItemInList.item.id} price={CompleteItemInList.itemInfo.price}/>
+            <DisplayItem id={CompleteItemInList.item.id} name={CompleteItemInList.itemInfo.name} 
+                description={""} price={CompleteItemInList.itemInfo.price}
+                currency={CompleteItemInList.itemInfo.currency} quantity={CompleteItemInList.item.quantity} giftWrap={CompleteItemInList.item.giftWrap}/>
 
         </li>
         )

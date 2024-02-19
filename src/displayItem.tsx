@@ -14,8 +14,8 @@ function makeDummyItem() {
 }
 
 
-function DisplayItem(){
-    const item = makeDummyItem();
+function DisplayItem(item:Item){
+    //const item = makeDummyItem();
     return(
         <>
             <div className="displayItem">
