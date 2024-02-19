@@ -135,7 +135,7 @@ function ShoppingCart(){
                 <button onClick={()=>{
                     fecthCompleteItems().then(()=>calculateTotalPrice())
                     }
-                }></button>
+                }>Show cart</button>
                 <ul>
                     {itemsToDisplay}
                 </ul> 
