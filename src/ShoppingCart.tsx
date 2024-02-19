@@ -13,15 +13,15 @@ function ShoppingCart() {
     const itemsToDisplay = completeItem.map(CompleteItemInList =>
         <li key={CompleteItemInList.item.id}>
 
-            <DisplayItem 
-                id={CompleteItemInList.item.id} 
+            <DisplayItem
+                id={CompleteItemInList.item.id}
                 name={CompleteItemInList.itemInfo.name}
-                description={""} 
+                description={""}
                 price={CompleteItemInList.itemInfo.price}
-                currency={CompleteItemInList.itemInfo.currency} 
-                quantity={CompleteItemInList.item.quantity} 
+                currency={CompleteItemInList.itemInfo.currency}
+                quantity={CompleteItemInList.item.quantity}
                 giftWrap={CompleteItemInList.item.giftWrap}
-                increaseQuantity={increaseQuantity} 
+                increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 removeItem={removeItem} />
 
@@ -89,10 +89,8 @@ function ShoppingCart() {
      */
     //Function used for removing an item from the basket
     function removeItem(id: string) {
-
-        const currentItems: CompleteItem[] = completeItem;
         const tempCurrentItems: CompleteItem[] = [];
-        for (let i = 0; i < currentItems.length; i++) {
+        for (let i = 0; i < completeItem.length; i++) {
             if (completeItem[i].item.id === id) {
                 continue;
             }
@@ -103,15 +101,15 @@ function ShoppingCart() {
     }
     //Decrease the amount of a certain item by one 
 
-    function decreaseQuantity(id: string){
-        const currentItems:CompleteItem[] = completeItem;
-        for(let i=0;i<currentItems.length;i++){
-            if (completeItem[i].item.id===id){
-                if(completeItem[i].item.quantity===1){
+    function decreaseQuantity(id: string) {
+        const currentItems: CompleteItem[] = completeItem;
+        for (let i = 0; i < currentItems.length; i++) {
+            if (completeItem[i].item.id === id) {
+                if (completeItem[i].item.quantity === 1) {
                     break;
                 }
                 currentItems[i].item.quantity--;
-                
+
 
             }
 
