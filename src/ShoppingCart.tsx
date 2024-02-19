@@ -97,7 +97,11 @@ function ShoppingCart(){
         const currentItems:CompleteItem[] = CompleteItem;
         for(let i=0;i<currentItems.length;i++){
             if (CompleteItem[i].item.id===id){
+                if(CompleteItem[i].item.quantity===1){
+                    break;
+                }
                 currentItems[i].item.quantity--;
+                
 
             }
 
