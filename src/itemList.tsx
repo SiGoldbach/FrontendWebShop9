@@ -8,6 +8,8 @@ function DisplayItem(props: DisplayItemProps){
     return(
         <>
         <div>
+
+    
             <p> "Item"{props.id} has price: {props.price} </p>
     
         </div>
@@ -177,6 +179,7 @@ type DisplayItemProps={
 
 
 interface CompleteItem{
+    itemInfo: ItemInfo;
     itemInfo: ItemInfo;
     item: Item;
 }
