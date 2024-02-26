@@ -1,4 +1,3 @@
-import { useState } from "react";
 import './Data/product.json'
 import './index.css'
 import DisplayItem from "./displayItem.jsx";
@@ -67,11 +66,10 @@ function PutDefaultItemsInBasket(){
 
 
 
-function ShoppingCart() {
+function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
-    const [completeItems, setCompleteItems] = useState(PutDefaultItemsInBasket())
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
-    const itemsToDisplay = completeItems.map(CompleteItemInList =>
+    const itemsToDisplay = props.completeItems.map(CompleteItemInList =>
         <li key={CompleteItemInList.item.id}>
 
             <DisplayItem
@@ -96,17 +94,17 @@ function ShoppingCart() {
     function removeItem(id: string) {
 
         // works by creating a new set of items and filtering out the one with matching id
-        const tempCurrentItems: CompleteItem[] = completeItems.filter(item => item.item.id !== id);
+        const tempCurrentItems: CompleteItem[] = props.completeItems.filter(item => item.item.id !== id);
         
-        setCompleteItems(tempCurrentItems)
+        props.setCompleteItems(tempCurrentItems)
     }
     //Decrease the amount of a certain item by one 
 
     function decreaseQuantity(id: string) {
-        const currentItems: CompleteItem[] = [...completeItems];
+        const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (completeItems[i].item.id === id) {
-                if (completeItems[i].item.quantity === 1) {
+            if (currentItems[i].item.id === id) {
+                if (currentItems[i].item.quantity === 1) {
                     break;
                 }
                 currentItems[i].item.quantity--;
@@ -115,39 +113,39 @@ function ShoppingCart() {
             }
 
         }
-        setCompleteItems(currentItems)
+        props.setCompleteItems(currentItems)
 
     }
     //Increase the amount of a certain item by one 
     function increaseQuantity(id: string) {
         console.log("Trying to increase the amount of items")
-        const currentItems: CompleteItem[] = [...completeItems];
+        const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (completeItems[i].item.id === id) {
+            if (currentItems[i].item.id === id) {
                 currentItems[i].item.quantity++;
 
             }
 
         }
-        setCompleteItems(currentItems)
+        props.setCompleteItems(currentItems)
 
     }
     //Change the gift wrap boolean 
     function changeGiftWrap(id: string) {
-        const currentItems: CompleteItem[] = [...completeItems];
+        const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (completeItems[i].item.id === id) {
-                if (completeItems[i].item.giftWrap === true) {
-                    completeItems[i].item.giftWrap = false;
+            if (currentItems[i].item.id === id) {
+                if (currentItems[i].item.giftWrap === true) {
+                    currentItems[i].item.giftWrap = false;
                 }
                 else {
-                    completeItems[i].item.giftWrap = true
+                    currentItems[i].item.giftWrap = true
                 }
 
             }
 
         }
-        setCompleteItems(currentItems)
+        props.setCompleteItems(currentItems)
         
     }
     function calculateTotalPrice(completeItem:CompleteItem[]) {
@@ -157,7 +155,7 @@ function ShoppingCart() {
         }
         return price;
     }
-    const price :number = calculateTotalPrice(completeItems)
+    const price :number = calculateTotalPrice(props.completeItems)
 
     // Returning the component ##STYLE HERE##
     return (
@@ -175,6 +173,12 @@ function ShoppingCart() {
 
         </>
     )
+
+}
+//Making props for the shopping cart here a list of items should be and setCompleteItems
+interface MyShoppinCartProps{
+    completeItems: CompleteItem[]
+    setCompleteItems: (completeItems: CompleteItem[]) => void
 
 }
 //TSX interfaces used for this component
