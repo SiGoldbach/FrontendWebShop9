@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div >
         <nav>
           {/* Nav links */}
             <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
