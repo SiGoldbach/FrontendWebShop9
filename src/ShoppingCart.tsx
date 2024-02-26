@@ -131,7 +131,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
 
     }
     //Change the gift wrap boolean 
-    function changeGiftWrap(id: string) {
+    /*function changeGiftWrap(id: string) {
         const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
             if (currentItems[i].item.id === id) {
@@ -147,7 +147,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
         }
         props.setCompleteItems(currentItems)
         
-    }
+    }*/
     function calculateTotalPrice(completeItem:CompleteItem[]) {
         let price: number = 0;
         for (let i = 0; i < completeItem.length; i++) {

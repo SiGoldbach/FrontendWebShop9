@@ -1,8 +1,8 @@
 import products from './Data/product.json';
-import { useState } from 'react';
+//import { useState } from 'react';
 
 function LandingPage() {
-    const [cart, setCart] = useState([]);
+    //const [cart, setCart] = useState([]);
 
     //const addToCart = (product) => {
     //    setCart([...cart, product]);
