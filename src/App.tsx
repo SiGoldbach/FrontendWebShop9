@@ -1,10 +1,9 @@
-import './App.css'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
-} from 'react-router-dom';
+} from 'react-router-dom'
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 
@@ -13,10 +12,10 @@ function App() {
 
   return (
     <Router>
-      <div className='container'>
+      <div>
         <nav>
           {/* Nav links */}
-            <Link to="/">Home</Link> | <Link to="/cart">Cart</Link>
+            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
         </nav>
 
         {/* Define routes */}
