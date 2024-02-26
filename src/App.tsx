@@ -1,3 +1,4 @@
+import './App.css'
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,10 +13,10 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className='container'>
         <nav>
           {/* Nav links */}
-            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
+            <Link to="/">Home</Link> | <Link to="/cart">Cart</Link>
         </nav>
 
         {/* Define routes */}
