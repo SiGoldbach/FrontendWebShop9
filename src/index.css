@@ -70,7 +70,7 @@ button:focus-visible {
 Should probably not be in this file
 */
 .container {
-  max-width: 600px;
+  max-width: 1280px;
   margin: auto;
   background: whitesmoke;
   border: #1a1a1a;
@@ -89,3 +89,79 @@ Should probably not be in this file
   transition: opacity 0.5s ease;
   pointer-events: none; /* for being able to click on the image later */
 }
+
+.displayItem {
+  border: 1px solid black;
+  width: 300px;
+  height: 100px;
+  padding: 10px;
+  text-align: left;
+  color:#222222;
+}
+.displayItemName {
+  text-align: left;
+  font-size: 14px;
+}
+.displayItemQuant {
+  text-align: right;
+  vertical-align: top;
+}
+.displayItemPrice {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  vertical-align: bottom;
+}
+.column {
+  float: left;
+  width: 50%;
+}
+
+
+
+.leftColumn {
+  position: relative;
+  height: 90%;
+  padding: 5px;
+  float: left;
+  width: 60%;
+}
+
+.rightColumn{
+  position: relative;
+  height: 90% ;
+  padding: 5px;
+  float: right;
+  width: 25%
+}
+
+.quantityButton {
+  width: 23px;
+  height: 27px;
+  background-color: #f5f5f5;
+  color: #222222;
+  padding: 5px;
+  text-align: center;
+  font-size: 13;
+  border-radius: 6px;
+}
+
+.removeItemButton {
+  position: absolute;
+  right: 0;
+  width: 23px;
+  height: 27px;
+  background-color: #f5f5f5;
+  color: #222222;
+  padding: 5px;
+  text-align: center;
+  font-size: 13;
+  border-radius: 6px;
+
+}
+
+
+
+
+
