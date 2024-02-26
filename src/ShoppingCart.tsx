@@ -3,7 +3,7 @@ import './Data/product.json'
 import './index.css'
 import DisplayItem from "./displayItem.jsx";
 
-function PutItemsInBasket(){
+function PutDefaultItemsInBasket(){
     const items: Item[] = []
     const item1: Item = {
         id: "vitamin-d-90-100",
@@ -63,15 +63,13 @@ function PutItemsInBasket(){
     console.log("Items are getting returned")
     return completeItems
 
-
-
 }
 
 
 
 function ShoppingCart() {
     //Theese two consts define the state of this component
-    const [completeItems, setCompleteItems] = useState(PutItemsInBasket())
+    const [completeItems, setCompleteItems] = useState(PutDefaultItemsInBasket())
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
     const itemsToDisplay = completeItems.map(CompleteItemInList =>
         <li key={CompleteItemInList.item.id}>
