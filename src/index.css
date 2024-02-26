@@ -66,9 +66,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-/*
-Should probably not be in this file
-*/
+
 .container {
   max-width: 1280px;
   margin: auto;
