@@ -1,77 +1,11 @@
-import { useState } from "react";
 import './Data/product.json'
 import './index.css'
 import DisplayItem from "./displayItem.jsx";
 
-function PutDefaultItemsInBasket(){
-    const items: Item[] = []
-    const item1: Item = {
-        id: "vitamin-d-90-100",
-        quantity: 2,
-        giftWrap: true
-    }
-    const item2: Item = {
-        id: "vitamin-c-500-250",
-        quantity: 1,
-        giftWrap: false
-    }
-    const item3: Item = {
-        id: "vitamin-c-depot-500-250",
-        quantity: 7,
-        giftWrap: false
-    }
-    items.push(item1, item2, item3)
-    const itemInfos: ItemInfo[] = []
-    const iteminfo1:ItemInfo= {
-        id: "vitamin-d-90-100",
-        name: "D-vitamin",
-        price: 116,
-        currency: "DKK",
-        rebateQuantity: 3,
-        rebatePercent: 10,
-        upsellProductId: "null"
-    }
-    const iteminfo2:ItemInfo= {
-        id: "vitamin-c-500-250",
-        name: "C-vitamin",
-        price: 150,
-        currency: "DKK",
-        rebateQuantity: 2,
-        rebatePercent: 25,
-        upsellProductId: "vitamin-c-depot-500-250"
-    }
-    const iteminfo3:ItemInfo= {
-        id: "vitamin-c-depot-500-250",
-        name: "C-vitamin Depot",
-        price: 175,
-        currency: "DKK",
-        rebateQuantity: 3,
-        rebatePercent: 10,
-        upsellProductId: "null"
-    }
-    itemInfos.push(iteminfo1,iteminfo2,iteminfo3);
-    const completeItems: CompleteItem[] =[]
-    for(let i=0;i<items.length;i++){
-        const completeitem :CompleteItem={
-            item:items[i],
-            itemInfo:itemInfos[i]
-            
-        }
-        completeItems.push(completeitem)
-
-    }
-    console.log("Items are getting returned")
-    return completeItems
-
-}
-
-
-
-function ShoppingCart() {
+function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
-    const [completeItems, setCompleteItems] = useState(PutDefaultItemsInBasket())
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
-    const itemsToDisplay = completeItems.map(CompleteItemInList =>
+    const itemsToDisplay = props.completeItems.map(CompleteItemInList =>
         <li key={CompleteItemInList.item.id}>
 
             <DisplayItem
@@ -96,17 +30,17 @@ function ShoppingCart() {
     function removeItem(id: string) {
 
         // works by creating a new set of items and filtering out the one with matching id
-        const tempCurrentItems: CompleteItem[] = completeItems.filter(item => item.item.id !== id);
+        const tempCurrentItems: CompleteItem[] = props.completeItems.filter(item => item.item.id !== id);
         
-        setCompleteItems(tempCurrentItems)
+        props.setCompleteItems(tempCurrentItems)
     }
     //Decrease the amount of a certain item by one 
 
     function decreaseQuantity(id: string) {
-        const currentItems: CompleteItem[] = [...completeItems];
+        const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (completeItems[i].item.id === id) {
-                if (completeItems[i].item.quantity === 1) {
+            if (currentItems[i].item.id === id) {
+                if (currentItems[i].item.quantity === 1) {
                     break;
                 }
                 currentItems[i].item.quantity--;
@@ -115,41 +49,41 @@ function ShoppingCart() {
             }
 
         }
-        setCompleteItems(currentItems)
+        props.setCompleteItems(currentItems)
 
     }
     //Increase the amount of a certain item by one 
     function increaseQuantity(id: string) {
         console.log("Trying to increase the amount of items")
-        const currentItems: CompleteItem[] = [...completeItems];
+        const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (completeItems[i].item.id === id) {
+            if (currentItems[i].item.id === id) {
                 currentItems[i].item.quantity++;
 
             }
 
         }
-        setCompleteItems(currentItems)
+        props.setCompleteItems(currentItems)
 
     }
     //Change the gift wrap boolean 
-    function changeGiftWrap(id: string) {
-        const currentItems: CompleteItem[] = [...completeItems];
+    /*function changeGiftWrap(id: string) {
+        const currentItems: CompleteItem[] = [...props.completeItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (completeItems[i].item.id === id) {
-                if (completeItems[i].item.giftWrap === true) {
-                    completeItems[i].item.giftWrap = false;
+            if (currentItems[i].item.id === id) {
+                if (currentItems[i].item.giftWrap === true) {
+                    currentItems[i].item.giftWrap = false;
                 }
                 else {
-                    completeItems[i].item.giftWrap = true
+                    currentItems[i].item.giftWrap = true
                 }
 
             }
 
         }
-        setCompleteItems(currentItems)
+        props.setCompleteItems(currentItems)
         
-    }
+    }*/
     function calculateTotalPrice(completeItem:CompleteItem[]) {
         let price: number = 0;
         for (let i = 0; i < completeItem.length; i++) {
@@ -157,7 +91,7 @@ function ShoppingCart() {
         }
         return price;
     }
-    const price :number = calculateTotalPrice(completeItems)
+    const price :number = calculateTotalPrice(props.completeItems)
 
     // Returning the component ##STYLE HERE##
     return (
@@ -175,6 +109,12 @@ function ShoppingCart() {
 
         </>
     )
+
+}
+//Making props for the shopping cart here a list of items should be and setCompleteItems
+interface MyShoppinCartProps{
+    completeItems: CompleteItem[]
+    setCompleteItems: (completeItems: CompleteItem[]) => void
 
 }
 //TSX interfaces used for this component
