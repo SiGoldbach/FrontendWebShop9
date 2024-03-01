@@ -5,7 +5,7 @@ import {
   Link,
 } from 'react-router-dom'
 import LandingPage from './LandingPage.tsx'
-import ShoppingCart from './ShoppingCart.tsx'
+import ShoppingCart from '../Components/ShoppingCart.tsx'
 import { useState } from 'react'
 function PutDefaultItemsInBasket(){
   const items: Item[] = []

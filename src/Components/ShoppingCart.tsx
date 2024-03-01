@@ -1,6 +1,6 @@
-import './Data/product.json'
+import '../Data/product.json'
 import './index.css'
-import DisplayItem from "./displayItem.jsx";
+import DisplayItem from "./displayItem.js";
 
 function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
@@ -96,7 +96,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
     // Returning the component ##STYLE HERE##
     return (
         <>
-            <div className="container">
+            <div className="cartItemsContainer">
                 <p> Welcom to the page </p>
 
                 <ul>
@@ -104,8 +104,10 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 </ul>
                 <p> Price is {price}</p>
 
-
             </div>
+
+
+
 
         </>
     )

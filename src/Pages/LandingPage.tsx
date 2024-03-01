@@ -1,4 +1,4 @@
-import products from './Data/product.json';
+import products from '../Data/product.json';
 //import { useState } from 'react';
 
 function LandingPage() {

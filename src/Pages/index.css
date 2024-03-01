@@ -67,7 +67,7 @@ button:focus-visible {
   }
 }
 
-.container {
+.cartItemsContainer {
   max-width: 1280px;
   margin: auto;
   background: whitesmoke;
