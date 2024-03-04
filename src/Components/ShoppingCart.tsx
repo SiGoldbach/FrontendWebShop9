@@ -7,13 +7,14 @@ interface MyShoppinCartProps{
     completeItems: CompleteItem[]
     setCompleteItems: (completeItems: CompleteItem[]) => void
 
+
 }
 
 function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
     const itemsToDisplay = props.completeItems.map(CompleteItemInList =>
-        <li key={CompleteItemInList.item.id}>
+        <ul key={CompleteItemInList.item.id}>
 
             <DisplayItem
                 id={CompleteItemInList.item.id}
@@ -27,7 +28,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 decreaseQuantity={decreaseQuantity}
                 removeItem={removeItem} />
 
-        </li>
+        </ul>
     )
     /**
      * Theese next four function are passed along to display item,
@@ -109,7 +110,8 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 <ul>
                     {itemsToDisplay}
                 </ul>
-                <p> Price is {price}</p>
+                <p> Price before rebate is: </p>
+                <p> Your price is:  {price}</p>
 
             </div>
 

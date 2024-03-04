@@ -37,6 +37,11 @@ function DisplayItem(item: MyDisplayItemProps) {
                         <b>{item.name}</b>
                     </div>
                     <div>
+                        <p> Buy 10 get 10% rebate </p>
+                        <p> Other customers bought</p>
+                    </div>
+
+                    <div>
                         {item.description}
                     </div>
                 </div>
@@ -48,9 +53,10 @@ function DisplayItem(item: MyDisplayItemProps) {
                         {item.quantity}
                         <button className="quantityButton" onClick={()=>item.increaseQuantity(item.id)}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={()=>item.removeItem(item.id)}>x</button>
+                    <button className="removeItemButton" onClick={()=>item.removeItem(item.id)}>X</button>
                     <div className="displayItemPrice">
-                        {item.price * item.quantity} {item.currency}
+                        <p>Before Price: {item.price * item.quantity} {item.currency}</p>
+                        <p>Price with rebate : 150</p>
                     </div>
                 </div>
             </div>

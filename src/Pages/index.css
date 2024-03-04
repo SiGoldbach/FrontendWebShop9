@@ -74,6 +74,8 @@ button:focus-visible {
   border: #1a1a1a;
   padding: 20px;
   border-radius: 8px;
+  text-align: center;
+  align-items: center;
 }
 
 .image-text {
@@ -90,9 +92,9 @@ button:focus-visible {
 
 .displayItem {
   border: 1px solid black;
-  width: 300px;
-  height: 100px;
-  padding: 10px;
+  width: 400px;
+  height: 150px;
+  padding: 5px;
   text-align: left;
   color:#222222;
 }
@@ -101,7 +103,6 @@ button:focus-visible {
   font-size: 14px;
 }
 .displayItemQuant {
-  text-align: right;
   vertical-align: top;
 }
 .displayItemPrice {
@@ -123,15 +124,15 @@ button:focus-visible {
   height: 90%;
   padding: 5px;
   float: left;
-  width: 60%;
+  width: 50%;
 }
 
 .rightColumn{
   position: relative;
   height: 90% ;
   padding: 5px;
-  float: right;
-  width: 25%
+  float: left;
+  width: 45%
 }
 
 .quantityButton {
@@ -139,7 +140,7 @@ button:focus-visible {
   height: 27px;
   background-color: #f5f5f5;
   color: #222222;
-  padding: 5px;
+  padding: 2px;
   text-align: center;
   font-size: 13;
   border-radius: 6px;
