@@ -1,5 +1,5 @@
 import '../Data/product.json'
-import './index.css'
+import '../Pages/index.css'
 import DisplayItem from "./displayItem.js";
 
 function ShoppingCart(props: MyShoppinCartProps) {

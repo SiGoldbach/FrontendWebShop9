@@ -1,4 +1,4 @@
-import './index.css'
+import '../Pages/index.css'
 
 /*function makeDummyItem() {
     const item: MyDisplayItemProps = {
