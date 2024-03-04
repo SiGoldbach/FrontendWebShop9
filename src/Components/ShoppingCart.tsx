@@ -6,19 +6,25 @@ function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
     const itemsToDisplay = props.completeItems.map(CompleteItemInList =>
-        <li key={CompleteItemInList.item.id}>
-
-            <DisplayItem
-                id={CompleteItemInList.item.id}
-                name={CompleteItemInList.itemInfo.name}
-                description={""}
-                price={CompleteItemInList.itemInfo.price}
-                currency={CompleteItemInList.itemInfo.currency}
-                quantity={CompleteItemInList.item.quantity}
-                giftWrap={CompleteItemInList.item.giftWrap}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                removeItem={removeItem} />
+        <li key={CompleteItemInList.item.id} className="item-container">
+            <div className="item-display">
+                <DisplayItem 
+                    id={CompleteItemInList.item.id}
+                    name={CompleteItemInList.itemInfo.name}
+                    description={""}
+                    price={CompleteItemInList.itemInfo.price}
+                    currency={CompleteItemInList.itemInfo.currency}
+                    quantity={CompleteItemInList.item.quantity}
+                    giftWrap={CompleteItemInList.item.giftWrap}
+                    increaseQuantity={increaseQuantity}
+                    decreaseQuantity={decreaseQuantity}
+                    removeItem={removeItem} 
+                />
+            </div>
+            <div className="item-info">
+                {/* The new column */}
+                <p>Additional info</p>
+            </div>
 
         </li>
     )

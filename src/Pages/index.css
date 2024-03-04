@@ -148,18 +148,36 @@ button:focus-visible {
 .removeItemButton {
   position: absolute;
   right: 0;
-  width: 23px;
-  height: 27px;
   background-color: #f5f5f5;
   color: #222222;
-  padding: 5px;
-  text-align: center;
-  font-size: 13;
-  border-radius: 6px;
-
+  padding-top: 10px;
+  padding-right: 3px;
+  text-align: right;
+  font-size: 0.8em;
+  border-radius: 10px;
+  
 }
 
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
+.item-display, .item-info {
+  flex: 1;
+  padding: 10px;
+}
 
+/*AI generated*/
+@media (max-width: 600px) {
+  .item-container {
+    flex-direction: column;
+  }
+}
 
-
+.displaySingleItemPrice {
+  font-size: 0.7em;
+  color: #666;
+}
