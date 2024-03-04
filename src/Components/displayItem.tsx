@@ -13,6 +13,19 @@ import '../Pages/index.css'
     return item;
 }
 */
+type MyDisplayItemProps = {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    currency: string;
+    quantity: number;
+    giftWrap: boolean;
+    decreaseQuantity: (id: string) => void;
+    increaseQuantity: (id: string) => void;
+    removeItem: (id: string) => void;
+
+}
 
 function DisplayItem(item: MyDisplayItemProps) {
     //const item = makeDummyItem();
@@ -44,18 +57,6 @@ function DisplayItem(item: MyDisplayItemProps) {
         </>
     )
 }
-type MyDisplayItemProps = {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    currency: string;
-    quantity: number;
-    giftWrap: boolean;
-    decreaseQuantity: (id: string) => void;
-    increaseQuantity: (id: string) => void;
-    removeItem: (id: string) => void;
 
-}
 
 export default DisplayItem;

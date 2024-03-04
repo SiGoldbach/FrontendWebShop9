@@ -2,6 +2,13 @@ import '../Data/product.json'
 import '../Pages/index.css'
 import DisplayItem from "./displayItem.js";
 
+
+interface MyShoppinCartProps{
+    completeItems: CompleteItem[]
+    setCompleteItems: (completeItems: CompleteItem[]) => void
+
+}
+
 function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
@@ -97,7 +104,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
     return (
         <>
             <div className="cartItemsContainer">
-                <p> Welcom to the page </p>
+                <p> Shopping Basket  </p>
 
                 <ul>
                     {itemsToDisplay}
@@ -114,11 +121,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
 
 }
 //Making props for the shopping cart here a list of items should be and setCompleteItems
-interface MyShoppinCartProps{
-    completeItems: CompleteItem[]
-    setCompleteItems: (completeItems: CompleteItem[]) => void
 
-}
 //TSX interfaces used for this component
 
 interface CompleteItem {
