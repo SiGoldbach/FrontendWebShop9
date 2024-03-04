@@ -6,72 +6,73 @@ import {
 } from 'react-router-dom'
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from '../Components/ShoppingCart.tsx'
+import {BasketItem, ProductInfo} from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useState } from 'react'
-function PutDefaultItemsInBasket(){
-  const items: Item[] = []
-  const item1: Item = {
+import products from '../Data/product.json';
+
+/**
+ * 
+ * @returns Puts three standard Items in the basket into an array with type BasketItem[]
+ */
+function PutBasketItemsInBasket(){
+  const items: BasketItem[] = []
+  const item1: BasketItem = {
       id: "vitamin-d-90-100",
       quantity: 2,
       giftWrap: true
   }
-  const item2: Item = {
+  const item2: BasketItem = {
       id: "vitamin-c-500-250",
       quantity: 1,
       giftWrap: false
   }
-  const item3: Item = {
+  const item3: BasketItem = {
       id: "vitamin-c-depot-500-250",
       quantity: 7,
       giftWrap: false
   }
   items.push(item1, item2, item3)
-  const itemInfos: ItemInfo[] = []
-  const iteminfo1:ItemInfo= {
-      id: "vitamin-d-90-100",
-      name: "D-vitamin",
-      price: 116,
-      currency: "DKK",
-      rebateQuantity: 3,
-      rebatePercent: 10,
-      upsellProductId: "null"
-  }
-  const iteminfo2:ItemInfo= {
-      id: "vitamin-c-500-250",
-      name: "C-vitamin",
-      price: 150,
-      currency: "DKK",
-      rebateQuantity: 2,
-      rebatePercent: 25,
-      upsellProductId: "vitamin-c-depot-500-250"
-  }
-  const iteminfo3:ItemInfo= {
-      id: "vitamin-c-depot-500-250",
-      name: "C-vitamin Depot",
-      price: 175,
-      currency: "DKK",
-      rebateQuantity: 3,
-      rebatePercent: 10,
-      upsellProductId: "null"
-  }
-  itemInfos.push(iteminfo1,iteminfo2,iteminfo3);
-  const completeItems: CompleteItem[] =[]
-  for(let i=0;i<items.length;i++){
-      const completeitem :CompleteItem={
-          item:items[i],
-          itemInfo:itemInfos[i]
-          
-      }
-      completeItems.push(completeitem)
-
-  }
-  console.log("Items are getting returned")
-  return completeItems
-
+  return items;
 }
+/**
+ * 
+ * @returns All items from the json file into an array with type ProductInfo[]
+ */
+function insertItemInfos(){
+  const iteminfos: ProductInfo[]=[];
+
+  products.forEach((element) => {
+    const itemInfo: ProductInfo = {
+      id: element.id,
+      name: element.name,
+      description: element.description,
+      weight: element.weight,
+      price: element.price,
+      currency: element.currency,
+      rebatePercent:element.rebatePercent,
+      rebateQuantity: element.rebateQuantity,
+      upsellProductId: element.upsellProductId
+    }
+    iteminfos.push(itemInfo)
+    
+  });
+  return iteminfos;
+}
+
+
 /* GPT generated */
 function App() {
+  const availibleProducts: ProductInfo[] = insertItemInfos();
+  const [basketItems,setBasketItems] = useState(PutBasketItemsInBasket())
+  const  basketid: string[] = basketItems.map((item)=>item.id);
+  const selectedProducts: ProductInfo[] = availibleProducts.filter((item)=>{
+    basketid.includes(item.id);
+  });
 
-  const [completeItems, setCompleteItems] = useState(PutDefaultItemsInBasket())
+
+
+  const [completeItems, setCompleteItems] = useState(PutDefaultItemsInBasket()) 
+
 
   return (
     <Router>
@@ -91,25 +92,13 @@ function App() {
   )
 }
 interface CompleteItem {
-  itemInfo: ItemInfo;
-  item: Item;
+  itemInfo: ProductInfo;
+  item: BasketItem;
 }
 //Item fetched directly from server
-interface ItemInfo {
-  id: string;
-  name: string;
-  price: number;
-  currency: string;
-  rebateQuantity: number;
-  rebatePercent: number;
-  upsellProductId: string;
-}
+
 //Item given from as the customer to this page. 
-interface Item {
-  id: string;
-  quantity: number;
-  giftWrap: boolean;
-}
+
 
 
 
