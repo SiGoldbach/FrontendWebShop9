@@ -31,7 +31,7 @@ function forms() {
             </li>
             <li>
                 <label htmlFor="zip">Zip code:</label>
-                <input type="text" id="zip" name="user_zip" required/>
+                <input type="number"  id="zip" name="user_zip" min="1000" max="9999" required/> 
             </li>
             <li>
                 <label htmlFor="city">City:</label>
