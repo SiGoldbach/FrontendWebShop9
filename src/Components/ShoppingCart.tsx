@@ -22,8 +22,10 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 />
             </div>
             <div className="item-info">
-                {/* The new column */}
-                <p>Additional info</p>
+                {/* Find a better way to show upsell item */}
+                {CompleteItemInList.itemInfo.upsellProductId !== 'null' ?  
+                    <p>Get a better deal on this item: {CompleteItemInList.itemInfo.upsellProductId}</p> :
+                    <p>No better deals available</p>}
             </div>
 
         </li>
@@ -107,8 +109,11 @@ function ShoppingCart(props: MyShoppinCartProps) {
 
                 <ul>
                     {itemsToDisplay}
+                    <div className="rightColumn">
+                        Total: {price}
+                    </div>
                 </ul>
-                <p> Price is {price}</p>
+            
 
             </div>
 
