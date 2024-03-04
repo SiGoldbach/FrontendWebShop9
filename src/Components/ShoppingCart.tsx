@@ -1,6 +1,9 @@
 import '../Data/product.json'
 import '../Pages/index.css'
 import DisplayItem from "./displayItem.js";
+import React, { useState } from 'react';
+import Forms from '../Components/forms';
+
 
 
 interface MyShoppinCartProps{
@@ -30,6 +33,11 @@ function ShoppingCart(props: MyShoppinCartProps) {
 
         </ul>
     )
+    const [showForm, setShowForm] = useState(false);
+
+    const handleProceedToPayment = () => {
+        setShowForm(true); // Update state to show the form
+      };
     /**
      * Theese next four function are passed along to display item,
      * with the purpose of chaning state of the shopping basket.
@@ -101,6 +109,10 @@ function ShoppingCart(props: MyShoppinCartProps) {
     }
     const price :number = calculateTotalPrice(props.completeItems)
 
+    const forms = () => {
+        window.location.href = 'forms';
+    };
+
     // Returning the component ##STYLE HERE##
     return (
         <>
@@ -112,11 +124,9 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 </ul>
                 <p> Price before rebate is: </p>
                 <p> Your price is:  {price}</p>
-
-            </div>
-
-
-
+                <button onClick={handleProceedToPayment} className="forms">Proceed to Payment</button>
+                {showForm && <Forms />}            
+      </div>
 
         </>
     )

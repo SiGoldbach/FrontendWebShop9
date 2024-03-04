@@ -1,6 +1,6 @@
 
 
-function identificationForm() {
+function forms() {
     return <form action="/my-handling-form-page" method="post">
         <ul>
             <li>
@@ -27,3 +27,5 @@ function identificationForm() {
     </form>
 
 }
+
+export default forms
