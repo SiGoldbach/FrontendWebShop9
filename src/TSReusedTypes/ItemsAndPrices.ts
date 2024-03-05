@@ -1,9 +1,7 @@
 
 
-export interface BasketItem{
-    id: string;
+export interface BasketItem extends ProductInfo{
     quantity: number;
-    giftWrap: boolean;
 }
 
 export interface ProductInfo{
@@ -22,6 +20,9 @@ export interface Price{
     priceBeforeRebate: number;
     rebatePercentage: number;
     prceAfterRebate: number;
+
+}
+export interface basket {
 
 }
 
