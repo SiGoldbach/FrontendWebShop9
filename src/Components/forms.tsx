@@ -1,6 +1,39 @@
+import {useState, useEffect} from 'react'
 
+async function GetMunicipalities() {
+    try {
+        const url = `https://api.dataforsyningen.dk/postnumre`;
+        const response = await fetch(url);
+        const mbResult = await response.json();
+        const data = mbResult.map(({ nr: zip, navn: city }) => {
+            return { zip, city };
+        });
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+    }
+}
 
 function forms() {
+    const [municipalities, setMunicipalities] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await GetMunicipalities();
+            setMunicipalities(data);
+        }
+
+        fetchData();
+    }, []);
+
+    const handleZipChange = (event) => {
+        const enteredZip = event.target.value;
+        const isValidZip = municipalities.some(({ zip }) => zip == parseInt(enteredZip));
+        event.target.setCustomValidity(isValidZip ? '' : 'Invalid')
+        console.log(isValidZip)
+    };
+
     return <form action="/my-handling-form-page" method="post">
         <ul>
             <li>
@@ -31,7 +64,9 @@ function forms() {
             </li>
             <li>
                 <label htmlFor="zip">Zip code:</label>
-                <input type="number"  id="zip" name="user_zip" min="1000" max="9999" required/> 
+                <input type="number" id="zip" name="user_zip" min="1000" max="9999" required
+                       onChange={handleZipChange}
+                />
             </li>
             <li>
                 <label htmlFor="city">City:</label>
@@ -51,7 +86,7 @@ function forms() {
             </li>
         </ul>
     </form>
-
 }
+
 
 export default forms
