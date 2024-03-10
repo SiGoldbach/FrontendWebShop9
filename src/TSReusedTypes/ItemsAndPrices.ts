@@ -19,10 +19,15 @@ export interface ProductInfo{
 export interface Price{
     priceBeforeRebate: number;
     rebatePercentage: number;
-    prceAfterRebate: number;
+    priceAfterRebate: number;
 
 }
-export interface basket {
+export interface Basket {
+    basketItems: BasketItem[]
+    priceList: Price[]
+    totalPrice: Price
+
+    
 
 }
 

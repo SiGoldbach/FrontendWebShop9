@@ -1,11 +1,12 @@
 import '../Data/product.json'
 import '../Pages/index.css'
 import DisplayItem from "./displayItem.js";
+import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 
 
-interface MyShoppinCartProps{
-    completeItems: CompleteItem[]
-    setCompleteItems: (completeItems: CompleteItem[]) => void
+interface MyShoppinCartProps {
+    basket: Basket;
+    setBasketItems: (basketItems: BasketItem[]) => void
 
 
 }
@@ -13,17 +14,16 @@ interface MyShoppinCartProps{
 function ShoppingCart(props: MyShoppinCartProps) {
     //Theese two consts define the state of this component
     //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
-    const itemsToDisplay = props.completeItems.map(CompleteItemInList =>
-        <ul key={CompleteItemInList.item.id}>
+    const itemsToDisplay = props.basket.basketItems.map(basketItem =>
+        <ul key={basketItem.id}>
 
             <DisplayItem
-                id={CompleteItemInList.item.id}
-                name={CompleteItemInList.itemInfo.name}
+                id={basketItem.id}
+                name={basketItem.name}
                 description={""}
-                price={CompleteItemInList.itemInfo.price}
-                currency={CompleteItemInList.itemInfo.currency}
-                quantity={CompleteItemInList.item.quantity}
-                giftWrap={CompleteItemInList.item.giftWrap}
+                price={basketItem.price}
+                currency={basketItem.currency}
+                quantity={basketItem.quantity}
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 removeItem={removeItem} />
@@ -38,51 +38,43 @@ function ShoppingCart(props: MyShoppinCartProps) {
     function removeItem(id: string) {
 
         // works by creating a new set of items and filtering out the one with matching id
-        const tempCurrentItems: CompleteItem[] = props.completeItems.filter(item => item.item.id !== id);
-        
-        props.setCompleteItems(tempCurrentItems)
+        const tempCurrentItems: BasketItem[] = props.basket.basketItems.filter(item => item.id !== id);
+
+        props.setBasketItems(tempCurrentItems)
     }
     //Decrease the amount of a certain item by one 
 
     function decreaseQuantity(id: string) {
-        const currentItems: CompleteItem[] = [...props.completeItems];
+        const currentItems: BasketItem[] = [...props.basket.basketItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].item.id === id) {
-                if (currentItems[i].item.quantity === 1) {
+            if (currentItems[i].id === id) {
+                if (currentItems[i].quantity === 1) {
                     break;
                 }
-                currentItems[i].item.quantity--;
+                currentItems[i].quantity--;
 
 
             }
 
         }
-        props.setCompleteItems(currentItems)
+        props.setBasketItems(currentItems)
 
     }
     //Increase the amount of a certain item by one 
     function increaseQuantity(id: string) {
         console.log("Trying to increase the amount of items")
-        const currentItems: CompleteItem[] = [...props.completeItems];
+        const currentItems: BasketItem[] = [...props.basket.basketItems];
         for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].item.id === id) {
-                currentItems[i].item.quantity++;
+            if (currentItems[i].id === id) {
+                currentItems[i].quantity++;
 
             }
 
         }
-        props.setCompleteItems(currentItems)
+        props.setBasketItems(currentItems)
 
     }
 
-    function calculateTotalPrice(completeItem:CompleteItem[]) {
-        let price: number = 0;
-        for (let i = 0; i < completeItem.length; i++) {
-            price = price + completeItem[i].itemInfo.price * completeItem[i].item.quantity;
-        }
-        return price;
-    }
-    const price :number = calculateTotalPrice(props.completeItems)
 
     // Returning the component ##STYLE HERE##
     return (
@@ -93,8 +85,8 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 <ul>
                     {itemsToDisplay}
                 </ul>
-                <p> Price before rebate is: </p>
-                <p> Your price is:  {price}</p>
+                <p> Price before rebate is: {props.basket.totalPrice.priceBeforeRebate}</p>
+                <p> Your price after rebate is: {props.basket.totalPrice.priceAfterRebate} </p>
 
             </div>
 
@@ -105,30 +97,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
     )
 
 }
-//Making props for the shopping cart here a list of items should be and setCompleteItems
 
-//TSX interfaces used for this component
-
-interface CompleteItem {
-    itemInfo: ItemInfo;
-    item: Item;
-}
-//Item fetched directly from server
-interface ItemInfo {
-    id: string;
-    name: string;
-    price: number;
-    currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
-    upsellProductId: string;
-}
-//Item given from as the customer to this page. 
-interface Item {
-    id: string;
-    quantity: number;
-    giftWrap: boolean;
-}
 
 
 export default ShoppingCart;

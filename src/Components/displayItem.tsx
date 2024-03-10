@@ -20,7 +20,6 @@ type MyDisplayItemProps = {
     price: number;
     currency: string;
     quantity: number;
-    giftWrap: boolean;
     decreaseQuantity: (id: string) => void;
     increaseQuantity: (id: string) => void;
     removeItem: (id: string) => void;
