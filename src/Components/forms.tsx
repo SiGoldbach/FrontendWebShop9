@@ -1,22 +1,29 @@
-import {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 
-async function getMunicipalities() {
+interface Muncipality {
+    zip: number,
+    city: string
+}
+
+
+async function getMunicipalities(): Promise<Muncipality[]> {
+    let data: Muncipality[] =[];
     try {
         const url = `https://api.dataforsyningen.dk/postnumre`;
         const response = await fetch(url);
         const mbResult = await response.json();
-        const data = mbResult.map(({ nr: zip, navn: city }) => {
-            return { zip, city };
+        data = mbResult.map(({ nr, navn }:{nr: number, navn: string}) => {
+            return { zip: nr, city: navn };
         });
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
-        return [];
+        return data;
     }
 }
 
-function forms() {
-    const [municipalities, setMunicipalities] = useState([]);
+function Forms() {
+    const [municipalities, setMunicipalities] = useState<Muncipality[]>([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -26,14 +33,17 @@ function forms() {
         fetchData();
     }, []);
 
-    const handleZipChange = (event) => {
+    const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const enteredZip = parseInt(event.target.value);
         const isValidZip = municipalities.some(({ zip }) => zip == enteredZip); //Checks whether the zip exists in the array
         event.target.setCustomValidity(isValidZip ? '' : 'Invalid') //This sets the validity to true if empty or false if not
         if (isValidZip) {
             const municipality = municipalities.find((m) => m.zip == enteredZip); //Gets the municipality (zip+city) of the zip
             if (municipality != null) {     //This should always happen.
-                document.getElementById('city').value = municipality.city; //Set the city input
+                const cityInput= document.getElementById('city') as HTMLInputElement | null;
+                if (cityInput) {
+                    cityInput.value = municipality.city;
+                }
             }
         }
     };
@@ -93,4 +103,4 @@ function forms() {
 }
 
 
-export default forms
+export default Forms

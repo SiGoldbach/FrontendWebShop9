@@ -9,6 +9,7 @@ import ShoppingCart from '../Components/ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useState } from 'react'
 import products from '../Data/product.json';
+import Forms from '../Components/forms.tsx'
 
 /**
  * 
