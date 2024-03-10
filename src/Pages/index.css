@@ -201,3 +201,43 @@ button:focus-visible {
 }
 
 
+
+/* 
+Styles for checkout column. AI generated
+*/
+
+.checkoutContainer {
+  max-width: 300px;
+  margin-left: 20px;
+  background: #f9f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.summaryBox, .addressBox {
+  margin-bottom: 20px;
+}
+
+.checkoutButton {
+  background-color: #646cff; /* Or any color that fits the design */
+  color: white; /* Text color for better readability */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500; /* Optional: makes the text a bit bolder */
+  margin-top: 20px; /* Optional: adds some space above the button */
+  width: 100%; /* Makes the button extend full container width */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Optional: adds a slight shadow for depth */
+}
+
+.checkoutButton:hover {
+  background-color: #535bf2; /* Slightly darker shade for hover state */
+}
+
+.shoppingCartContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
