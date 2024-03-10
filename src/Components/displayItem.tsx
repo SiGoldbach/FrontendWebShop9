@@ -42,7 +42,7 @@ function DisplayItem(props: displayItemProps) {
                     </div>
                     <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>Remove</button>
                     <div className="displayItemPrice">
-                        <p>Price befor rebate: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
+                        <p>Price before rebate: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
                         <p>Your price : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
                     </div>
                 </div>

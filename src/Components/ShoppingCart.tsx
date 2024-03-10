@@ -18,16 +18,23 @@ function ShoppingCart(props: MyShoppinCartProps) {
         const originalPrice = props.basket.totalPrice.priceBeforeRebate;
         const total = props.basket.totalPrice.priceAfterRebate;
         const discount = originalPrice - total;
-        
+    
         return (
             <div className="checkoutContainer">
                 <div className="summaryBox">
-                    <h2>Original Price: </h2>
-                    <p>{originalPrice}</p>
-                    <h2>Discount:</h2>
-                    <p>{discount}</p>
-                    <h2>Total:</h2>
-                    <p>{total}</p>
+                    <div className="summaryRow">
+                        <h2>Price:</h2>
+                        <p>{originalPrice.toFixed(2)}</p>
+                    </div>
+                    <div className="summaryRow">
+                        <h2>Discount:</h2>
+                        <p>{discount.toFixed(2)}</p>
+                    </div>
+                    <div className="line"></div>                
+                    <div className="summaryRow">
+                        <h2>Total:</h2>
+                        <p>{total.toFixed(2)}</p>
+                    </div>
                 </div>
                 <div className="addressBox">
                     <h2>Shipping Address:</h2>
@@ -37,7 +44,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 </div>
                 <button type="button" className="checkoutButton">Continue to checkout</button>
             </div>
-        )
+        );
     }
     function DisplayItemsInBasket() {
         if (props.basket.basketItems.length === 0) {
@@ -101,8 +108,6 @@ function ShoppingCart(props: MyShoppinCartProps) {
             <div className="cartItemsContainer">
                 <p>Shopping Basket</p>
                 <DisplayItemsInBasket />
-                <p> Price before rebate is: {props.basket.totalPrice.priceBeforeRebate}</p>
-                <p> Your price after rebate is: {props.basket.totalPrice.priceAfterRebate} </p>
             </div>
             <CheckoutSummary />
         </div>
