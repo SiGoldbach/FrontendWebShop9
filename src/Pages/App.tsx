@@ -120,7 +120,7 @@ function calculateTotalPrice(itemPrices: Price[]) {
   }, 0);
   var priceAfterRebate = totalBeforeRebate;
   if (totalBeforeRebate >= staticTotalRebateTreshold) {
-    priceAfterRebate /= staticTotalRebateInPercent;
+    priceAfterRebate -= priceAfterRebate/staticTotalRebateInPercent;
   };
   const totalPrice: Price = {
     priceBeforeRebate: totalBeforeRebate,
