@@ -3,16 +3,15 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* Base color definitions */
-  --text-color: #000; /* Black text color for light mode */
-  --background-color: #fff; /* White background for light mode */
-  --box-background-color: #f0f0f0; /* Light grey for boxes in light mode */
-  --line-color: #d0d0d0; /* Line color for light mode */
-  --button-background-color: #646cff; /* Button background for light mode */
-  --button-text-color: #fff; /* Button text color for light mode */
-  --border-color: #1a1a1a; /* Border color for light mode */
-  --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color for light mode */
-  --inactive-color: #666; /* Inactive text/icon color */
+  --text-color: #000; 
+  --background-color: #fff;
+  --box-background-color: #f0f0f0;
+  --line-color: #d0d0d0;
+  --button-background-color: #646cff; 
+  --button-text-color: #fff; 
+  --border-color: #1a1a1a; 
+  --shadow-color: rgba(0, 0, 0, 0.1); 
+  --inactive-color: #666; /
 
   color-scheme: light dark;
   color: var(--text-color);
@@ -21,15 +20,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color: #fff; /* White text color for dark mode */
-    --background-color: #242424; /* Dark grey background for dark mode */
-    --box-background-color: #333; /* Darker grey for boxes in dark mode */
-    --line-color: #555; /* Line color for dark mode */
-    --button-background-color: #535bf2; /* Button background for dark mode */
-    --button-text-color: #fff; /* Button text color for dark mode */
-    --border-color: #444; /* Border color for dark mode */
-    --shadow-color: rgba(255, 255, 255, 0.1); /* Shadow color for dark mode */
-    --inactive-color: #888; /* Inactive text/icon color for dark mode */
+    --text-color: #fff; 
+    --background-color: #242424; 
+    --box-background-color: #333; 
+    --line-color: #555; 
+    --button-background-color: #535bf2; 
+    --button-text-color: #fff; 
+    --border-color: #444; 
+    --shadow-color: rgba(255, 255, 255, 0.1); 
+    --inactive-color: #888; 
   }
 }
 
