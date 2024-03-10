@@ -127,7 +127,7 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   width: 600px;
   height: 300px;
   padding: 10px;
@@ -160,7 +160,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #1a1a1a;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   width: 90px;
   padding: 0;
@@ -200,7 +200,7 @@ button:focus-visible {
   font-size: 13px;
   line-height: 27px;
   border-radius: 6px;
-  border: 1px solid #1a1a1a;
+  border: 1px solid var(--border-color);
   display: inline-block;
   box-sizing: border-box;
 
@@ -215,7 +215,7 @@ button:focus-visible {
   border-radius: 8px;
   margin: 10 px;
   padding: 10px;
-  border-color: #1a1a1a;
+  border-color: var(--border-color);
   border-style: solid;
   border-width: 1px;
 }
@@ -297,7 +297,7 @@ Styles for checkout column. AI generated
   font-weight: 500; 
   margin-top: 20px; 
   width: 100%; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+  box-shadow: 0 2px 4px var(--shadow-color); 
 }
 
 .checkoutButton:hover {
