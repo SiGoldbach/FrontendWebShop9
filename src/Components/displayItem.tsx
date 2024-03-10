@@ -25,6 +25,9 @@ function DisplayItem(props: displayItemProps) {
                         <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
                     </div>
                     <div>
+                        <div className="displaySingleItemPrice">
+                            {props.basketItem.price} {props.basketItem.currency} {"/ stk"}
+                        </div>
                         <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
                         <p> Get the premium version: <br></br> {props.basketItem.upsellProductId}</p>
                     </div>
@@ -37,7 +40,7 @@ function DisplayItem(props: displayItemProps) {
                         {props.basketItem.quantity}
                         <button className="quantityButton" onClick={() => props.increaseQuantity(props.basketItem.id)}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>X</button>
+                    <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>Remove</button>
                     <div className="displayItemPrice">
                         <p>Price befor rebate: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
                         <p>Your price : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
