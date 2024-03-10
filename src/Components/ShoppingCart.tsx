@@ -1,43 +1,43 @@
 import '../Data/product.json'
 import '../Pages/index.css'
 import DisplayItem from "./displayItem.js";
-import React, { useState } from 'react';
-import Forms from '../Components/forms';
+import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 
 
-
-interface MyShoppinCartProps{
-    completeItems: CompleteItem[]
-    setCompleteItems: (completeItems: CompleteItem[]) => void
+interface MyShoppinCartProps {
+    basket: Basket;
+    setBasketItems: (basketItems: BasketItem[]) => void
 
 
 }
 
+
 function ShoppingCart(props: MyShoppinCartProps) {
-    //Theese two consts define the state of this component
-    //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
-    const itemsToDisplay = props.completeItems.map(CompleteItemInList =>
-        <ul key={CompleteItemInList.item.id}>
+    function DisplayItemsInBasket() {
+        if (props.basket.basketItems.length === 0) {
+            return (
+                <div className='emptyBasket'>
+                    <p>The shopping cart is empty go back to the store to buy some products </p>
+                </div>
+            )
+        }
+        else {
+            return props.basket.basketItems.map((basketItem, index) =>
+                <ul key={basketItem.id}>
 
-            <DisplayItem
-                id={CompleteItemInList.item.id}
-                name={CompleteItemInList.itemInfo.name}
-                description={""}
-                price={CompleteItemInList.itemInfo.price}
-                currency={CompleteItemInList.itemInfo.currency}
-                quantity={CompleteItemInList.item.quantity}
-                giftWrap={CompleteItemInList.item.giftWrap}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                removeItem={removeItem} />
+                    <DisplayItem
+                        basketItem={basketItem}
+                        increaseQuantity={increaseQuantity}
+                        decreaseQuantity={decreaseQuantity}
+                        removeItem={removeItem}
+                        basketItemPrice={props.basket.priceList[index]} />
 
-        </ul>
-    )
-    const [showForm, setShowForm] = useState(false);
+                </ul>)
+        }
 
-    const handleProceedToPayment = () => {
-        setShowForm(true); // Update state to show the form
-      };
+
+    };
+
     /**
      * Theese next four function are passed along to display item,
      * with the purpose of chaning state of the shopping basket.
@@ -46,116 +46,43 @@ function ShoppingCart(props: MyShoppinCartProps) {
     function removeItem(id: string) {
 
         // works by creating a new set of items and filtering out the one with matching id
-        const tempCurrentItems: CompleteItem[] = props.completeItems.filter(item => item.item.id !== id);
-        
-        props.setCompleteItems(tempCurrentItems)
+        const tempCurrentItems: BasketItem[] = props.basket.basketItems.filter(item => item.id !== id);
+
+        props.setBasketItems(tempCurrentItems)
     }
     //Decrease the amount of a certain item by one 
-
     function decreaseQuantity(id: string) {
-        const currentItems: CompleteItem[] = [...props.completeItems];
-        for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].item.id === id) {
-                if (currentItems[i].item.quantity === 1) {
-                    break;
-                }
-                currentItems[i].item.quantity--;
-
-
+        props.setBasketItems([...props.basket.basketItems].map((item) => {
+            if (item.id === id && item.quantity > 1) {
+                return { ...item, quantity: item.quantity - 1 };
             }
-
-        }
-        props.setCompleteItems(currentItems)
+            return item;
+        }))
 
     }
     //Increase the amount of a certain item by one 
     function increaseQuantity(id: string) {
-        console.log("Trying to increase the amount of items")
-        const currentItems: CompleteItem[] = [...props.completeItems];
-        for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].item.id === id) {
-                currentItems[i].item.quantity++;
-
+        props.setBasketItems([...props.basket.basketItems].map((item) => {
+            if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 };
             }
-
-        }
-        props.setCompleteItems(currentItems)
-
+            return item;
+        }))
     }
-    //Change the gift wrap boolean 
-    /*function changeGiftWrap(id: string) {
-        const currentItems: CompleteItem[] = [...props.completeItems];
-        for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].item.id === id) {
-                if (currentItems[i].item.giftWrap === true) {
-                    currentItems[i].item.giftWrap = false;
-                }
-                else {
-                    currentItems[i].item.giftWrap = true
-                }
-
-            }
-
-        }
-        props.setCompleteItems(currentItems)
-        
-    }*/
-    function calculateTotalPrice(completeItem:CompleteItem[]) {
-        let price: number = 0;
-        for (let i = 0; i < completeItem.length; i++) {
-            price = price + completeItem[i].itemInfo.price * completeItem[i].item.quantity;
-        }
-        return price;
-    }
-    const price :number = calculateTotalPrice(props.completeItems)
-
-    const forms = () => {
-        window.location.href = 'forms';
-    };
-
     // Returning the component ##STYLE HERE##
-    return (
-        <>
-            <div className="cartItemsContainer">
-                <p> Shopping Basket  </p>
+    return (<>
+        <div className="cartItemsContainer">
+            <p> Shopping Basket  </p>
 
-                <ul>
-                    {itemsToDisplay}
-                </ul>
-                <p> Price before rebate is: </p>
-                <p> Your price is:  {price}</p>
-                <button onClick={handleProceedToPayment} className="forms">Proceed to Payment</button>
-                {showForm && <Forms />}            
-      </div>
 
-        </>
+            <DisplayItemsInBasket />
+
+            <p> Price before rebate is: {props.basket.totalPrice.priceBeforeRebate}</p>
+            <p> Your price after rebate is: {props.basket.totalPrice.priceAfterRebate} </p>
+
+        </div>
+    </>
     )
-
 }
-//Making props for the shopping cart here a list of items should be and setCompleteItems
-
-//TSX interfaces used for this component
-
-interface CompleteItem {
-    itemInfo: ItemInfo;
-    item: Item;
-}
-//Item fetched directly from server
-interface ItemInfo {
-    id: string;
-    name: string;
-    price: number;
-    currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
-    upsellProductId: string;
-}
-//Item given from as the customer to this page. 
-interface Item {
-    id: string;
-    quantity: number;
-    giftWrap: boolean;
-}
-
 
 export default ShoppingCart;

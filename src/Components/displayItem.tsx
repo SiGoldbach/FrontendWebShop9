@@ -1,62 +1,49 @@
 import '../Pages/index.css'
+import {BasketItem,Price} from '../TSReusedTypes/ItemsAndPrices'
 
-/*function makeDummyItem() {
-    const item: MyDisplayItemProps = {
-        id: "vitamin-d-90-100",
-        name: "vitamin",
-        description: "hej",
-        price: 20,
-        currency: "DKK",
-        quantity: 5,
-        giftWrap: true,
-    };
-    return item;
-}
-*/
-type MyDisplayItemProps = {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    currency: string;
-    quantity: number;
-    giftWrap: boolean;
+
+type displayItemProps = {
+    basketItem: BasketItem;
+    basketItemPrice: Price;
     decreaseQuantity: (id: string) => void;
     increaseQuantity: (id: string) => void;
     removeItem: (id: string) => void;
 
-}
+};
 
-function DisplayItem(item: MyDisplayItemProps) {
-    //const item = makeDummyItem();
+function DisplayItem(props: displayItemProps) {
     return (
         <>
+
+
             <div className="displayItem">
                 <div className="leftColumn">
-                    <div className="displayItemName">
-                        <b>{item.name}</b>
+                    <div>
+                        <b className='displayItemName'>{props.basketItem.name}</b>
                     </div>
                     <div>
-                        <p> Buy 10 get 10% rebate </p>
-                        <p> Other customers bought</p>
+                        <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
                     </div>
-
                     <div>
-                        {item.description}
+                        <div className="displaySingleItemPrice">
+                            {props.basketItem.price} {props.basketItem.currency} {"/ stk"}
+                        </div>
+                        <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
+                        <p> Get the premium version: <br></br> {props.basketItem.upsellProductId}</p>
                     </div>
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={()=>item.decreaseQuantity(item.id)}>
-                            <span style={ item.quantity === 1 ? {color: "#b5b5b5"} : {}}>-</span>
-                            </button>
-                        {item.quantity}
-                        <button className="quantityButton" onClick={()=>item.increaseQuantity(item.id)}>+</button>
+                        <button className="quantityButton" onClick={() => props.decreaseQuantity(props.basketItem.id)}>
+                            <span style={props.basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
+                        </button>
+                        {props.basketItem.quantity}
+                        <button className="quantityButton" onClick={() => props.increaseQuantity(props.basketItem.id)}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={()=>item.removeItem(item.id)}>X</button>
+                    <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>Remove</button>
                     <div className="displayItemPrice">
-                        <p>Before Price: {item.price * item.quantity} {item.currency}</p>
-                        <p>Price with rebate : 150</p>
+                        <p>Price befor rebate: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
+                        <p>Your price : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
                     </div>
                 </div>
             </div>

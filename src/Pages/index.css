@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgb(255, 255, 255);
   background-color: #242424;
 
   font-synthesis: none;
@@ -91,19 +91,42 @@ button:focus-visible {
 }
 
 .displayItem {
+  display: flex;
   border: 1px solid black;
-  width: 400px;
-  height: 150px;
-  padding: 5px;
-  text-align: left;
+  width: 600px;
+  height: 300px;
+  padding: 10px;
   color:#222222;
 }
+
+.leftColumn {
+  text-align: left;
+  position: relative;
+  height: 100%;
+  padding: 5px;
+  width: 50%;
+}
+
+.rightColumn{
+  text-align: right;
+  position: relative;
+  height: 100%;
+  padding: 5px;
+  width: 50%
+}
+
+
 .displayItemName {
   text-align: left;
   font-size: 14px;
 }
 .displayItemQuant {
-  vertical-align: top;
+  border: #1a1a1a;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #1a1a1a;
+  width: auto;
+  box-sizing: border-box;
 }
 .displayItemPrice {
   position: absolute;
@@ -119,25 +142,11 @@ button:focus-visible {
 
 
 
-.leftColumn {
-  position: relative;
-  height: 90%;
-  padding: 5px;
-  float: left;
-  width: 50%;
-}
 
-.rightColumn{
-  position: relative;
-  height: 90% ;
-  padding: 5px;
-  float: left;
-  width: 45%
-}
 
 .quantityButton {
-  width: 23px;
-  height: 27px;
+  width: 25;
+  height: 25;
   background-color: #f5f5f5;
   color: #222222;
   padding: 2px;
@@ -147,54 +156,46 @@ button:focus-visible {
 }
 
 .removeItemButton {
-  position: absolute;
-  right: 0;
-  width: 23px;
+  width: 65px;
   height: 27px;
   background-color: #f5f5f5;
   color: #222222;
-  padding: 5px;
+  padding: 0;
   text-align: center;
-  font-size: 13;
+  font-size: 13px;
+  line-height: 27px;
   border-radius: 6px;
-
-}
-
-input:invalid {
-  border: 2px dashed red;
-}
-
-input:valid {
-  border: 2px solid black;
-}
-
-label {
-  /* Uniform size & alignment */
+  border: 1px solid #1a1a1a;
   display: inline-block;
-  width: 90px;
-  text-align: right;
-}
-
-input {
-  /* To make sure that all text fields have the same font settings
-     By default, textareas have a monospace font */
-  font: 1em sans-serif;
-
-  /* Uniform text field size */
-  width: 300px;
   box-sizing: border-box;
 
-  /* Match form field borders */
-  border: 1px solid #999;
+}
+.removeItemPicture {
+  height: 40px;
+  width: auto;
+    
+
+}
+.emptyBasket {
+  border-radius: 8px;
+  margin: 10 px;
+  padding: 10px;
+  border-color: #1a1a1a;
+  border-style: solid;
+  border-width: 1px;
 }
 
-input:focus {
-  /* Additional highlight for focused elements */
-  border-color: #000;
+
+
+.productImage{
+  width: 150px;
+  height: 150px;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+
+.displaySingleItemPrice {
+  font-size: 0.7em;
+  color: #666;
 }
+
+
