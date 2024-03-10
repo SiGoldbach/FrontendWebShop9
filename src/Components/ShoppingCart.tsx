@@ -45,59 +45,38 @@ function ShoppingCart(props: MyShoppinCartProps) {
     //Decrease the amount of a certain item by one 
 
     function decreaseQuantity(id: string) {
-        const currentItems: BasketItem[] = [...props.basket.basketItems];
-        for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].id === id) {
-                if (currentItems[i].quantity === 1) {
-                    break;
-                }
-                currentItems[i].quantity--;
-
-
+        props.setBasketItems([...props.basket.basketItems].map((item) => {
+            if (item.id === id && item.quantity > 1) {
+                return { ...item, quantity: item.quantity - 1 };
             }
-
-        }
-        props.setBasketItems(currentItems)
+            return item;
+        }))
 
     }
     //Increase the amount of a certain item by one 
     function increaseQuantity(id: string) {
-        console.log("Trying to increase the amount of items")
-        const currentItems: BasketItem[] = [...props.basket.basketItems];
-        for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].id === id) {
-                currentItems[i].quantity++;
-
+        props.setBasketItems([...props.basket.basketItems].map((item) => {
+            if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 };
             }
-
-        }
-        props.setBasketItems(currentItems)
-
+            return item;
+        }))
     }
 
 
     // Returning the component ##STYLE HERE##
     return (
-        <>
             <div className="cartItemsContainer">
                 <p> Shopping Basket  </p>
 
-                <ul>
-                    {itemsToDisplay}
-                </ul>
+
+                {itemsToDisplay}
+
                 <p> Price before rebate is: {props.basket.totalPrice.priceBeforeRebate}</p>
                 <p> Your price after rebate is: {props.basket.totalPrice.priceAfterRebate} </p>
 
-            </div>
-
-
-
-
-        </>
+            </div>        
     )
-
 }
-
-
 
 export default ShoppingCart;

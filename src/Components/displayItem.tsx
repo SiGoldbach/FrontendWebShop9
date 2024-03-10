@@ -1,18 +1,6 @@
 import '../Pages/index.css'
 
-/*function makeDummyItem() {
-    const item: MyDisplayItemProps = {
-        id: "vitamin-d-90-100",
-        name: "vitamin",
-        description: "hej",
-        price: 20,
-        currency: "DKK",
-        quantity: 5,
-        giftWrap: true,
-    };
-    return item;
-}
-*/
+
 type MyDisplayItemProps = {
     id: string;
     name: string;
@@ -40,9 +28,6 @@ function DisplayItem(item: MyDisplayItemProps) {
                         <p> Other customers bought</p>
                     </div>
 
-                    <div>
-                        {item.description}
-                    </div>
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
