@@ -43,7 +43,6 @@ function ShoppingCart(props: MyShoppinCartProps) {
         props.setBasketItems(tempCurrentItems)
     }
     //Decrease the amount of a certain item by one 
-
     function decreaseQuantity(id: string) {
         props.setBasketItems([...props.basket.basketItems].map((item) => {
             if (item.id === id && item.quantity > 1) {
@@ -62,8 +61,6 @@ function ShoppingCart(props: MyShoppinCartProps) {
             return item;
         }))
     }
-
-
     // Returning the component ##STYLE HERE##
     return (
             <div className="cartItemsContainer">
