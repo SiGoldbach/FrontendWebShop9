@@ -1,6 +1,43 @@
+import {useState, useEffect} from 'react'
 
+async function getMunicipalities() {
+    try {
+        const url = `https://api.dataforsyningen.dk/postnumre`;
+        const response = await fetch(url);
+        const mbResult = await response.json();
+        const data = mbResult.map(({ nr: zip, navn: city }) => {
+            return { zip, city };
+        });
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+    }
+}
 
 function forms() {
+    const [municipalities, setMunicipalities] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await getMunicipalities();
+            setMunicipalities(data);
+        }
+        fetchData();
+    }, []);
+
+    const handleZipChange = (event) => {
+        const enteredZip = parseInt(event.target.value);
+        const isValidZip = municipalities.some(({ zip }) => zip == enteredZip); //Checks whether the zip exists in the array
+        event.target.setCustomValidity(isValidZip ? '' : 'Invalid') //This sets the validity to true if empty or false if not
+        if (isValidZip) {
+            const municipality = municipalities.find((m) => m.zip == enteredZip); //Gets the municipality (zip+city) of the zip
+            if (municipality != null) {     //This should always happen.
+                document.getElementById('city').value = municipality.city; //Set the city input
+            }
+        }
+    };
+
     return <form action="/my-handling-form-page" method="post">
         <ul>
             <li>
@@ -31,7 +68,9 @@ function forms() {
             </li>
             <li>
                 <label htmlFor="zip">Zip code:</label>
-                <input type="number"  id="zip" name="user_zip" min="1000" max="9999" required/> 
+                <input type="number" id="zip" name="user_zip" required
+                       onChange={handleZipChange}
+                />
             </li>
             <li>
                 <label htmlFor="city">City:</label>
@@ -51,7 +90,7 @@ function forms() {
             </li>
         </ul>
     </form>
-
 }
+
 
 export default forms
