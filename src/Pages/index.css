@@ -91,21 +91,42 @@ button:focus-visible {
 }
 
 .displayItem {
+  display: flex;
   border: 1px solid black;
-  width: 800px;
-  height: 250px;
+  width: 600px;
+  height: 300px;
   padding: 10px;
-  text-align: left;
   color:#222222;
 }
+
+.leftColumn {
+  text-align: left;
+  position: relative;
+  height: 100%;
+  padding: 5px;
+  width: 50%;
+}
+
+.rightColumn{
+  text-align: right;
+  position: relative;
+  height: 100%;
+  padding: 5px;
+  width: 50%
+}
+
+
 .displayItemName {
   text-align: left;
   font-size: 14px;
 }
 .displayItemQuant {
-  vertical-align: top;
-  background-color: #f5f5f5;
   border: #1a1a1a;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #1a1a1a;
+  width: auto;
+  box-sizing: border-box;
 }
 .displayItemPrice {
   position: absolute;
@@ -121,25 +142,11 @@ button:focus-visible {
 
 
 
-.leftColumn {
-  position: relative;
-  height: 90%;
-  padding: 5px;
-  float: left;
-  width: 50%;
-}
 
-.rightColumn{
-  position: relative;
-  height: 90% ;
-  padding: 5px;
-  float: left;
-  width: 45%
-}
 
 .quantityButton {
-  width: 23px;
-  height: 27px;
+  width: 25;
+  height: 25;
   background-color: #f5f5f5;
   color: #222222;
   padding: 2px;
@@ -149,17 +156,38 @@ button:focus-visible {
 }
 
 .removeItemButton {
-  position: absolute;
-  right: 0;
   width: 23px;
   height: 27px;
   background-color: #f5f5f5;
   color: #222222;
-  padding: 5px;
+  padding: 10px;
   text-align: center;
   font-size: 13;
   border-radius: 6px;
+  border-color: #1a1a1a;
+  border-style: solid;
 
+}
+.removeItemPicture {
+  height: 40px;
+  width: auto;
+    
+
+}
+.emptyBasket {
+  border-radius: 8px;
+  margin: 10 px;
+  padding: 10px;
+  border-color: #1a1a1a;
+  border-style: solid;
+  border-width: 1px;
+}
+
+
+
+.productImage{
+  width: 150px;
+  height: 150px;
 }
 
 

@@ -15,29 +15,32 @@ type MyDisplayItemProps = {
 }
 
 function DisplayItem(item: MyDisplayItemProps) {
-    //const item = makeDummyItem();
     return (
         <>
+
+
             <div className="displayItem">
                 <div className="leftColumn">
-                    <div className="displayItemName">
-                        <b>{item.name}</b>
+                    <div>
+                        <b className='displayItemName'>{item.name}</b>
+                    </div>
+                    <div>
+                        <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
                     </div>
                     <div>
                         <p> Buy 10 get 10% rebate </p>
                         <p> Other customers bought</p>
                     </div>
-
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={()=>item.decreaseQuantity(item.id)}>
-                            <span style={ item.quantity === 1 ? {color: "#b5b5b5"} : {}}>-</span>
-                            </button>
+                        <button className="quantityButton" onClick={() => item.decreaseQuantity(item.id)}>
+                            <span style={item.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
+                        </button>
                         {item.quantity}
-                        <button className="quantityButton" onClick={()=>item.increaseQuantity(item.id)}>+</button>
+                        <button className="quantityButton" onClick={() => item.increaseQuantity(item.id)}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={()=>item.removeItem(item.id)}>X</button>
+                    <button className="removeItemButton" onClick={() => item.removeItem(item.id)}>X</button>
                     <div className="displayItemPrice">
                         <p>Before Price: {item.price * item.quantity} {item.currency}</p>
                         <p>Price with rebate : 150</p>
