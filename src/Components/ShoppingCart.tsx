@@ -13,36 +13,31 @@ interface MyShoppinCartProps {
 
 
 function ShoppingCart(props: MyShoppinCartProps) {
-    //Theese two consts define the state of this component
-    //This method is used to call display item once for each item in the shopping cart ##STYLE HERE## it has to be <li> component
-    function DisplayItemsInBasket(){
-        if (props.basket.basketItems.length===0){
-            return(
+    function DisplayItemsInBasket() {
+        if (props.basket.basketItems.length === 0) {
+            return (
                 <div className='emptyBasket'>
-                <p>The shopping cart is empty go back to the store to buy some products </p>
+                    <p>The shopping cart is empty go back to the store to buy some products </p>
                 </div>
             )
         }
         else {
-            return props.basket.basketItems.map(basketItem =>
+            return props.basket.basketItems.map((basketItem, index) =>
                 <ul key={basketItem.id}>
-        
+
                     <DisplayItem
-                        id={basketItem.id}
-                        name={basketItem.name}
-                        description={""}
-                        price={basketItem.price}
-                        currency={basketItem.currency}
-                        quantity={basketItem.quantity}
+                        basketItem={basketItem}
                         increaseQuantity={increaseQuantity}
                         decreaseQuantity={decreaseQuantity}
-                        removeItem={removeItem} />
-        
+                        removeItem={removeItem}
+                        basketItemPrice={props.basket.priceList[index]} />
+
                 </ul>)
         }
 
 
     };
+
     /**
      * Theese next four function are passed along to display item,
      * with the purpose of chaning state of the shopping basket.
@@ -76,17 +71,17 @@ function ShoppingCart(props: MyShoppinCartProps) {
     }
     // Returning the component ##STYLE HERE##
     return (<>
-            <div className="cartItemsContainer">
-                <p> Shopping Basket  </p>
+        <div className="cartItemsContainer">
+            <p> Shopping Basket  </p>
 
 
-                <DisplayItemsInBasket/>
+            <DisplayItemsInBasket />
 
-                <p> Price before rebate is: {props.basket.totalPrice.priceBeforeRebate}</p>
-                <p> Your price after rebate is: {props.basket.totalPrice.priceAfterRebate} </p>
+            <p> Price before rebate is: {props.basket.totalPrice.priceBeforeRebate}</p>
+            <p> Your price after rebate is: {props.basket.totalPrice.priceAfterRebate} </p>
 
-            </div>   
-            </>     
+        </div>
+    </>
     )
 }
 

@@ -1,20 +1,17 @@
 import '../Pages/index.css'
+import {BasketItem,Price} from '../TSReusedTypes/ItemsAndPrices'
 
 
-type MyDisplayItemProps = {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    currency: string;
-    quantity: number;
+type displayItemProps = {
+    basketItem: BasketItem;
+    basketItemPrice: Price;
     decreaseQuantity: (id: string) => void;
     increaseQuantity: (id: string) => void;
     removeItem: (id: string) => void;
 
-}
+};
 
-function DisplayItem(item: MyDisplayItemProps) {
+function DisplayItem(props: displayItemProps) {
     return (
         <>
 
@@ -22,28 +19,28 @@ function DisplayItem(item: MyDisplayItemProps) {
             <div className="displayItem">
                 <div className="leftColumn">
                     <div>
-                        <b className='displayItemName'>{item.name}</b>
+                        <b className='displayItemName'>{props.basketItem.name}</b>
                     </div>
                     <div>
                         <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
                     </div>
                     <div>
-                        <p> Buy 10 get 10% rebate </p>
-                        <p> Other customers bought</p>
+                        <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
+                        <p> Get the premium version: <br></br> {props.basketItem.upsellProductId}</p>
                     </div>
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={() => item.decreaseQuantity(item.id)}>
-                            <span style={item.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
+                        <button className="quantityButton" onClick={() => props.decreaseQuantity(props.basketItem.id)}>
+                            <span style={props.basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
                         </button>
-                        {item.quantity}
-                        <button className="quantityButton" onClick={() => item.increaseQuantity(item.id)}>+</button>
+                        {props.basketItem.quantity}
+                        <button className="quantityButton" onClick={() => props.increaseQuantity(props.basketItem.id)}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={() => item.removeItem(item.id)}>X</button>
+                    <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>X</button>
                     <div className="displayItemPrice">
-                        <p>Before Price: {item.price * item.quantity} {item.currency}</p>
-                        <p>Price with rebate : 150</p>
+                        <p>Price befor rebate: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
+                        <p>Your price : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
                     </div>
                 </div>
             </div>

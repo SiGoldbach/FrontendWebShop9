@@ -91,7 +91,7 @@ function calculateItemPrices(basketItems: BasketItem[]) {
       const price: Price = {
         priceBeforeRebate: item.price * item.quantity,
         rebatePercentage: item.rebatePercent,
-        priceAfterRebate: (item.price * item.quantity) / item.rebatePercent
+        priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity)*(item.rebatePercent/100))
 
       };
       itemPrices.push(price)
@@ -116,7 +116,7 @@ function calculateTotalPrice(itemPrices: Price[]) {
   const staticTotalRebateInPercent: number = 10;
   const staticTotalRebateTreshold: number = 300;
   const totalBeforeRebate: number = itemPrices.reduce((acc, curr) => {
-    return acc + curr.priceBeforeRebate;
+    return acc + curr.priceAfterRebate;
   }, 0);
   var priceAfterRebate = totalBeforeRebate;
   if (totalBeforeRebate >= staticTotalRebateTreshold) {
