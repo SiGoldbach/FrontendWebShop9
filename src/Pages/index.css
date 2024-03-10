@@ -3,14 +3,44 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgb(255, 255, 255);
-  background-color: #242424;
+  /* Base color definitions */
+  --text-color: #000; /* Black text color for light mode */
+  --background-color: #fff; /* White background for light mode */
+  --box-background-color: #f0f0f0; /* Light grey for boxes in light mode */
+  --line-color: #d0d0d0; /* Line color for light mode */
+  --button-background-color: #646cff; /* Button background for light mode */
+  --button-text-color: #fff; /* Button text color for light mode */
+  --border-color: #1a1a1a; /* Border color for light mode */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color for light mode */
+  --inactive-color: #666; /* Inactive text/icon color */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #fff; /* White text color for dark mode */
+    --background-color: #242424; /* Dark grey background for dark mode */
+    --box-background-color: #333; /* Darker grey for boxes in dark mode */
+    --line-color: #555; /* Line color for dark mode */
+    --button-background-color: #535bf2; /* Button background for dark mode */
+    --button-text-color: #fff; /* Button text color for dark mode */
+    --border-color: #444; /* Border color for dark mode */
+    --shadow-color: rgba(255, 255, 255, 0.1); /* Shadow color for dark mode */
+    --inactive-color: #888; /* Inactive text/icon color for dark mode */
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 a {
@@ -46,9 +76,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -70,13 +102,13 @@ button:focus-visible {
 .cartItemsContainer {
   max-width: 1280px;
   margin: auto;
-  background: #f9f9f9;
-  border: #1a1a1a;
+  background: var(--box-background-color);
+  border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px var(--shadow-color);
 }
 
 .image-text {
@@ -99,7 +131,7 @@ button:focus-visible {
   width: 600px;
   height: 300px;
   padding: 10px;
-  color:#222222;
+  color: var(--text-color);
 }
 
 .leftColumn {
@@ -150,8 +182,8 @@ button:focus-visible {
 
 
 .quantityButton {
-  background-color: #f5f5f5;
-  color: #222222;
+  background-color: var(--box-background-color);
+  color: var(--text-color);
   text-align: center;
   font-size: 13px;
   border-radius: 6px;
@@ -161,8 +193,8 @@ button:focus-visible {
   margin-top: 10px;
   width: 65px;
   height: 27px;
-  background-color: #f5f5f5;
-  color: #222222;
+  background-color: var(--box-background-color);
+  color: var(--text-color);
   padding: 0;
   text-align: center;
   font-size: 13px;
@@ -198,7 +230,7 @@ button:focus-visible {
 
 .displaySingleItemPrice {
   font-size: 0.7em;
-  color: #666;
+  color: var(--inactive-color);
 }
 
 
@@ -210,10 +242,10 @@ Styles for checkout column. AI generated
 .checkoutContainer {
   max-width: 400px;
   margin-left: 20px;
-  background: #f9f9f9f9;
+  background: var(--box-background-color);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px var(--shadow-color);
 }
 
 .summaryRow {
@@ -234,10 +266,10 @@ Styles for checkout column. AI generated
 }
 
 .summaryBox {
-  background: #f0f0f0;
+  background: var(--box-background-color);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .summaryBox h2 {
@@ -251,13 +283,13 @@ Styles for checkout column. AI generated
 }
 
 .line {
-  border-bottom: 1px solid #d0d0d0; 
+  border-bottom: 1px solid var(--line-color); 
   margin: 10px 0; 
 }
 
 .checkoutButton {
-  background-color: #646cff;
-  color: white; 
+  background-color: var(--button-background-color);
+  color: var(--button-text-color); 
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
