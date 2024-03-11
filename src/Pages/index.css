@@ -13,8 +13,7 @@
   --button-text-color: #fff; 
   --border-color: #1a1a1a; 
   --shadow-color: rgba(0, 0, 0, 0.1); 
-  --inactive-color: #666; /
-
+  --inactive-color: #666;
   color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--background-color);

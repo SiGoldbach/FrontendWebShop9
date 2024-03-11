@@ -5,7 +5,7 @@ import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 import { useNavigate } from 'react-router-dom';
 
 
-interface MyShoppinCartProps {
+interface shoppinCartProps {
     basket: Basket;
     setBasketItems: (basketItems: BasketItem[]) => void
 
@@ -13,7 +13,7 @@ interface MyShoppinCartProps {
 }
 
 
-function ShoppingCart(props: MyShoppinCartProps) {
+function ShoppingCart(props: shoppinCartProps) {
     const navigate = useNavigate();
     function CheckoutSummary() {
         const originalPrice = props.basket.totalPrice.priceBeforeRebate;
@@ -116,7 +116,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
     return (<>
         <div className="shoppingCartContainer">
             <div className="cartItemsContainer">
-                <p>Shopping Basket</p>
+                <p>Get an additional 10% discount with any purchase over 300 DKK</p>
                 <DisplayItemsInBasket />
             </div>
             <CheckoutSummary />

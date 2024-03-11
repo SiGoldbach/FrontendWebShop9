@@ -92,7 +92,7 @@ function calculateItemPrices(basketItems: BasketItem[]) {
       const price: Price = {
         priceBeforeRebate: item.price * item.quantity,
         rebatePercentage: item.rebatePercent,
-        priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity)*(item.rebatePercent/100))
+        priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity) * (item.rebatePercent / 100))
 
       };
       itemPrices.push(price)
@@ -121,7 +121,7 @@ function calculateTotalPrice(itemPrices: Price[]) {
   }, 0);
   var priceAfterRebate = totalBeforeRebate;
   if (totalBeforeRebate >= staticTotalRebateTreshold) {
-    priceAfterRebate -= priceAfterRebate/staticTotalRebateInPercent;
+    priceAfterRebate -= priceAfterRebate / staticTotalRebateInPercent;
   };
   const totalPrice: Price = {
     priceBeforeRebate: totalBeforeRebate,
@@ -132,14 +132,13 @@ function calculateTotalPrice(itemPrices: Price[]) {
   return totalPrice;
 }
 
-
 /* GPT generated */
-function App() {
+function App():JSX.Element {
   const availibleProducts: ProductInfo[] = getAvailibleProducts();
   const [basketItems, setBasketItems] = useState(generateBasket(availibleProducts))
   const itemPrices: Price[] = calculateItemPrices(basketItems);
   const totalPrice: Price = calculateTotalPrice(itemPrices);
-  const basket: Basket={
+  const basket: Basket = {
     basketItems: basketItems,
     priceList: itemPrices,
     totalPrice: totalPrice
@@ -152,12 +151,13 @@ function App() {
 
 
   return (
-    <Router>
-      <div >
-        <nav>
-          {/* Nav links */}
-          <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
-        </nav>
+    
+      <Router>
+        <div >
+          <nav>
+            {/* Nav links */}
+            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart </Link>
+          </nav>
 
         {/* Define routes */}
         <Routes>
