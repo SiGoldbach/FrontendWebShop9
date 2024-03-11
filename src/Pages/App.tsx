@@ -130,10 +130,13 @@ function calculateTotalPrice(itemPrices: Price[]) {
   };
   return totalPrice;
 }
+export function sum(a:number, b:number):number {
+  return a + b
+}
 
 
 /* GPT generated */
-function App() {
+function App():JSX.Element {
   const availibleProducts: ProductInfo[] = getAvailibleProducts();
   const [basketItems, setBasketItems] = useState(generateBasket(availibleProducts))
   const itemPrices: Price[] = calculateItemPrices(basketItems);
@@ -156,7 +159,7 @@ function App() {
         <div >
           <nav>
             {/* Nav links */}
-            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
+            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart <label>LinkToShoppingCart</label></Link>
           </nav>
 
           {/* Define routes */}

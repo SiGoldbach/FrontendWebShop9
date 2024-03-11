@@ -106,7 +106,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
     return (<>
         <div className="shoppingCartContainer">
             <div className="cartItemsContainer">
-                <p>Shopping Basket, get a 10% discount with any purchase over 300 DKK</p>
+                <p>Get an additional 10% discount with any purchase over 300 DKK</p>
                 <DisplayItemsInBasket />
             </div>
             <CheckoutSummary />
