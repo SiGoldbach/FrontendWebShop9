@@ -163,6 +163,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
+          <Route path="/checkout" element={<Forms />} />
         </Routes>
       </div>
     </Router>

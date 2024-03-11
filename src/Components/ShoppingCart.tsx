@@ -2,6 +2,7 @@ import '../Data/product.json'
 import '../Pages/index.css'
 import DisplayItem from "./displayItem.js";
 import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
+import { useNavigate } from 'react-router-dom';
 
 
 interface MyShoppinCartProps {
@@ -13,12 +14,15 @@ interface MyShoppinCartProps {
 
 
 function ShoppingCart(props: MyShoppinCartProps) {
-
+    const navigate = useNavigate();
     function CheckoutSummary() {
         const originalPrice = props.basket.totalPrice.priceBeforeRebate;
         const total = props.basket.totalPrice.priceAfterRebate;
         const discount = originalPrice - total;
-    
+        
+        const navigateToCheckout = () => {
+            navigate('/checkout'); // Use the navigate function
+          };
         return (
             <div className="checkoutContainer">
                 <div className="summaryBox">
@@ -42,7 +46,7 @@ function ShoppingCart(props: MyShoppinCartProps) {
                     <h2>Billing Address:</h2>
                     {/* Checkbox for "same as shipping" */}
                 </div>
-                <button type="button" className="checkoutButton">Continue to checkout</button>
+                <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout </button>
             </div>
         );
     }
