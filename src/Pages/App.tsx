@@ -132,23 +132,32 @@ function calculateTotalPrice(itemPrices: Price[]) {
   return totalPrice;
 }
 
+
 /* GPT generated */
 function App():JSX.Element {
   const availibleProducts: ProductInfo[] = getAvailibleProducts();
-  const [basketItems, setBasketItems] = useState(generateBasket(availibleProducts))
+  const [basketItems, setBasketItems] = useState<BasketItem[]>([])
   const itemPrices: Price[] = calculateItemPrices(basketItems);
   const totalPrice: Price = calculateTotalPrice(itemPrices);
   const basket: Basket = {
     basketItems: basketItems,
     priceList: itemPrices,
     totalPrice: totalPrice
-
   }
+  
+  const handleAddToCart = (product: ProductInfo) => {
+    const existingItem = basketItems.find(item => item.id === product.id);
 
+    if (existingItem) {
+      setBasketItems(basketItems.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      ));
+    } else {
+      setBasketItems([...basketItems, { ...product, quantity: 1 }]);
+    }
+  };
 
-
-
-
+  
 
   return (
     
@@ -156,12 +165,12 @@ function App():JSX.Element {
         <div >
           <nav>
             {/* Nav links */}
-            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart </Link>
+            <Link to="/">Store</Link> | <Link to="/cart">Shopping Cart </Link>
           </nav>
 
         {/* Define routes */}
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
           <Route path="/checkout" element={<Forms />} />
         </Routes>

@@ -310,3 +310,95 @@ Styles for checkout column. AI generated
   justify-content: space-between;
   padding: 20px;
 }
+
+.product-card {
+  background: var(--box-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin: 16px; 
+}
+.product-image {
+  width: 100%; /* Adjust as necessary */
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.product-name {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.product-details {
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+.add-to-cart-button {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.add-to-cart-button:hover {
+  background-color: #535bf2;
+}
+
+.landing-page-container{
+  text-align: center;
+  padding: 20px;
+}
+.products-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background: var(--box-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 200px; 
+  padding: 16px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-align: left; 
+  display: flex;
+  flex-direction: column; 
+}
+
+.product-name {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 8px 0;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: var(--inactive-color); 
+  margin-bottom: 12px;
+}
+
+.add-to-cart-button {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: auto; 
+  transition: background-color 0.3s ease; 
+}
+
+.add-to-cart-button:hover {
+  background-color: #535bf2; 
+}
