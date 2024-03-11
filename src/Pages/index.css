@@ -404,7 +404,7 @@ Styles for checkout column. AI generated
 }
 
 input:invalid {
-  border: 2px dashed red;
+  border: 1px solid red;
 }
 
 input:valid {
@@ -424,11 +424,12 @@ input {
   font: 1em sans-serif;
 
   /* Uniform text field size */
-  width: 300px;
+  max-width: 600px;
   box-sizing: border-box;
 
   /* Match form field borders */
   border: 1px solid #999;
+  margin: 0.1em;
 }
 
 input:focus {
