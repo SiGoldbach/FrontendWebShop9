@@ -9,7 +9,6 @@ import ShoppingCart from '../Components/ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useState } from 'react'
 import products from '../Data/product.json';
-import Forms from '../Components/forms.tsx'
 
 /**
  * 
@@ -92,7 +91,7 @@ function calculateItemPrices(basketItems: BasketItem[]) {
       const price: Price = {
         priceBeforeRebate: item.price * item.quantity,
         rebatePercentage: item.rebatePercent,
-        priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity)*(item.rebatePercent/100))
+        priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity) * (item.rebatePercent / 100))
 
       };
       itemPrices.push(price)
@@ -121,7 +120,7 @@ function calculateTotalPrice(itemPrices: Price[]) {
   }, 0);
   var priceAfterRebate = totalBeforeRebate;
   if (totalBeforeRebate >= staticTotalRebateTreshold) {
-    priceAfterRebate -= priceAfterRebate/staticTotalRebateInPercent;
+    priceAfterRebate -= priceAfterRebate / staticTotalRebateInPercent;
   };
   const totalPrice: Price = {
     priceBeforeRebate: totalBeforeRebate,
@@ -139,7 +138,7 @@ function App() {
   const [basketItems, setBasketItems] = useState(generateBasket(availibleProducts))
   const itemPrices: Price[] = calculateItemPrices(basketItems);
   const totalPrice: Price = calculateTotalPrice(itemPrices);
-  const basket: Basket={
+  const basket: Basket = {
     basketItems: basketItems,
     priceList: itemPrices,
     totalPrice: totalPrice
@@ -152,20 +151,22 @@ function App() {
 
 
   return (
-    <Router>
-      <div >
-        <nav>
-          {/* Nav links */}
-          <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
-        </nav>
+    <>
+      <Router>
+        <div >
+          <nav>
+            {/* Nav links */}
+            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart</Link>
+          </nav>
 
-        {/* Define routes */}
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
-        </Routes>
-      </div>
-    </Router>
+          {/* Define routes */}
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   )
 }
 
