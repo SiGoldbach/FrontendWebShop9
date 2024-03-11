@@ -67,8 +67,8 @@ function DisplayItem(props: displayItemProps) {
                         <div className="displaySingleItemPrice">
                             {props.basketItem.price} {props.basketItem.currency} {"/ stk"}
                         </div>
-                        <PremiumHelper />
                         <RebateInformationHelper/>
+                        <PremiumHelper />
                     </div>
                 </div>
                 <div className="rightColumn">
