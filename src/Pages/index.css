@@ -310,3 +310,8 @@ Styles for checkout column. AI generated
   justify-content: space-between;
   padding: 20px;
 }
+
+.IGNORE
+*{
+  outline: 1px solid red;
+}
