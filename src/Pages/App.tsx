@@ -130,10 +130,6 @@ function calculateTotalPrice(itemPrices: Price[]) {
   };
   return totalPrice;
 }
-export function sum(a:number, b:number):number {
-  return a + b
-}
-
 
 /* GPT generated */
 function App():JSX.Element {
@@ -159,7 +155,7 @@ function App():JSX.Element {
         <div >
           <nav>
             {/* Nav links */}
-            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart <label>LinkToShoppingCart</label></Link>
+            <Link to="/">Home</Link> | <Link to="/cart">Shopping Cart <label id="LinkToShoppingCart">LinkToShoppingCart</label></Link>
           </nav>
 
           {/* Define routes */}

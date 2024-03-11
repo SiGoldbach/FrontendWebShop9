@@ -4,7 +4,7 @@ import DisplayItem from "./displayItem.js";
 import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 
 
-interface MyShoppinCartProps {
+interface shoppinCartProps {
     basket: Basket;
     setBasketItems: (basketItems: BasketItem[]) => void
 
@@ -12,7 +12,7 @@ interface MyShoppinCartProps {
 }
 
 
-function ShoppingCart(props: MyShoppinCartProps) {
+function ShoppingCart(props: shoppinCartProps) {
 
     function CheckoutSummary() {
         const originalPrice = props.basket.totalPrice.priceBeforeRebate;
