@@ -42,9 +42,15 @@ function ShoppingCart(props: MyShoppinCartProps) {
                 </div>
                 <div className="addressBox">
                     <h2>Shipping Address:</h2>
-                    {/* Forms go here */}
+                    {<li>
+                        <label htmlFor="shippingaddress">Shipping Address: </label>
+                        <input type="text" id="shippingaddress" name="shipping_address" required/>
+                    </li>}
                     <h2>Billing Address:</h2>
-                    {/* Checkbox for "same as shipping" */}
+                    {<li>
+                        <label htmlFor="billingaddress">Billing Address: </label>
+                        <input type="text" id="billingaddress" name="billing_address" required/>
+                    </li>}
                 </div>
                 <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout </button>
             </div>
