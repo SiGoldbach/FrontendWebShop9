@@ -1,5 +1,5 @@
 import '../Pages/index.css'
-import {BasketItem,Price} from '../TSReusedTypes/ItemsAndPrices'
+import { BasketItem, Price } from '../TSReusedTypes/ItemsAndPrices'
 
 
 type displayItemProps = {
@@ -12,6 +12,34 @@ type displayItemProps = {
 };
 
 function DisplayItem(props: displayItemProps) {
+
+
+    function DiscountHelper() {
+        if (props.basketItemPrice.priceBeforeRebate === props.basketItemPrice.priceAfterRebate)
+            return (<>
+            </>
+            )
+        else {
+            return (<>
+                <p>Subtotal: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
+                <p>Disount: {props.basketItemPrice.priceBeforeRebate - props.basketItemPrice.priceAfterRebate}</p>
+            </>
+            )
+        }
+    }
+    function PremiumHelper() {
+        if (props.basketItem.upsellProductId) {
+            return (<>
+                <p> Upgrade to the premium version: <br></br> {props.basketItem.upsellProductId}</p>
+            </>)
+        }else {
+            return(<>
+            </>)
+        }
+
+
+    }
+
     return (
         <>
 
@@ -19,7 +47,7 @@ function DisplayItem(props: displayItemProps) {
             <div className="displayItem">
                 <div className="leftColumn">
                     <div>
-                        <b className='displayItemName'>{props.basketItem.name}</b>
+                        <b className='displayItemName'>{props.basketItem.id}</b>
                     </div>
                     <div>
                         <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
@@ -29,7 +57,7 @@ function DisplayItem(props: displayItemProps) {
                             {props.basketItem.price} {props.basketItem.currency} {"/ stk"}
                         </div>
                         <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
-                        <p> Get the premium version: <br></br> {props.basketItem.upsellProductId}</p>
+                        <PremiumHelper/>
                     </div>
                 </div>
                 <div className="rightColumn">
@@ -42,8 +70,9 @@ function DisplayItem(props: displayItemProps) {
                     </div>
                     <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>Remove</button>
                     <div className="displayItemPrice">
-                        <p>Price before rebate: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
-                        <p>Your price : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
+                        <p>Per item:  {props.basketItem.price} {props.basketItem.currency}</p>
+                        <DiscountHelper />
+                        <p>Total : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
                     </div>
                 </div>
             </div>

@@ -116,11 +116,16 @@ function calculateItemPrices(basketItems: BasketItem[]) {
 function calculateTotalPrice(itemPrices: Price[]) {
   const staticTotalRebateInPercent: number = 10;
   const staticTotalRebateTreshold: number = 300;
+  //Calculating price before rebate
   const totalBeforeRebate: number = itemPrices.reduce((acc, curr) => {
+    return acc + curr.priceBeforeRebate;
+  }, 0);
+  //Calculating price with numbers rebate
+  const totalAfterAmountRebate: number = itemPrices.reduce((acc, curr) => {
     return acc + curr.priceAfterRebate;
   }, 0);
-  var priceAfterRebate = totalBeforeRebate;
-  if (totalBeforeRebate >= staticTotalRebateTreshold) {
+  var priceAfterRebate = totalAfterAmountRebate;
+  if (totalAfterAmountRebate >= staticTotalRebateTreshold) {
     priceAfterRebate -= priceAfterRebate / staticTotalRebateInPercent;
   };
   const totalPrice: Price = {

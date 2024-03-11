@@ -402,3 +402,8 @@ Styles for checkout column. AI generated
 .add-to-cart-button:hover {
   background-color: #535bf2; 
 }
+
+.IGNORE
+*{
+  outline: 1px solid red;
+}

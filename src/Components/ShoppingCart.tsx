@@ -79,7 +79,7 @@ function ShoppingCart(props: shoppinCartProps) {
         }
 
 
-    };
+    }
 
     /**
      * Theese next four function are passed along to display item,
