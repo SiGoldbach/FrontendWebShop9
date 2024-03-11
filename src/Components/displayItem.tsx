@@ -22,7 +22,7 @@ function DisplayItem(props: displayItemProps) {
         else {
             return (<>
                 <p>Subtotal: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
-                <p>Disount: {props.basketItemPrice.priceBeforeRebate - props.basketItemPrice.priceAfterRebate}</p>
+                <p>Disount: {(props.basketItemPrice.priceBeforeRebate - props.basketItemPrice.priceAfterRebate).toFixed(2)}</p>
             </>
             )
         }
@@ -47,7 +47,7 @@ function DisplayItem(props: displayItemProps) {
             <div className="displayItem">
                 <div className="leftColumn">
                     <div>
-                        <b className='displayItemName'>{props.basketItem.id}</b>
+                        <b className='displayItemName'>{props.basketItem.name}</b>
                     </div>
                     <div>
                         <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
