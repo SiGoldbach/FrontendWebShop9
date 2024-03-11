@@ -32,12 +32,23 @@ function DisplayItem(props: displayItemProps) {
             return (<>
                 <p> Upgrade to the premium version: <br></br> {props.basketItem.upsellProductId}</p>
             </>)
-        }else {
-            return(<>
+        } else {
+            return (<>
             </>)
         }
 
 
+    }
+    function RebateInformationHelper() {
+        if (props.basketItem.rebatePercent === 0) {
+            return (<>
+            </>)
+        }
+        else {
+            return (
+            <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
+            )
+        }
     }
 
     return (
@@ -56,8 +67,8 @@ function DisplayItem(props: displayItemProps) {
                         <div className="displaySingleItemPrice">
                             {props.basketItem.price} {props.basketItem.currency} {"/ stk"}
                         </div>
-                        <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
-                        <PremiumHelper/>
+                        <PremiumHelper />
+                        <RebateInformationHelper/>
                     </div>
                 </div>
                 <div className="rightColumn">

@@ -9,6 +9,23 @@ describe(App.name, () => {
     render(<App />);
     expect(screen.getByText("Shopping Cart")).toBeInTheDocument();
 
+    const fillBasket = screen.getAllByText("Add to cart");
+    fireEvent.click(fillBasket[0]);
+    fireEvent.click(fillBasket[0]);
+    fireEvent.click(fillBasket[0]);
+    fireEvent.click(fillBasket[1]);
+    fireEvent.click(fillBasket[1]);
+    fireEvent.click(fillBasket[1]);
+    fireEvent.click(fillBasket[2]);
+    fireEvent.click(fillBasket[2]);
+    fireEvent.click(fillBasket[2]);
+
+
+
+
+
+
+
     const goToShoppingCartLink= screen.getByText("Shopping Cart")
 
     //Going the next page and trying to see if the Price element is there
