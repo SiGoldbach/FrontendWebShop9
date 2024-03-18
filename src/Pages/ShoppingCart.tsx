@@ -15,6 +15,8 @@ interface shoppinCartProps {
 
 function ShoppingCart(props: shoppinCartProps) {
     const navigate = useNavigate();
+
+    //GPT generated
     function CheckoutSummary() {
         const originalPrice = props.basket.totalPrice.priceBeforeRebate;
         const total = props.basket.totalPrice.priceAfterRebate;

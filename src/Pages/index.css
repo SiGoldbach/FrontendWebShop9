@@ -236,11 +236,12 @@ button:focus-visible {
 
 
 /* 
-Styles for checkout column. AI generated
+Most if not all of the following are AI-generated
 */
 
 .checkoutContainer {
   max-width: 400px;
+  max-height: 350px;
   margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;
@@ -322,7 +323,7 @@ Styles for checkout column. AI generated
   margin: 16px; 
 }
 .product-image {
-  width: 100%; /* Adjust as necessary */
+  width: 100%; 
   height: auto;
   border-radius: 4px;
   margin-bottom: 8px;
