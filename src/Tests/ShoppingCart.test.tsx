@@ -3,12 +3,23 @@ import {  describe, expect, it } from "vitest";
 import App from "../Pages/App";
 import {getItems} from "../Networking/networking";
 
+//Sleep function generated with chatGPT.
+//This is without a doubt the simplest way to solve the problem of a test failing becase of delay
+async function sleep(milliseconds: number): Promise<void> {
+  return new Promise(resolve => {
+    setTimeout(resolve, milliseconds);
+  });
+}
 
 //Walkthrough of the site test
-describe(App.name, () => {
-  it("should render", () => {
+describe(App.name, async () => {
+  it("should render", async() => {
     render(<App />);
     expect(screen.getByText("Shopping Cart")).toBeInTheDocument();
+    await sleep(3000);
+    
+
+
 
     const fillBasket = screen.getAllByText("Add to cart");
     fireEvent.click(fillBasket[0]);
