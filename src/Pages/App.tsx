@@ -106,11 +106,13 @@ function App():JSX.Element {
     
       <Router>
         <div >
-          <nav>
-            {/* Nav links */}
-            <Link to="/">Store</Link> | <Link to="/cart">Shopping Cart </Link>
-          </nav>
-
+          <div className="navContainer">
+            <nav>
+              {/* Nav links */}
+              <Link to="/" className="navLink">Store</Link>
+              <Link to="/cart" className="navLink">Shopping Cart </Link>
+            </nav>
+          </div>
         {/* Define routes */}
         <Routes>
           <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} />} />
