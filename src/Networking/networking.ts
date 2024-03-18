@@ -2,7 +2,7 @@ import { ProductInfo } from "../TSReusedTypes/ItemsAndPrices.js"
 
 
 //This function is getting all the items that needs to be displayed in the store 
-async function getItems(){
+export async function getItems(): Promise<ProductInfo[]>{
     let data: ProductInfo[] =[];
 
     const URL="https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
@@ -19,7 +19,5 @@ async function getItems(){
                  upsellProductId: upsellProductId, 
                  imageUrl: imageUrl };
     });
-
-    
-
+    return data
 }

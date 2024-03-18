@@ -7,13 +7,12 @@ export interface BasketItem extends ProductInfo{
 export interface ProductInfo{
     id: string;
     name: string;
-    description: string;
-    weight: number;
     price: number;
     currency: string;
     rebateQuantity: number;
     rebatePercent: number;
     upsellProductId: any;
+    imageUrl: string
 
 }
 export interface Price{

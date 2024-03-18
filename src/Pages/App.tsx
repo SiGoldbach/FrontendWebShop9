@@ -7,9 +7,10 @@ import {
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Forms from '../Components/forms.tsx'
 import Adminpanel from './Adminpanel.tsx'
+import { getItems } from '../Networking/networking.ts'
 
 /**
  * 
@@ -79,6 +80,15 @@ function calculateTotalPrice(itemPrices: Price[]) {
 
 /* GPT generated */
 function App():JSX.Element {
+  const [productInfos, setProductInfos] = useState<ProductInfo[]>([])
+  useEffect(() => {
+    async function fetchData() {
+        const data = await getItems();
+        setProductInfos(data)
+    }
+    fetchData();
+}, []);
+
   const [basketItems, setBasketItems] = useState<BasketItem[]>([])
   const itemPrices: Price[] = calculateItemPrices(basketItems);
   const totalPrice: Price = calculateTotalPrice(itemPrices);
@@ -113,7 +123,7 @@ function App():JSX.Element {
 
         {/* Define routes */}
         <Routes>
-          <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} />} />
+          <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
           <Route path="/checkout" element={<Forms />} />
           <Route path="/admin" element={<Adminpanel />} />

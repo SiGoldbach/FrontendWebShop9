@@ -50,6 +50,12 @@ function DisplayItem(props: displayItemProps) {
             )
         }
     }
+    function ImageErrorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>){
+        const targetEvent = event.target as HTMLImageElement;
+        targetEvent.src="https://via.placeholder.com/150";
+        
+
+    }
 
     return (
         <>
@@ -61,7 +67,11 @@ function DisplayItem(props: displayItemProps) {
                         <b className='displayItemName'>{props.basketItem.name}</b>
                     </div>
                     <div>
-                        <img src="https://via.placeholder.com/150" alt="PlaceholderImage" />
+                        <img className="product-image"
+                             src={props.basketItem.imageUrl}
+                             alt="PlaceholderImage" 
+                             onError={ImageErrorHandler}/>
+                             
                     </div>
                     <div>
                         <div className="displaySingleItemPrice">

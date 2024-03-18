@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { assert, describe, expect, it } from "vitest";
+import {  describe, expect, it } from "vitest";
 import App from "../Pages/App";
+import {getItems} from "../Networking/networking";
 
 
 //Walkthrough of the site test
@@ -19,13 +20,6 @@ describe(App.name, () => {
     fireEvent.click(fillBasket[2]);
     fireEvent.click(fillBasket[2]);
     fireEvent.click(fillBasket[2]);
-
-
-
-
-
-
-
     const goToShoppingCartLink= screen.getByText("Shopping Cart")
 
     //Going the next page and trying to see if the Price element is there
@@ -37,7 +31,7 @@ describe(App.name, () => {
     console.log(removeItem.length)
     const expectedAmountOfUniqueItems=removeItem.length;
     fireEvent.click(removeItem[0]);
-    assert(expectedAmountOfUniqueItems-1==screen.getAllByText("Remove").length)
+    expect(expectedAmountOfUniqueItems-1==screen.getAllByText("Remove").length)
 
     
     const increaseItemQuantity= screen.getAllByText("+")[0];
@@ -49,22 +43,19 @@ describe(App.name, () => {
     //Remove remaining Items to get 100% Code coverage here the important thing is that the program still works for now as of 11/03
     const removeItem1= screen.getAllByText("Remove")
     fireEvent.click(removeItem1[0]);
-    assert(expectedAmountOfUniqueItems-2==screen.getAllByText("Remove").length)
+    expect(expectedAmountOfUniqueItems-2==screen.getAllByText("Remove").length)
     const removeItem2= screen.getAllByText("Remove")
     fireEvent.click(removeItem2[0]);
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
   });
 });
+//This test is testing the networking of getItems the first test is that the item list is atleast one 
+describe("Testing getItemsFuncionality", async ()=>{
+  it("Should get the items from the server",async()=>{
+    const data = await getItems();
+    expect(data.length!=0)
+    console.log(data[0])
+  })
+
+
+
+})

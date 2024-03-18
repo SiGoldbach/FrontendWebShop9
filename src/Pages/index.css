@@ -389,6 +389,12 @@ Most if not all of the following are AI-generated
   margin-bottom: 12px;
 }
 
+.product-image{
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
 .add-to-cart-button {
   background-color: var(--button-background-color);
   color: var(--button-text-color);
