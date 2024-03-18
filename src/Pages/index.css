@@ -250,6 +250,28 @@ Most if not all of the following are AI-generated
   border: 1px solid var(--border-color);
 }
 
+.formsContainer {
+ max-width: 500px;
+  max-height: 400px;
+  margin-left: 20px;
+  background: var(--box-background-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  border: 1px solid var(--border-color);
+} 
+
+.paymentContainer {
+  max-width: 500px;
+   max-height: 350px;
+   margin-left: 20px;
+   background: var(--box-background-color);
+   border-radius: 8px;
+   padding: 20px;
+   box-shadow: 0 0 10px var(--shadow-color);
+   border: 1px solid var(--border-color);
+ } 
+
 .summaryRow {
   display: flex;
   justify-content: space-between;
