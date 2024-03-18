@@ -5,10 +5,11 @@ import {
   Link,
 } from 'react-router-dom'
 import LandingPage from './LandingPage.tsx'
-import ShoppingCart from '../Components/ShoppingCart.tsx'
+import ShoppingCart from './ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useState } from 'react'
 import Forms from '../Components/forms.tsx'
+import Adminpanel from './Adminpanel.tsx'
 
 /**
  * 
@@ -115,6 +116,7 @@ function App():JSX.Element {
           <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
           <Route path="/checkout" element={<Forms />} />
+          <Route path="/admin" element={<Adminpanel />} />
         </Routes>
       </div>
     </Router>

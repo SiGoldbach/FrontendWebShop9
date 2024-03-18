@@ -1,6 +1,6 @@
 import '../Data/product.json'
 import '../Pages/index.css'
-import DisplayItem from "./displayItem.js";
+import DisplayItem from "../Components/displayItem.js";
 import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,8 @@ interface shoppinCartProps {
 
 function ShoppingCart(props: shoppinCartProps) {
     const navigate = useNavigate();
+
+    //GPT generated
     function CheckoutSummary() {
         const originalPrice = props.basket.totalPrice.priceBeforeRebate;
         const total = props.basket.totalPrice.priceAfterRebate;
