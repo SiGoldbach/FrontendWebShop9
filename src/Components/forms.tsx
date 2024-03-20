@@ -48,7 +48,7 @@ function Forms() {
         }
     };
 
-    return (<>
+    return (
         <div className='shoppingCartContainer'>
             <div className="formsContainer">
                 <form action="/my-handling-form-page" method="post">
@@ -122,21 +122,26 @@ function Forms() {
                             </li>
                         </ul>
                     </form>
-                    <div className="checkboxBox">
-                        <div className="CheckBox">
-                            <p>ToDo CheckBox for marketing emails</p>
-                        </div>
-                        <div className="CheckBox">
-                            <p>ToDo CheckBox for the terms & conditions</p>
-                        </div>
-                        <div className="line"></div>                
-                    </div>
-                    <button type="button" className="orderButton"> Place Order </button>
+            <div className="checkboxBox">
+                <div className="CheckBox">
+                    <label>
+                        <input type="checkbox" name="marketingEmails" />
+                        I agree to receive marketing emails
+                    </label>
                 </div>
+                <div className="CheckBox">
+                    <label>
+                        <input type="checkbox" name="termsConditions" />
+                        I agree to the terms & conditions
+                    </label>
+                </div>
+                <div className="line"></div>                
+                </div>
+            <button type="submit" className="checkoutButton"> Pay </button>
             </div>
         </div>
-    </>
-    )
+    </div>
+    )yoyoyo
 }
 
 
