@@ -251,7 +251,7 @@ Most if not all of the following are AI-generated
 }
 
 .formsContainer {
- max-width: 500px;
+  max-width: 500px;
   max-height: 400px;
   margin-left: 20px;
   background: var(--box-background-color);
@@ -263,7 +263,7 @@ Most if not all of the following are AI-generated
 
 .paymentContainer {
   max-width: 600px;
-   max-height: 350px;
+   max-height: 550px;
    margin-left: 20px;
    background: var(--box-background-color);
    border-radius: 8px;
@@ -340,7 +340,7 @@ Most if not all of the following are AI-generated
 
 .shoppingCartContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
 }
 
