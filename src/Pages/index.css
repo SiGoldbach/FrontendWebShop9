@@ -403,11 +403,16 @@ Styles for checkout column. AI generated
   background-color: #535bf2; 
 }
 
+/* Forms */
+
+
 input:invalid {
-  border: 1px solid red;
+  /* Invalid input fields have a red outline */
+  border: 2px solid red;
 }
 
 input:valid {
+  /* Valid input fields have a black outline */
   border: 2px solid black;
 }
 
@@ -419,8 +424,7 @@ label {
 }
 
 input {
-  /* To make sure that all text fields have the same font settings
-     By default, textareas have a monospace font */
+  /* To make sure that all text fields have the same font settings */
   font: 1em sans-serif;
 
   /* Uniform text field size */
@@ -438,12 +442,18 @@ input:focus {
 }
 
 ul {
+  /* Removes the bullet from unordered lists */
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+li.billingAddress {
+  display:none;
+}
+
+
 .IGNORE
-*{
+* { /* For debugging. Puts a red outline around all elements */
   outline: 1px solid red;
 }
