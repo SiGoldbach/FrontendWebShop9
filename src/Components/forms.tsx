@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import { Basket } from "../TSReusedTypes/ItemsAndPrices.js"
+
 
 interface Muncipality {
     zip: number,
@@ -21,6 +23,12 @@ async function getMunicipalities(): Promise<Muncipality[]> {
         return data;
     }
 }
+
+type formsProps = {
+    basket: Basket
+
+}
+
 
 function Forms() {
     const [municipalities, setMunicipalities] = useState<Muncipality[]>([]);
@@ -91,7 +99,7 @@ function Forms() {
                         </li>
                         <li>
                             <label htmlFor="phone">Phone number:</label>
-                            <input type="text" id="phone" name="user_phone"/>
+                            <input type="number" id="phone" name="user_phone" required/>
                         </li>
                         <li>
                             <label htmlFor="company">Company:</label>
@@ -142,6 +150,20 @@ function Forms() {
         </div>
     </div>
     )
+    const isDanishPhoneNumberVaild = (event: React.ChangeEvent<HTMLInputElement>):boolean =>{
+        let input =event.target.value;
+        let regex = /(?:(?:00|\+)?45)?\d{8}/;
+        return regex.test(input);
+
+
+
+
+    }
+
+
+    //Function for testing if a dansih phone number is a real number 
+    
+
 }
 
 
