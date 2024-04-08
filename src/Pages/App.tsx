@@ -7,6 +7,7 @@ import {CheckoutPage} from "./Checkoutpage.tsx"
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import Adminpanel from './Adminpanel.tsx'
+import BothForms from "../Components/bothForms.tsx";
 
 /**
  * 
@@ -129,6 +130,7 @@ function App():JSX.Element {
               <Link to="/" className="navLink">Store</Link>
               <Link to="/cart" className="navLink">Shopping Cart </Link>
               <Link to="/admin" className="navLink">Admin Panel </Link>
+              <Link to="/bothForms" className="navLink">Both Forms</Link>
             </nav>
           </div>
         {/* Define routes */}
@@ -137,6 +139,7 @@ function App():JSX.Element {
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
           <Route path="/checkout" element={<CheckoutPage basket={basket} />} />
           <Route path="/admin" element={<Adminpanel />} />
+          <Route path="/bothForms" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
         </Routes>
       </div>
     </Router>

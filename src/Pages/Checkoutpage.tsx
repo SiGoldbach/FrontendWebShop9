@@ -1,10 +1,6 @@
 import React, {useState} from 'react'
 import { MailingForm } from "../Components/mailingForm.js"
-import { Basket,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
-
-
-
-
+import { Basket,BasketItem, CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.js"
 
 type formsProps = {
     basket: Basket
@@ -15,33 +11,34 @@ type formsProps = {
 export function CheckoutPage(props: formsProps) {
 
 
-    const [customerInfo,setCustomerInfo ] = useState<CustomerInfo>({
+    const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
         firstName: "",
         lastName: "",
-        Email: "",
-        adressLine1:"",
-        adressLine2:"",
+        email: "",
+        addressLine1: "",
+        addressLine2: "",
         country: "",
         zipCode: "",
         city: "",
-        phoneNumber: 0,
+        phoneNumber: "",
         optionalComment: "",
         company: "",
-        companyVat: 0,
+        companyVat: "",
         acceptMarketingEmail: true,
-        acceptTermsAndCondition: false
     });
 
-    const handleChecboxChange =(event: React.ChangeEvent<HTMLInputElement>)=>{
+    const handleChecboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCustomerInfo({
             ...customerInfo,
             [event.target.name]: event.target.checked
-        })        
+        })
     }
     return (
         <div className='shoppingCartContainer'>
             <div className="formsContainer">
-                <MailingForm />
+                <MailingForm basket={props.basket} setBasketItems={function(basketItems: BasketItem[]): void {
+                    throw new Error('Function not implemented.')
+                } } />
             </div>
             <div className="paymentContainer">
                 <div>
@@ -71,7 +68,7 @@ export function CheckoutPage(props: formsProps) {
                 </div>
                 <div className="CheckBox">
                     <label>
-                        <input type="checkbox" name="acceptTermsAndCondition" checked={customerInfo.acceptTermsAndCondition} onChange={handleChecboxChange} />
+                        <input type="checkbox" name="acceptTermsAndCondition" onChange={handleChecboxChange} />
                         I agree to the terms & conditions
                     </label>
                 </div>

@@ -5,13 +5,13 @@ import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 import { useNavigate } from 'react-router-dom';
 
 
-interface shoppinCartProps {
+interface shoppingCartProps {
     basket: Basket;
     setBasketItems: (basketItems: BasketItem[]) => void
 }
 
 
-function ShoppingCart(props: shoppinCartProps) {
+function ShoppingCart(props: shoppingCartProps) {
     const navigate = useNavigate();
 
     //GPT generated

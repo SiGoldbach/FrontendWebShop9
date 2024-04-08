@@ -9,7 +9,7 @@ interface Municipality {
     city: string
 }
 
-interface shoppinCartProps {
+interface shoppingCartProps {
     basket: Basket;
     setBasketItems: (basketItems: BasketItem[]) => void
 }
@@ -32,24 +32,23 @@ async function getMunicipalities(): Promise<Municipality[]> {
     }
 }
 
-export function MailingForm(props: shoppinCartProps) {
+export function MailingForm(props: shoppingCartProps) {
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
 
     const [customerInfo,setCustomerInfo ] = useState<CustomerInfo>({
         firstName: "",
         lastName: "",
-        Email: "",
-        adressLine1:"",
-        adressLine2:"",
+        email: "",
+        addressLine1:"",
+        addressLine2:"",
         country: "",
         zipCode: "",
         city: "",
-        phoneNumber: 0,
+        phoneNumber: "",
         optionalComment: "",
         company: "",
-        companyVat: 0,
+        companyVat: "",
         acceptMarketingEmail: true,
-        acceptTermsAndCondition: false
     });
 
     const handleUserInput =(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
@@ -194,8 +193,8 @@ export function MailingForm(props: shoppinCartProps) {
     </form>
     
     const isDanishPhoneNumberVaild = (event: React.ChangeEvent<HTMLInputElement>):boolean =>{
-        let input =event.target.value;
-        let regex = /(?:(?:00|\+)?45)?\d{8}/;
+        const input =event.target.value;
+        const regex = /(?:(?:00|\+)?45)?\d{8}/;
         return regex.test(input);
 
     }
