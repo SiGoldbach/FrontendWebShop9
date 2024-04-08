@@ -62,25 +62,25 @@ export function CheckoutPage(props: formsProps) {
                             </li>
                         </ul>
                     </form>
-            <div className="checkboxBox">
-                <div className="CheckBox">
-                    <label>
-                        <input type="checkbox" name="acceptMarketingEmail" checked={customerInfo.acceptMarketingEmail} onChange={handleChecboxChange}/>
-                        I agree to receive marketing emails
-                    </label>
+                    <div className="checkboxBox">
+                        <div className="CheckBox">
+                            <label>
+                                <input type="checkbox" name="acceptMarketingEmail" checked={customerInfo.acceptMarketingEmail} onChange={handleChecboxChange}/>
+                                I agree to receive marketing emails
+                            </label>
+                        </div>
+                        <div className="CheckBox">
+                            <label>
+                                <input type="checkbox" name="acceptTermsAndCondition" checked={customerInfo.acceptTermsAndCondition} onChange={handleChecboxChange} />
+                                I agree to the terms & conditions
+                            </label>
+                        </div>
+                        <div className="line"></div>
+                    </div>
+                    <button type="submit" className="checkoutButton" > Pay </button>
                 </div>
-                <div className="CheckBox">
-                    <label>
-                        <input type="checkbox" name="acceptTermsAndCondition" checked={customerInfo.acceptTermsAndCondition} onChange={handleChecboxChange} />
-                        I agree to the terms & conditions
-                    </label>
-                </div>
-                <div className="line"></div>                
-                </div>
-            <button type="submit" className="checkoutButton" > Pay </button>
             </div>
         </div>
-    </div>
     )
 
     //Function for testing if a dansih phone number is a real number 

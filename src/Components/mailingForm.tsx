@@ -54,10 +54,8 @@ export function MailingForm() {
         if(checkBox!=null && billingAddress!=null){
             if (checkBox.checked) {
                 billingAddress.style.display = "block";
-                console.log("checked")
             } else {
                 billingAddress.style.display = "none";
-                console.log("not checked")
             }
         }
     
