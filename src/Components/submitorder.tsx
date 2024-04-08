@@ -6,7 +6,6 @@ import { submitOrder } from "../Networking/networking";
   function submitPossible(): boolean
   {
 
-
       return true;
 
   }

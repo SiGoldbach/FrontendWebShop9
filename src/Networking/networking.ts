@@ -9,7 +9,7 @@ export async function getItems(): Promise<ProductInfo[]>{
     const response = await fetch(URL);
     const responseAsJson= await response.json();
     data = responseAsJson.map(({ id, name,price,currency,rebateQuantity,rebatePercent,upsellProductId,imageUrl }:
-        {id: string, name: string,price: number, currency: string,rebateQuantity:number,rebatePercent:number,upsellProductId:any,imageUrl:string}) => {
+        {id: string, name: string,price: number, currency: string,rebateQuantity:number,rebatePercent:number,upsellProductId:string,imageUrl:string}) => {
         return { id: id,
                  name: name,
                  price: price, 
@@ -23,7 +23,7 @@ export async function getItems(): Promise<ProductInfo[]>{
 }
 //This is the function for submitting an order. 
 //Its very poorly implemented right now needs to change. 
-export async function submitOrder(basket: Basket,customerInfo:CustomerInfo): Promise<any>{
+export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Promise<unknown>{
     console.log("In the procces of submitting order")
     const orderInfo: OrderInformation ={
         basket,
