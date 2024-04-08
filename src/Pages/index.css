@@ -509,11 +509,12 @@ ul {
   margin: 0;
 }
 
+li.billingAddress {
+  display:none;
+}
 
+.IGNORE
 *{
   outline: 1px solid red;
 }
 
-li.billingAddress {
-  display:none;
-}

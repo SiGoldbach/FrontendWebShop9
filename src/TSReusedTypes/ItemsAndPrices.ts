@@ -32,18 +32,17 @@ export interface Basket {
 export interface CustomerInfo {
     firstName: string;
     lastName: string;
-    Email: string;
-    adressLine1: string;
-    adressLine2: string;
+    email: string;
+    addressLine1: string;
+    addressLine2: string;
     country: string;
     zipCode: string;
     city: string;
-    phoneNumber: number;
+    phoneNumber: string;
     optionalComment: string;
     company: string;
-    companyVat: number;
+    companyVat: string;
     acceptMarketingEmail: boolean
-    acceptTermsAndCondition: boolean
 }
 
 export interface OrderInformation {
