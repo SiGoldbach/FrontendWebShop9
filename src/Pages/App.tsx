@@ -1,11 +1,12 @@
 import {BrowserRouter as Router, Routes, Route, Link,} from 'react-router-dom'
-import LandingPage from './LandingPage.tsx'
-import ShoppingCart from './ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useEffect, useState } from 'react'
-import Adminpanel from './Adminpanel.tsx'
 import { getItems } from '../Networking/networking.ts'
 import {CheckoutPage} from "./Checkoutpage.tsx"
+
+import LandingPage from './LandingPage.tsx'
+import ShoppingCart from './ShoppingCart.tsx'
+import Adminpanel from './Adminpanel.tsx'
 
 /**
  * 
