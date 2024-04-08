@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Link,} from 'react-router-dom'
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
@@ -73,10 +68,10 @@ function calculateTotalPrice(itemPrices: Price[]) {
   const totalAfterAmountRebate: number = itemPrices.reduce((acc, curr) => {
     return acc + curr.priceAfterRebate;
   }, 0);
-  var priceAfterRebate = totalAfterAmountRebate;
+  let priceAfterRebate = totalAfterAmountRebate;
   if (totalAfterAmountRebate >= staticTotalRebateTreshold) {
     priceAfterRebate -= priceAfterRebate / staticTotalRebateInPercent;
-  };
+  }
   const totalPrice: Price = {
     priceBeforeRebate: totalBeforeRebate,
     rebatePercentage: staticTotalRebateInPercent,
