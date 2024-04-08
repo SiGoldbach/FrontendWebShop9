@@ -112,6 +112,7 @@ export function BothForms(props: shoppingCartProps) {
         const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
         customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
 
+        //TODO: Add validition on form items before "submitOrder" call
         console.log("submit")
         submitOrder(props.basket, customerInfo)
     }
