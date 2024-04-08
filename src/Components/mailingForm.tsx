@@ -50,8 +50,8 @@ export function MailingForm() {
 
     const toggleBillingAddress = (): void => {
         const checkBox :HTMLInputElement = document.getElementById("alt-billing-box") as HTMLInputElement;
-        const billingAddress :HTMLElement|null = document.getElementById("billingAddress");
-        if(checkBox!=null && billingAddress!=null && typeof(checkBox)==typeof(HTMLInputElement)){
+        const billingAddress :HTMLElement = document.getElementById("billingAddress") as HTMLElement;
+        if(checkBox!=null && billingAddress!=null){
             if (checkBox.checked) {
                 billingAddress.style.display = "block";
                 console.log("checked")
