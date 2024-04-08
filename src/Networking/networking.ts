@@ -21,7 +21,8 @@ export async function getItems(): Promise<ProductInfo[]>{
     });
     return data
 }
-
+//This is the function for submitting an order. 
+//Its very poorly implemented right now needs to change. 
 export async function submitOrder(basket: Basket,customerInfo:CustomerInfo): Promise<any>{
     console.log("In the procces of submitting order")
     const orderInfo: OrderInformation ={
