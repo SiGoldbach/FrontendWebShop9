@@ -1,4 +1,4 @@
-import { submitOrder } from "../Networking/networking";
+/*import { submitOrder } from "../Networking/networking";
 
 
 
@@ -18,7 +18,7 @@ import { submitOrder } from "../Networking/networking";
 
   }
 
-
+*/
 
 
 

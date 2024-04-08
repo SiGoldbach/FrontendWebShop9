@@ -1,3 +1,4 @@
+/*
 import React, {useState} from 'react'
 import { MailingForm } from "../Components/mailingForm.js"
 import { Basket,BasketItem, CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.js"
@@ -68,7 +69,7 @@ export function CheckoutPage(props: formsProps) {
                         </div>
                         <div className="CheckBox">
                             <label>
-                                <input type="checkbox" name="acceptTermsAndCondition" checked={customerInfo.acceptTermsAndCondition} onChange={handleChecboxChange} />
+                                <input type="checkbox" name="acceptTermsAndCondition" onChange={handleChecboxChange} />
                                 I agree to the terms & conditions
                             </label>
                         </div>
@@ -83,4 +84,4 @@ export function CheckoutPage(props: formsProps) {
     //Function for testing if a dansih phone number is a real number 
     
 
-}
+}*/

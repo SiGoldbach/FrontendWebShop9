@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Routes, Route, Link,} from 'react-router-dom'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useEffect, useState } from 'react'
 import { getItems } from '../Networking/networking.ts'
-import {CheckoutPage} from "./Checkoutpage.tsx"
+//import {CheckoutPage} from "./Checkoutpage.tsx"
 
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'

@@ -30,7 +30,7 @@ function DisplayItem(props: displayItemProps) {
     function PremiumHelper() {
         if (props.basketItem.upsellProductId) {
             return (<>
-                <p> Upgrade to the premium version: <br></br> {props.basketItem.upsellProductId}</p>
+                <p> Upgrade to the premium version: <br></br> {props.basketItem.upsellProductId.toString()}</p>
             </>)
         } else {
             return (<>

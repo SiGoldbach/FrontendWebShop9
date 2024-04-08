@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+/*import React, {useState, useEffect} from 'react'
 
 import { Basket,BasketItem,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
 import "../Pages/ShoppingCart"
@@ -213,4 +213,4 @@ export function MailingForm(props: shoppingCartProps) {
 }
 
 
-export default MailingForm
+export default MailingForm*/
