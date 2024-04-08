@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react'
 
+import { Basket,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
+import {submitOrder} from "../Networking/networking.js"
+
 interface Municipality {
     zip: number,
     city: string
+}
+
+type formsProps = {
+    basket: Basket
 }
 
 
@@ -24,6 +31,39 @@ async function getMunicipalities(): Promise<Municipality[]> {
 
 export function MailingForm() {
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
+
+    const [customerInfo,setCustomerInfo ] = useState<CustomerInfo>({
+        firstName: "",
+        lastName: "",
+        Email: "",
+        adressLine1:"",
+        adressLine2:"",
+        country: "",
+        zipCode: "",
+        city: "",
+        phoneNumber: 0,
+        optionalComment: "",
+        company: "",
+        companyVat: 0,
+        acceptMarketingEmail: true,
+        acceptTermsAndCondition: false
+    });
+
+    const handleUserInput =(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
+        const { name, value} = event.target;
+        console.log("Changin: "+name+ " to: "+ value)
+        setCustomerInfo({
+            ...customerInfo,
+            [name]: value
+        })   
+    }
+
+    const handleChecboxChange =(event: React.ChangeEvent<HTMLInputElement>)=>{
+        setCustomerInfo({
+            ...customerInfo,
+            [event.target.name]: event.target.checked
+        })
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -62,7 +102,6 @@ export function MailingForm() {
         }
     
     }
-
 
     return <form action="/mailing-form-handling" method="post">
         <ul>
@@ -124,10 +163,51 @@ export function MailingForm() {
                 <input type="text" id="billAdress" name="bill_address"/>
             </li>
         </ul>
+
+        <div className='paymentcontainer'>
+        <div>
+                    <form action="/my-handling-payment-page" method="post">
+                        <ul>
+                            <li>
+                                <p>Total {props.basket.totalPrice.priceAfterRebate}</p>
+                                <label htmlFor="kortnummer">Kortnummer:</label>
+                                <input type="text" id="kortnummer" name="kort_nummer"/>
+                            </li>
+                            <li>
+                                <label htmlFor="udloebsdato">MM/YY:</label>
+                                <input type="text" id="udloebsdato" name="kort_udloebsdato"/>
+                            </li>
+                            <li>
+                                <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
+                                <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode"/>
+                            </li>
+                        </ul>
+                    </form>
+        </div>
+
         <input type="submit" value="Continue"/>
 
     </form>
+    
+    const isDanishPhoneNumberVaild = (event: React.ChangeEvent<HTMLInputElement>):boolean =>{
+        let input =event.target.value;
+        let regex = /(?:(?:00|\+)?45)?\d{8}/;
+        return regex.test(input);
 
+    }
+    //Needs to be implemented. This function should handle wether the cutsomer has entered valid data to submit an order. 
+    function isSubmitValid(): boolean
+    {
+        return true;
+
+    }
+    async function handleSumbitOrder(){
+        console.log("Trying to submit order");
+        const orderstatus = await submitOrder(props.basket,customerInfo)
+        console.log("Order is proccesed responese: "+ orderstatus)
+
+ 
+    }
 }
 
 
