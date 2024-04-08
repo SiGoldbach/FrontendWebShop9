@@ -130,6 +130,7 @@ function App():JSX.Element {
               {/* Nav links */}
               <Link to="/" className="navLink">Store</Link>
               <Link to="/cart" className="navLink">Shopping Cart </Link>
+              <Link to="/admin" className="navLink">Admin Panel </Link>
             </nav>
           </div>
         {/* Define routes */}

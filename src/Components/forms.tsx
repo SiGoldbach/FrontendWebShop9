@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+
 import { Basket,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
 import {submitOrder} from "../Networking/networking.js"
 
@@ -199,13 +200,11 @@ function Forms(props: formsProps) {
         </div>
     </div>
     )
+
     const isDanishPhoneNumberVaild = (event: React.ChangeEvent<HTMLInputElement>):boolean =>{
         let input =event.target.value;
         let regex = /(?:(?:00|\+)?45)?\d{8}/;
         return regex.test(input);
-
-
-
 
     }
     //Needs to be implemented. This function should handle wether the cutsomer has entered valid data to submit an order. 
