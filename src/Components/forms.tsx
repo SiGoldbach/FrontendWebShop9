@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import './submitorder'
 
 interface Muncipality {
     zip: number,
@@ -47,6 +48,10 @@ function Forms() {
             }
         }
     };
+
+    const submitorder = () => {
+         // Use the navigate function
+      };
 
     return (
         <div className='shoppingCartContainer'>
@@ -137,7 +142,7 @@ function Forms() {
                 </div>
                 <div className="line"></div>                
                 </div>
-            <button type="submit" className="checkoutButton"> Pay </button>
+            <button type="submit" className="checkoutButton" onClick={submitorder}> Pay </button>
             </div>
         </div>
     </div>
