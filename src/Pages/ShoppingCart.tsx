@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 interface shoppinCartProps {
     basket: Basket;
     setBasketItems: (basketItems: BasketItem[]) => void
-
-
 }
 
 
@@ -69,7 +67,9 @@ function ShoppingCart(props: shoppinCartProps) {
         }
 
 
-    };
+    }
+
+    //TODO: Move all three functions below to their own basket handler, maybe even the "DisplayItemsInBasket" function above
 
     /**
      * Theese next four function are passed along to display item,

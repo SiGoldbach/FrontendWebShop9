@@ -17,7 +17,7 @@ import { getItems } from '../Networking/networking.ts'
  * @returns All items from the json file into an array with type ProductInfo[]
  */
 
-
+//TODO: Move calculateItemPrices to a price handeling component
 function calculateItemPrices(basketItems: BasketItem[]) {
   const itemPrices: Price[] = []
 
@@ -48,6 +48,8 @@ function calculateItemPrices(basketItems: BasketItem[]) {
   return itemPrices;
 
 }
+
+//TODO: Move calculateItemPrices to a price handeling component
 function calculateTotalPrice(itemPrices: Price[]) {
   if (itemPrices.length===0){
     const totalPrice: Price = {
