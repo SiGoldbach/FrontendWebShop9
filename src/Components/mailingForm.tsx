@@ -22,7 +22,7 @@ async function getMunicipalities(): Promise<Municipality[]> {
     }
 }
 
-function MailingForm() {
+export function MailingForm() {
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
 
     useEffect(() => {
@@ -49,15 +49,18 @@ function MailingForm() {
     };
 
     const toggleBillingAddress = (): void => {
-        const checkBox :HTMLInputElement = document.getElementById("alt-billing-box")
-        const billingAddress :HTMLElement = document.getElementById("billingAddress");
-        if (checkBox.checked) {
-            billingAddress.style.display = "block";
-            console.log("checked")
-        } else {
-            billingAddress.style.display = "none";
-            console.log("not checked")
+        const checkBox :HTMLInputElement = document.getElementById("alt-billing-box") as HTMLInputElement;
+        const billingAddress :HTMLElement|null = document.getElementById("billingAddress");
+        if(checkBox!=null && billingAddress!=null && typeof(checkBox)==typeof(HTMLInputElement)){
+            if (checkBox.checked) {
+                billingAddress.style.display = "block";
+                console.log("checked")
+            } else {
+                billingAddress.style.display = "none";
+                console.log("not checked")
+            }
         }
+    
     }
 
 
@@ -116,7 +119,7 @@ function MailingForm() {
                 <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
                        onChange={toggleBillingAddress}/>
             </li>
-            <li id="billingAddress" class="billingAddress">
+            <li id="billingAddress" className="billingAddress">
                 <label htmlFor="billAdress">Billing address</label>
                 <input type="text" id="billAdress" name="bill_address"/>
             </li>
