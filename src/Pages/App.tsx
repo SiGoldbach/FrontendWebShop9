@@ -130,14 +130,13 @@ function App():JSX.Element {
               <Link to="/" className="navLink">Store</Link>
               <Link to="/cart" className="navLink">Shopping Cart </Link>
               <Link to="/admin" className="navLink">Admin Panel </Link>
-              <Link to="/bothForms" className="navLink">Both Forms</Link>
             </nav>
           </div>
         {/* Define routes */}
         <Routes>
           <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
-          <Route path="/checkout" element={<CheckoutPage basket={basket} />} />
+          <Route path="/checkout" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
           <Route path="/admin" element={<Adminpanel />} />
           <Route path="/bothForms" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
         </Routes>
