@@ -3,9 +3,9 @@ import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useEffect, useState } from 'react'
-import Forms from '../Components/forms.tsx'
 import Adminpanel from './Adminpanel.tsx'
 import { getItems } from '../Networking/networking.ts'
+import {CheckoutPage} from "./Checkoutpage.tsx"
 
 /**
  * 
@@ -134,7 +134,7 @@ function App():JSX.Element {
         <Routes>
           <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
-          <Route path="/checkout" element={<Forms basket={basket} />} />
+          <Route path="/checkout" element={<CheckoutPage basket={basket} />} />
           <Route path="/admin" element={<Adminpanel />} />
         </Routes>
       </div>
