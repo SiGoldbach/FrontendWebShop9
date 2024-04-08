@@ -54,6 +54,15 @@ function calculateItemPrices(basketItems: BasketItem[]) {
 
 }
 function calculateTotalPrice(itemPrices: Price[]) {
+  if (itemPrices.length===0){
+    const totalPrice: Price = {
+      priceBeforeRebate: 0,
+      rebatePercentage: 0,
+      priceAfterRebate: 0
+  
+    };
+    return totalPrice
+  }
   const staticTotalRebateInPercent: number = 10;
   const staticTotalRebateTreshold: number = 300;
   //Calculating price before rebate
@@ -127,7 +136,7 @@ function App():JSX.Element {
         <Routes>
           <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
-          <Route path="/checkout" element={<Forms />} />
+          <Route path="/checkout" element={<Forms basket={basket} />} />
           <Route path="/admin" element={<Adminpanel />} />
         </Routes>
       </div>

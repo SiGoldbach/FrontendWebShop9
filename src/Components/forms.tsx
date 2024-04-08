@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Basket } from "../TSReusedTypes/ItemsAndPrices.js"
+import { Basket,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
+import {submitOrder} from "../Networking/networking.js"
 
 
 interface Muncipality {
@@ -30,7 +31,42 @@ type formsProps = {
 }
 
 
-function Forms() {
+function Forms(props: formsProps) {
+
+
+    const [customerInfo,setCustomerInfo ] = useState<CustomerInfo>({
+        firstName: "",
+        lastName: "",
+        Email: "",
+        adressLine1:"",
+        adressLine2:"",
+        country: "",
+        zipCode: 0,
+        City: "",
+        phoneNumber: 0,
+        optionalComment: "",
+        company: "",
+        companyVat: 0,
+        acceptMarketingEmail: true,
+        acceptTermsAndCondition: false
+    });
+
+    const handleUserInput =(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
+        const { name, value} = event.target;
+        console.log("Changin: "+name+ " to: "+ value)
+        setCustomerInfo({
+            ...customerInfo,
+            [name]: value
+        })
+
+        
+    }
+    const handleChecboxChange =(event: React.ChangeEvent<HTMLInputElement>)=>{
+        setCustomerInfo({
+            ...customerInfo,
+            [event.target.name]: event.target.checked
+        })        
+    }
     const [municipalities, setMunicipalities] = useState<Muncipality[]>([]);
 
     useEffect(() => {
@@ -63,28 +99,34 @@ function Forms() {
                     <ul>
                         <li>
                             <label htmlFor="firstName">First name:</label>
-                            <input type="text" id="firstName" name="user_first_name" required/>
+                            <input type="text" id="firstName" name="firstName" value={customerInfo.firstName} onChange={handleUserInput} required/>
                         </li>
                         <li>
                             <label htmlFor="lastName">Last name:</label>
-                            <input type="text" id="lastName" name="user_last_name" required/>
+                            <input type="text" id="lastName" name="lastName" value={customerInfo.lastName} onChange={handleUserInput} required/>
                         </li>
                          <li>
                             <label htmlFor="mail">Email:</label>
-                            <input type="email" id="mail" name="user_email" required/>
+                            <input type="email" id="mail" name="Email" value={customerInfo.Email} onChange={handleUserInput} required/>
                         </li>
                         <li>
                             <label htmlFor="address1">Address line 1:</label>
-                            <input type="text" id="address1" name="user_address_1" required/>
+                            <input type="text" id="address1" name="adressLine1" value={customerInfo.adressLine1} onChange={handleUserInput}required/>
                         </li>
                         <li>
                             <label htmlFor="address2">Address line 2:</label>
-                            <input type="text" id="address2" name="user_address_2"/>
+                            <input type="text" id="address2" name="adressLine2" value={customerInfo.adressLine2} onChange={handleUserInput}/>
                         </li>
                         <li>
                             <label htmlFor="country">Country:</label>
-                            <select id="country" name="user_country" required>
+                            <select id="country" name="country" value={customerInfo.country} onChange={handleUserInput}required>
                                 <option value="denmark">Danmark</option>
+                                <option value="sweden">Sweden</option>
+                                <option value="norway">Norway</option>
+                                <option value="germany">Germany</option>
+
+
+
                             </select>
                         </li>
                         <li>
@@ -99,15 +141,15 @@ function Forms() {
                         </li>
                         <li>
                             <label htmlFor="phone">Phone number:</label>
-                            <input type="number" id="phone" name="user_phone" required/>
+                            <input type="number" id="phone" name="phoneNumber" value={customerInfo.phoneNumber} onChange={handleUserInput} required/>
                         </li>
                         <li>
                             <label htmlFor="company">Company:</label>
-                            <input type="text" id="company" name="company_name"/>
+                            <input type="text" id="company" name="company" value={customerInfo.company} onChange={handleUserInput}/>
                         </li>
                         <li>
                             <label htmlFor="companyVAT">Company VAT:</label>
-                            <input type="text" id="companyVAT" name="company_VAT"/>
+                            <input type="text" id="companyVAT" name="companyVat" value={customerInfo.companyVat} onChange={handleUserInput}/>
                         </li>
                     </ul>
                 </form>
@@ -117,6 +159,7 @@ function Forms() {
                     <form action="/my-handling-payment-page" method="post">
                         <ul>
                             <li>
+                                <p>Total {props.basket.totalPrice.priceAfterRebate}</p>
                                 <label htmlFor="kortnummer">Kortnummer:</label>
                                 <input type="text" id="kortnummer" name="kort_nummer"/>
                             </li>
@@ -133,19 +176,19 @@ function Forms() {
             <div className="checkboxBox">
                 <div className="CheckBox">
                     <label>
-                        <input type="checkbox" name="marketingEmails" />
+                        <input type="checkbox" name="acceptMarketingEmail" checked={customerInfo.acceptMarketingEmail} onChange={handleChecboxChange}/>
                         I agree to receive marketing emails
                     </label>
                 </div>
                 <div className="CheckBox">
                     <label>
-                        <input type="checkbox" name="termsConditions" />
+                        <input type="checkbox" name="acceptTermsAndCondition" checked={customerInfo.acceptTermsAndCondition} onChange={handleChecboxChange} />
                         I agree to the terms & conditions
                     </label>
                 </div>
                 <div className="line"></div>                
                 </div>
-            <button type="submit" className="checkoutButton"> Pay </button>
+            <button type="submit" className="checkoutButton" onClick={handleSumbitOrder}> Pay </button>
             </div>
         </div>
     </div>
@@ -158,6 +201,19 @@ function Forms() {
 
 
 
+    }
+    //Needs to be implemented. This function should handle wether the cutsomer has entered valid data to submit an order. 
+    function isSubmitValid(): boolean
+    {
+        return true;
+
+    }
+    async function handleSumbitOrder(){
+        console.log("Trying to submit order");
+        const orderstatus = await submitOrder(props.basket,customerInfo)
+        console.log("Order is proccesed responese: "+ orderstatus)
+
+ 
     }
 
 
