@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
-import { Basket,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
+import { Basket,BasketItem,CustomerInfo } from "../TSReusedTypes/ItemsAndPrices.js"
+import "../Pages/ShoppingCart"
 import {submitOrder} from "../Networking/networking.js"
 
 interface Municipality {
@@ -8,9 +9,11 @@ interface Municipality {
     city: string
 }
 
-type formsProps = {
-    basket: Basket
+interface shoppinCartProps {
+    basket: Basket;
+    setBasketItems: (basketItems: BasketItem[]) => void
 }
+
 
 
 async function getMunicipalities(): Promise<Municipality[]> {
@@ -29,7 +32,7 @@ async function getMunicipalities(): Promise<Municipality[]> {
     }
 }
 
-export function MailingForm() {
+export function MailingForm(props: shoppinCartProps) {
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
 
     const [customerInfo,setCustomerInfo ] = useState<CustomerInfo>({
@@ -58,7 +61,7 @@ export function MailingForm() {
         })   
     }
 
-    const handleChecboxChange =(event: React.ChangeEvent<HTMLInputElement>)=>{
+    const handleCheckboxChange =(event: React.ChangeEvent<HTMLInputElement>)=>{
         setCustomerInfo({
             ...customerInfo,
             [event.target.name]: event.target.checked
@@ -165,11 +168,12 @@ export function MailingForm() {
         </ul>
 
         <div className='paymentcontainer'>
-        <div>
+            <div>
                     <form action="/my-handling-payment-page" method="post">
                         <ul>
                             <li>
                                 <p>Total {props.basket.totalPrice.priceAfterRebate}</p>
+                                
                                 <label htmlFor="kortnummer">Kortnummer:</label>
                                 <input type="text" id="kortnummer" name="kort_nummer"/>
                             </li>
@@ -183,8 +187,8 @@ export function MailingForm() {
                             </li>
                         </ul>
                     </form>
+            </div>
         </div>
-
         <input type="submit" value="Continue"/>
 
     </form>
@@ -195,6 +199,7 @@ export function MailingForm() {
         return regex.test(input);
 
     }
+
     //Needs to be implemented. This function should handle wether the cutsomer has entered valid data to submit an order. 
     function isSubmitValid(): boolean
     {
