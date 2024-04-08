@@ -36,12 +36,14 @@ export interface CustomerInfo {
     adressLine1: string;
     adressLine2: string;
     country: string;
-    zipCode: number;
-    City: string;
+    zipCode: string;
+    city: string;
     phoneNumber: number;
     optionalComment: string;
     company: string;
     companyVat: number;
+    acceptMarketingEmail: boolean
+    acceptTermsAndCondition: boolean
 }
 
 export interface OrderInformation {

@@ -41,8 +41,8 @@ function Forms(props: formsProps) {
         adressLine1:"",
         adressLine2:"",
         country: "",
-        zipCode: 0,
-        City: "",
+        zipCode: "",
+        city: "",
         phoneNumber: 0,
         optionalComment: "",
         company: "",
@@ -87,7 +87,13 @@ function Forms(props: formsProps) {
                 const cityInput= document.getElementById('city') as HTMLInputElement | null;
                 if (cityInput) {
                     cityInput.value = municipality.city;
+
                 }
+                setCustomerInfo({
+                    ...customerInfo,
+                    zipCode: event.target.value,
+                    city: municipality.city
+                })  
             }
         }
     };
@@ -131,13 +137,13 @@ function Forms(props: formsProps) {
                         </li>
                         <li>
                             <label htmlFor="zip">Zip code:</label>
-                            <input type="number" id="zip" name="user_zip" required
+                            <input type="number" id="zip" name="zipCode" value={customerInfo.zipCode} required
                                 onChange={handleZipChange}
                             />
                         </li>
                         <li>
                             <label htmlFor="city">City:</label>
-                            <input type="text" id="city" name="user_city" required/>
+                            <input type="text" id="city" name="city" value={customerInfo.city} onChange={handleUserInput} required/>
                         </li>
                         <li>
                             <label htmlFor="phone">Phone number:</label>
