@@ -1,17 +1,19 @@
 import '../Pages/index.css'
+import { BasketItemKind } from '../State/BasketState';
+import { useBasketDispatchContext } from '../State/Basketcontext';
 import { BasketItem, Price } from '../TSReusedTypes/ItemsAndPrices'
 
 
 type displayItemProps = {
     basketItem: BasketItem;
     basketItemPrice: Price;
-    decreaseQuantity: (id: string) => void;
-    increaseQuantity: (id: string) => void;
-    removeItem: (id: string) => void;
+
 
 };
 
 function DisplayItem(props: displayItemProps) {
+    const basketDispatcher = useBasketDispatchContext();
+
 
 
     function DiscountHelper() {
@@ -83,13 +85,13 @@ function DisplayItem(props: displayItemProps) {
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={() => props.decreaseQuantity(props.basketItem.id)}>
+                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: props.basketItem.id})}>
                             <span style={props.basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
                         </button>
                         {props.basketItem.quantity}
-                        <button className="quantityButton" onClick={() => props.increaseQuantity(props.basketItem.id)}>+</button>
+                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: props.basketItem.id})}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={() => props.removeItem(props.basketItem.id)}>Remove</button>
+                    <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: props.basketItem.id})}>Remove</button>
                     <div className="displayItemPrice">
                         <p>Per item:  {props.basketItem.price} {props.basketItem.currency}</p>
                         <DiscountHelper />

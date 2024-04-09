@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {Basket, BasketItem, CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
+import { CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
 import "../Pages/ShoppingCart"
 import {submitOrder} from "../Networking/networking.ts";
+import { useBasketContext } from '../State/Basketcontext.ts';
 
 interface Municipality {
     zip: number,
@@ -25,13 +26,10 @@ async function getMunicipalities(): Promise<Municipality[]> {
     }
 }
 
-interface shoppingCartProps {
-    basket: Basket;
-    setBasketItems: (basketItems: BasketItem[]) => void
-}
 
 
-export function BothForms(props: shoppingCartProps) {
+export function BothForms() {
+    const basket = useBasketContext();
     const [customerInfo] = useState<CustomerInfo>({
         firstName: "",
         lastName: "",
@@ -114,7 +112,7 @@ export function BothForms(props: shoppingCartProps) {
 
         //TODO: Add validition on form items before "submitOrder" call
         console.log("submit")
-        submitOrder(props.basket, customerInfo)
+        submitOrder(basket, customerInfo)
     }
 
 
@@ -183,7 +181,7 @@ export function BothForms(props: shoppingCartProps) {
         <div className="paymentContainer">
             <ul>
                 <li>
-                    <p>Final Price: {props.basket.totalPrice.priceAfterRebate}</p>
+                    <p>Final Price: {basket.totalPrice.priceAfterRebate}</p>
                     <label htmlFor="kortnummer">Kortnummer:</label>
                     <input type="text" id="kortnummer" name="kort_nummer"/>
                 </li>

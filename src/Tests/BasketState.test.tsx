@@ -1,6 +1,5 @@
 import {basketReducer,creasteNewEmptyBasket, BasketItemKind} from "../State/BasketState"
-import { assert, expect, test } from 'vitest'
-import jsontestdata from "../Data/UpdatedProductdata.json"
+import { assert, test } from 'vitest'
 import {ProductInfo} from "../TSReusedTypes/ItemsAndPrices"
 import { useReducer } from "react"
 
