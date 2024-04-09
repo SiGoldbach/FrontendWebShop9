@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route, Link,} from 'react-router-dom'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { getItems } from '../Networking/networking.ts'
 //import {CheckoutPage} from "./Checkoutpage.tsx"
 
@@ -8,16 +8,9 @@ import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import Adminpanel from './Adminpanel.tsx'
 import BothForms from "../Components/bothForms.tsx";
+import { basketReducer, creasteNewEmptyBasket } from '../State/BasketState.tsx'
+import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 
-/**
- * 
- * @returns Puts three standard Items in the basket into an array with type BasketItem[]
- */
-
-/**
- * 
- * @returns All items from the json file into an array with type ProductInfo[]
- */
 
 //TODO: Move calculateItemPrices to a price handeling component
 function calculateItemPrices(basketItems: BasketItem[]) {
@@ -97,6 +90,7 @@ function App():JSX.Element {
     fetchData();
 }, []);
 
+  const [state,dispatch]= useReducer(basketReducer,creasteNewEmptyBasket());
   const [basketItems, setBasketItems] = useState<BasketItem[]>([])
   const itemPrices: Price[] = calculateItemPrices(basketItems);
   const totalPrice: Price = calculateTotalPrice(itemPrices);
@@ -124,22 +118,26 @@ function App():JSX.Element {
     
       <Router>
         <div >
-          <div className="navContainer">
-            <nav>
-              {/* Nav links */}
-              <Link to="/" className="navLink">Store</Link>
-              <Link to="/cart" className="navLink">Shopping Cart </Link>
-              <Link to="/admin" className="navLink">Admin Panel </Link>
-            </nav>
-          </div>
-        {/* Define routes */}
-        <Routes>
-          <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
-          <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
-          <Route path="/checkout" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
-          <Route path="/admin" element={<Adminpanel />} />
-          <Route path="/bothForms" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
-        </Routes>
+          <BasketContext.Provider value={basket}>
+            <BasketDispatchContext.Provider value={dispatch}>
+              <div className="navContainer">
+                <nav>
+                  {/* Nav links */}
+                  <Link to="/" className="navLink">Store</Link>
+                  <Link to="/cart" className="navLink">Shopping Cart </Link>
+                  <Link to="/admin" className="navLink">Admin Panel </Link>
+                </nav>
+              </div>
+            {/* Define routes */}
+            <Routes>
+              <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
+              <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
+              <Route path="/checkout" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
+              <Route path="/admin" element={<Adminpanel />} />
+              <Route path="/bothForms" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
+            </Routes>
+          </BasketDispatchContext.Provider>
+        </BasketContext.Provider>
       </div>
     </Router>
   )

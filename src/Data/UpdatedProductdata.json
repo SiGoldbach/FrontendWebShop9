@@ -1,12 +1,4 @@
-import {basketReducer,creasteNewEmptyBasket, BasketItemKind} from "../State/BasketState"
-import { assert, expect, test } from 'vitest'
-import jsontestdata from "../Data/UpdatedProductdata.json"
-import {ProductInfo} from "../TSReusedTypes/ItemsAndPrices"
-import { useReducer } from "react"
-
-//I am using mogging instead of fetching the data to make sure it is not async problems or networking since this test does test that.
-//But rather the new reducer for basketstate 
-const mockProductData: ProductInfo[] = [
+[
     {
       "id": "vitamin-d-90-120",
       "name": "D-vitamin, 90ug, 120 stk",
@@ -297,18 +289,4 @@ const mockProductData: ProductInfo[] = [
       "upsellProductId": null,
       "imageUrl": "https://cdn.shopify.com/s/files/1/2854/8548/products/roersukker-brasilien-oe_800x.jpg?v=1587692100"
     }
-  ];
-
-test('i am creating a state with reducer and seeing if it works', async() => {
-    const [state,dispatch]= useReducer(basketReducer,creasteNewEmptyBasket());
-    dispatch({type: BasketItemKind.ADDTOBASKET,productinfo: mockProductData[0]})
-    dispatch({type: BasketItemKind.ADDTOBASKET,productinfo: mockProductData[0]})
-    dispatch({type: BasketItemKind.ADDTOBASKET,productinfo: mockProductData[1]})
-    dispatch({type: BasketItemKind.ADDTOBASKET,productinfo: mockProductData[2]})
-    //Now i have added three types of items to the basket and therefore try to assert that there actually are 3 items
-    assert(state.basketItems.length==3);
-
-
-
-
-  })
+  ]

@@ -3,6 +3,8 @@ import '../Pages/index.css'
 import DisplayItem from "../Components/displayItem.js";
 import { BasketItem, Basket } from "../TSReusedTypes/ItemsAndPrices.js"
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { useBasketContext } from '../State/Basketcontext.js';
 
 
 interface shoppingCartProps {
@@ -12,12 +14,13 @@ interface shoppingCartProps {
 
 
 function ShoppingCart(props: shoppingCartProps) {
+    const basket= useBasketContext();
     const navigate = useNavigate();
 
     //GPT generated
     function CheckoutSummary() {
-        const originalPrice = props.basket.totalPrice.priceBeforeRebate;
-        const total = props.basket.totalPrice.priceAfterRebate;
+        const originalPrice = basket.totalPrice.priceBeforeRebate;
+        const total = basket.totalPrice.priceAfterRebate;
         const discount = originalPrice - total;
         
         const navigateToCheckout = () => {

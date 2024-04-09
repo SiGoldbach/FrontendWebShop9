@@ -1,7 +1,7 @@
-import {Basket,Price, BasketItem, ProductInfo} from "../TSReusedTypes/ItemsAndPrices"
+import {Basket,Price, BasketItem, ProductInfo,} from "../TSReusedTypes/ItemsAndPrices"
 
 //Enum which describes the different commands the basket reducer should have 
-enum BasketItemKind{
+export enum BasketItemKind{
     ADDTOBASKET= "ADDTOBASKET",
     INCREASE="INCREASE",
     DECREASE="DECREASE",
@@ -18,7 +18,7 @@ interface addItemToBasketAction{
 }
 
 
-type Action = changeQunatityAction | addItemToBasketAction;
+export type Action = changeQunatityAction | addItemToBasketAction;
 
 
 
@@ -74,9 +74,13 @@ function increaseAmount(state: Basket, id: string): Basket{
         }
         else return item;
     });
+    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
+    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
     return{
         ...state,
-        basketItems: tempBasketItems
+        basketItems: tempBasketItems,
+        priceList: tempPriceList,
+        totalPrice: temptotalPrice
     }
 
 }
@@ -92,9 +96,13 @@ function decreaseAmount(state: Basket, id: string): Basket{
         }
         else return item;
     });
+    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
+    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
     return{
         ...state,
-        basketItems: tempBasketItems
+        basketItems: tempBasketItems,
+        priceList: tempPriceList,
+        totalPrice: temptotalPrice
     }
 
 }
@@ -108,9 +116,13 @@ function decreaseAmount(state: Basket, id: string): Basket{
 function removeItem(state: Basket, id: string):Basket{
     const tempBasketItems: BasketItem[] = state.basketItems.filter(item => item.id !== id);
 
+    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
+    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
     return{
         ...state,
-        basketItems: tempBasketItems
+        basketItems: tempBasketItems,
+        priceList: tempPriceList,
+        totalPrice: temptotalPrice
     }
 
 }
@@ -126,14 +138,78 @@ function addItemToBasket(state: Basket, product: ProductInfo):Basket{
     } else {
       tempBasketItems=([...state.basketItems, { ...product, quantity: 1 }]);
     }
+    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
+    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
     return{
         ...state,
-        basketItems: tempBasketItems
+        basketItems: tempBasketItems,
+        priceList: tempPriceList,
+        totalPrice: temptotalPrice
     }
   };
 
-
-
+function calculateItemPrices(basketItems: BasketItem[]):Price[] {
+    const itemPrices: Price[] = []
+    basketItems.forEach((item) => {
+        if (item.quantity >= item.rebateQuantity) {
+        const price: Price = {
+          priceBeforeRebate: item.price * item.quantity,
+          rebatePercentage: item.rebatePercent,
+          priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity) * (item.rebatePercent / 100))
+  
+        };
+        itemPrices.push(price)
+  
+      } else {
+        const price: Price = {
+          priceBeforeRebate: item.price * item.quantity,
+          rebatePercentage: item.rebatePercent,
+          priceAfterRebate: (item.price * item.quantity)
+  
+  
+        };
+        itemPrices.push(price)
+  
+      }
+  
+    });
+    return itemPrices;
+  
+  }
+  
+  //TODO: Move calculateItemPrices to a price handeling component
+  function calculateTotalPrice(itemPrices: Price[]):Price {
+    if (itemPrices.length===0){
+      const totalPrice: Price = {
+        priceBeforeRebate: 0,
+        rebatePercentage: 0,
+        priceAfterRebate: 0
+    
+      };
+      return totalPrice
+    }
+    const staticTotalRebateInPercent: number = 10;
+    const staticTotalRebateTreshold: number = 300;
+    //Calculating price before rebate
+    const totalBeforeRebate: number = itemPrices.reduce((acc, curr) => {
+      return acc + curr.priceBeforeRebate;
+    }, 0);
+    //Calculating price with numbers rebate
+    const totalAfterAmountRebate: number = itemPrices.reduce((acc, curr) => {
+      return acc + curr.priceAfterRebate;
+    }, 0);
+    let priceAfterRebate = totalAfterAmountRebate;
+    if (totalAfterAmountRebate >= staticTotalRebateTreshold) {
+      priceAfterRebate -= priceAfterRebate / staticTotalRebateInPercent;
+    }
+    const totalPrice: Price = {
+      priceBeforeRebate: totalBeforeRebate,
+      rebatePercentage: staticTotalRebateInPercent,
+      priceAfterRebate: priceAfterRebate
+  
+    };
+    return totalPrice;
+  }
 
 
 
