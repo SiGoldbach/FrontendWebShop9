@@ -1,11 +1,13 @@
 import {BrowserRouter as Router, Routes, Route, Link,} from 'react-router-dom'
-import LandingPage from './LandingPage.tsx'
-import ShoppingCart from './ShoppingCart.tsx'
 import { BasketItem, Price, ProductInfo, Basket } from '../TSReusedTypes/ItemsAndPrices.ts'
 import { useEffect, useState } from 'react'
-import Adminpanel from './Adminpanel.tsx'
 import { getItems } from '../Networking/networking.ts'
-import {CheckoutPage} from "./Checkoutpage.tsx"
+//import {CheckoutPage} from "./Checkoutpage.tsx"
+
+import LandingPage from './LandingPage.tsx'
+import ShoppingCart from './ShoppingCart.tsx'
+import Adminpanel from './Adminpanel.tsx'
+import BothForms from "../Components/bothForms.tsx";
 
 /**
  * 
@@ -17,7 +19,7 @@ import {CheckoutPage} from "./Checkoutpage.tsx"
  * @returns All items from the json file into an array with type ProductInfo[]
  */
 
-
+//TODO: Move calculateItemPrices to a price handeling component
 function calculateItemPrices(basketItems: BasketItem[]) {
   const itemPrices: Price[] = []
 
@@ -48,6 +50,8 @@ function calculateItemPrices(basketItems: BasketItem[]) {
   return itemPrices;
 
 }
+
+//TODO: Move calculateItemPrices to a price handeling component
 function calculateTotalPrice(itemPrices: Price[]) {
   if (itemPrices.length===0){
     const totalPrice: Price = {
@@ -132,8 +136,9 @@ function App():JSX.Element {
         <Routes>
           <Route path="/" element={<LandingPage onAddToCart={handleAddToCart} products={productInfos} />} />
           <Route path="/cart" element={<ShoppingCart basket={basket} setBasketItems={setBasketItems} />} />
-          <Route path="/checkout" element={<CheckoutPage basket={basket} />} />
+          <Route path="/checkout" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
           <Route path="/admin" element={<Adminpanel />} />
+          <Route path="/bothForms" element={<BothForms basket={basket} setBasketItems={setBasketItems}/>} />
         </Routes>
       </div>
     </Router>
