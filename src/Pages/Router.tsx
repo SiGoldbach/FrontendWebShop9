@@ -1,10 +1,10 @@
 import { RouteObject } from "react-router-dom";
-import { CheckoutPage } from "./Checkoutpage";
+import { BothForms } from "../Components/bothForms";
 
 export const routes: RouteObject[] = [
   {
     path: "/",
-    element: <CheckoutPage />,
+    element: <BothForms />,
   },
   {
     path: "/albums",
