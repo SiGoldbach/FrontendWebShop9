@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
 import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
-import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
+import { useBasketContext} from '../State/Basketcontext';
 
 
 interface Municipality {
@@ -124,10 +124,11 @@ export function CheckoutPage() {
         }
     }
 
-    const [isPopUpOpen,setIsPopupOpen]= useState(false);
-    function opencheckoutPopUp(){
-        setIsPopupOpen(true);
-        console.log("Popupbox is: "+isPopUpOpen);
+    
+    const [isPopCheckUpOpen,setIsCheckPopupOpen]= useState(false);
+    function openCheckoutPopUp(){
+        setIsCheckPopupOpen(true);
+        console.log("Popupbox is: "+isPopCheckUpOpen);
     }
     
 
@@ -165,7 +166,7 @@ export function CheckoutPage() {
         const result = submitOrder(basket, customerInfo)
         result.then(() => {
             console.log("Popup opened")
-            opencheckoutPopUp
+            openCheckoutPopUp
             setLoading(false)
         })
         .catch(error => {
