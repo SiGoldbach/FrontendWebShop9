@@ -14,7 +14,12 @@ vi.mock('../Pages/LandingPage', () => {
   return { default: () => <div>This is a landing page</div> };
 });
 
-describe('Routing', () => {
+vi.mock("../Pages/ShoppingCart", () => {
+    return { default: () => <div>Shopping Cart Page</div>};
+});
+
+
+describe('LandingPage Routing', () => {
     it('renders the landing page heading', () => {
         render(
             <MemoryRouter initialEntries={['/']}>
@@ -26,4 +31,17 @@ describe('Routing', () => {
     });
 
   // More routing tests to come
+});
+
+
+describe('ShoppingCart Routing', () => {
+    it('renders the ShoppingCart page when navigated to', () =>{
+        render(
+            <MemoryRouter initialEntries={['/shopping-cart']}>
+                <App />
+            </MemoryRouter>
+        );
+        expect(screen.getByText('Shopping Cart Page')).toBeInTheDocument();
+    });
+
 });
