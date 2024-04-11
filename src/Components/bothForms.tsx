@@ -165,11 +165,23 @@ export function BothForms() {
 
         customerInfo.optionalComment = orderComment;
         submitOrder(basket, customerInfo);
-        //TODO: Add validition on form items before "submitOrder" call
-        setLoading(!loading)
-        submitOrder(basket, customerInfo)
+        //TODO: Add validation on form items before "submitOrder" call
+        setLoading(true)
+        const result = submitOrder(basket, customerInfo)
+        result.then(() => {
+            setLoading(false)
+            popupFunction()
+        })
+        .catch(error => {
+            console.log(error)
+            setLoading(false)
+            //Warning at the top: Order failed
+        })
     }
 
+    const popupFunction = (): void => {
+
+    }
 
     return <form className="forms">
         <div className="shoppingCartContainer">
