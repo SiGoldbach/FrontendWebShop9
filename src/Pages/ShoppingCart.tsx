@@ -3,6 +3,7 @@ import '../Pages/index.css'
 import DisplayItem from "../Components/displayItem.js";
 import { useNavigate } from 'react-router-dom';
 import { useBasketContext } from '../State/Basketcontext.js';
+import { useState } from 'react';
 
 
 
@@ -13,12 +14,13 @@ function ShoppingCart() {
     const basket = useBasketContext();
     const navigate = useNavigate();
 
+    
     //GPT generated
     function CheckoutSummary() {
         const originalPrice = basket.totalPrice.priceBeforeRebate;
         const total = basket.totalPrice.priceAfterRebate;
         const discount = originalPrice - total;
-        
+
         const navigateToCheckout = () => {
             navigate('/checkout'); // Use the navigate function
           };
