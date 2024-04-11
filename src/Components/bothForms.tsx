@@ -4,6 +4,7 @@ import "../Pages/ShoppingCart"
 import {submitOrder} from "../Networking/networking.ts";
 import { useBasketContext } from '../State/Basketcontext.ts';
 
+
 interface Municipality {
     zip: number,
     city: string
@@ -30,6 +31,27 @@ async function getMunicipalities(): Promise<Municipality[]> {
 
 export function BothForms() {
     const basket = useBasketContext();
+
+    const [orderComment, setOrderComment] = useState(() => {
+        // Get the comment from sessionStorage if it exists
+        const savedComment = sessionStorage.getItem('orderComment');
+        return savedComment ?? '';
+    });
+
+    // Load comment from sessionStorage when component mounts
+    useEffect(() => {
+        const savedComment = sessionStorage.getItem('orderComment');
+        if (savedComment) {
+            setOrderComment(savedComment);
+        }
+    }, []);
+
+    // Save comment to sessionStorage when it changes
+    useEffect(() => {
+        sessionStorage.setItem('orderComment', orderComment);
+    }, [orderComment]);
+
+    
     const [customerInfo] = useState<CustomerInfo>({
         firstName: "",
         lastName: "",
@@ -127,6 +149,8 @@ export function BothForms() {
         const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
         customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
 
+        customerInfo.optionalComment = orderComment;
+        submitOrder(basket, customerInfo);
         //TODO: Add validition on form items before "submitOrder" call
         setLoading(!loading)
         submitOrder(basket, customerInfo)
@@ -189,6 +213,16 @@ export function BothForms() {
                         <label htmlFor="alt-billing-box">Bill to a different address</label>
                         <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
                             onChange={toggleBillingAddress}/>
+                    </li>
+                    <li>
+                        <div className="comment-container">
+                            <textarea
+                                className="comment-textarea"
+                                value={orderComment}
+                                onChange={(e) => setOrderComment(e.target.value)}
+                                placeholder="Add a comment to your order (optional)"
+                            />
+                        </div>
                     </li>
                     <li id="billingAddress" className="billingAddress">
                         <label htmlFor="billAddress">Billing address</label>
