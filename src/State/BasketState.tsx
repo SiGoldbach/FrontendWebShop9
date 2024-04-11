@@ -6,7 +6,8 @@ export enum BasketItemKind{
     INCREASE="INCREASE",
     DECREASE="DECREASE",
     REMOVE="REMOVE",
-    REPLACEITEMINBASKET="REPLACEITEMINBASKET"
+    REPLACEITEMINBASKET="REPLACEITEMINBASKET",
+    ClEARBASKET="CLEARBASKET"
 
 }
 interface changeQunatityAction {
@@ -23,8 +24,13 @@ interface replaceItemFromBasketAction{
   newProduct: ProductInfo;
 }
 
+interface clearBasket{
+  type: BasketItemKind.ClEARBASKET
 
-export type Action = changeQunatityAction | addItemToBasketAction | replaceItemFromBasketAction;
+}
+
+
+export type Action = changeQunatityAction | addItemToBasketAction | replaceItemFromBasketAction | clearBasket;
 
 
 
@@ -56,12 +62,9 @@ export function basketReducer(state: Basket, action: Action):Basket{
         case BasketItemKind.ADDTOBASKET:
             return addItemToBasket(state,action.productinfo)
         case BasketItemKind.REPLACEITEMINBASKET:
-          return replaceItemInBasket(state,action.currentItemId,action.newProduct)
-          
-
-            
-
-
+          return replaceItemInBasket(state,action.currentItemId,action.newProduct);
+        case BasketItemKind.ClEARBASKET:
+          return clearBasket();
         default:
             return state;
 
@@ -200,6 +203,11 @@ function replaceItemInBasket(state: Basket,currentProductId:string, newProduct: 
 
 
 
+
+}
+function clearBasket(){
+  return createNewEmptyBasket();
+  
 
 }
 
