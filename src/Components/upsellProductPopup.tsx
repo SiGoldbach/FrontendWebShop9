@@ -5,12 +5,14 @@ import "../StylingSheets/popup.css"
 import { ProductInfo } from "../TSReusedTypes/ItemsAndPrices";
 import "../Pages/index.css"
 
+
 type popuptForUpsellProductprops={
     closePopUp: ()=>void;
     currentid: string;
     upsellId: any;
 
 } 
+
 
 export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
     console.log(props.currentid);
@@ -29,7 +31,6 @@ export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
         
 
     }
-
 
 
     return(<div className="form-popup">
@@ -51,8 +52,6 @@ export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
             </div>
         </div>
         </div>
-        
-        
         </div>)
 }
 

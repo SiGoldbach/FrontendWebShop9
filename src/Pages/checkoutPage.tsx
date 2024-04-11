@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
 import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
-import { useBasketContext } from '../State/Basketcontext.ts';
+import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
 
 
 interface Municipality {
@@ -26,7 +26,6 @@ async function getMunicipalities(): Promise<Municipality[]> {
         return data;
     }
 }
-
 
 
 export function CheckoutPage() {
@@ -85,19 +84,6 @@ export function CheckoutPage() {
         }
     }, [loading]);
 
-    /*const button : HTMLElement|null = document.getElementById("checkoutButton");
-    const loader : HTMLElement|null = document.getElementById("loader");
-    if (loader != null && button != null) {
-        button.addEventListener('click', () => {
-            loader.style.display = 'inline-block';
-            button.textContent = "Submitting";
-            setTimeout(() => {
-                loader.style.display = 'none';
-                button.textContent = "Pay";
-            }, 2000);
-
-        });
-    }*/
 
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
     useEffect(() => {
@@ -108,6 +94,7 @@ export function CheckoutPage() {
 
         fetchData();
     }, []);
+
 
     const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const enteredZip: number = parseInt(event.target.value);
@@ -124,6 +111,7 @@ export function CheckoutPage() {
         }
     };
 
+
     const toggleBillingAddress = (): void => {
         const checkBox: HTMLInputElement = document.getElementById("alt-billing-box") as HTMLInputElement;
         const billingAddress: HTMLElement = document.getElementById("billingAddress") as HTMLElement;
@@ -137,7 +125,11 @@ export function CheckoutPage() {
     }
 
     const [isPopUpOpen,setIsPopupOpen]= useState(false);
-    function opencheckoutPopUp(){setIsPopupOpen(true); console.log("Popupbox is: "+isPopUpOpen);}
+    function opencheckoutPopUp(){
+        setIsPopupOpen(true);
+        console.log("Popupbox is: "+isPopUpOpen);
+    }
+    
 
     const onSubmitClick = () :void => {
         //const form = document.getElementById("forms");
@@ -172,8 +164,9 @@ export function CheckoutPage() {
         setLoading(true)
         const result = submitOrder(basket, customerInfo)
         result.then(() => {
+            console.log("Popup opened")
+            opencheckoutPopUp
             setLoading(false)
-            opencheckoutPopUp()
         })
         .catch(error => {
             console.log(error)
@@ -225,7 +218,7 @@ export function CheckoutPage() {
                     </li>
                     <li>
                         <label htmlFor="phone">Phone number*</label>
-                        <input type="text" id="phone" name="user_phone" required pattern="\d{8}"/>
+                        <input type="text" id="phone" name="user_phone" required pattern="\d{8}|\s*\+45\s*\d{2}\s*\d{2}\s*\d{2}\s*\d{2}\s*"/>
                     </li>
                     <li>
                         <label htmlFor="company">Company</label>
@@ -247,6 +240,8 @@ export function CheckoutPage() {
                     <li>
                         <div className="comment-container">
                             <textarea
+                                id="comment"
+                                name="comment"
                                 className="comment-textarea"
                                 value={orderComment}
                                 onChange={(e) => setOrderComment(e.target.value)}
@@ -291,7 +286,7 @@ export function CheckoutPage() {
             </div>
         </div>
     </form>
-
 }
+
 
 export default CheckoutPage

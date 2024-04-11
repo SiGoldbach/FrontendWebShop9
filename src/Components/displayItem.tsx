@@ -9,9 +9,8 @@ import { PopUpForUpsellProduct } from './upsellProductPopup';
 type displayItemProps = {
     basketItem: BasketItem;
     basketItemPrice: Price;
+}
 
-
-};
 
 function DisplayItem(props: displayItemProps) {
     const basket = useBasketContext();
@@ -27,7 +26,6 @@ function DisplayItem(props: displayItemProps) {
     }
 
 
-
     function DiscountHelper() {
         if (props.basketItemPrice.priceBeforeRebate === props.basketItemPrice.priceAfterRebate)
             return (<>
@@ -41,6 +39,8 @@ function DisplayItem(props: displayItemProps) {
             )
         }
     }
+
+
     function PremiumHelper() {
         if (props.basketItem.upsellProductId && basket.basketItems.map(product=> product.id).indexOf(props.basketItem.upsellProductId)===-1) {
             return (<>
@@ -51,9 +51,9 @@ function DisplayItem(props: displayItemProps) {
             return (<>
             </>)
         }
-
-
     }
+
+
     function RebateInformationHelper() {
         if (props.basketItem.rebatePercent === 0) {
             return (<>
@@ -68,14 +68,11 @@ function DisplayItem(props: displayItemProps) {
     function ImageErrorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>){
         const targetEvent = event.target as HTMLImageElement;
         targetEvent.src="https://via.placeholder.com/150";
-        
-
     }
+
 
     return (
         <>
-
-
             <div className="displayItem">
             {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} currentid={props.basketItem.id} upsellId={props.basketItem.upsellProductId} />}
 

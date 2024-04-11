@@ -33,7 +33,6 @@ interface clearBasket{
 export type Action = changeQunatityAction | addItemToBasketAction | replaceItemFromBasketAction | clearBasket;
 
 
-
 //Function for initialising a basket with defaulf values
 export function createNewEmptyBasket(): Basket{
     const price: Price={
