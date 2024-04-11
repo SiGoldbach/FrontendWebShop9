@@ -25,7 +25,6 @@ export async function getItems(): Promise<ProductInfo[]>{
 //Its very poorly implemented right now needs to change. 
 export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Promise<unknown>{
     console.log("In the procces of submitting order")
-    let loading=true
     const orderInfo: OrderInformation ={
         basket,
         customerInfo
@@ -41,20 +40,15 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
         const response = await fetch("http://130.225.170.52:10191/order/succes",postOptions)
         
         if(!response.ok){
-            loading=false
             throw new Error("Bad response")
         }
-        loading=false
         console.log("Response was good");
         const responseInfo: number = await response.json();
         console.log(response.status);
         return responseInfo;
-        
 
-    }catch (error){
-        loading=false
+    } catch (error){
         throw new Error("Fetch error: "+ error);
-
     }
 
 }

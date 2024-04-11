@@ -51,7 +51,15 @@ export function BothForms() {
     useEffect(() => {
         const button : HTMLElement|null = document.getElementById("checkoutButton");
         if (button != null) {
-            button.textContent = loading ? "Submitting" : "Pay"
+            if (loading) {
+                button.textContent = "Submitting";
+                button.classList.add("button--loading");
+                console.log("loading")
+            } else {
+                button.textContent = "Pay";
+                button.classList.remove("button--loading");
+                console.log("not loading")
+            }
         }
     }, [loading]);
 
