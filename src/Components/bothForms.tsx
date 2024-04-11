@@ -183,15 +183,15 @@ export function BothForms() {
                 <li>
                     <p>Final Price: {basket.totalPrice.priceAfterRebate}</p>
                     <label htmlFor="kortnummer">Kortnummer:</label>
-                    <input type="text" id="kortnummer" name="kort_nummer"/>
+                    <input type="text" id="kortnummer" name="kort_nummer" required pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
                 </li>
                 <li>
                     <label htmlFor="udloebsdato">MM/YY:</label>
-                    <input type="text" id="udloebsdato" name="kort_udloebsdato"/>
+                    <input type="text" id="udloebsdato" name="kort_udloebsdato" required pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
                 </li>
                 <li>
                     <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
-                    <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode"/>
+                    <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
                 </li>
             </ul>
             <ul>
