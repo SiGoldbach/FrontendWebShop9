@@ -8,7 +8,7 @@ import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import Adminpanel from './Adminpanel.tsx'
 import BothForms from "../Components/bothForms.tsx";
-import { basketReducer, creasteNewEmptyBasket } from '../State/BasketState.tsx'
+import { basketReducer, createNewEmptyBasket } from '../State/BasketState.tsx'
 import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 
 
@@ -23,7 +23,7 @@ function App():JSX.Element {
     fetchData();
 }, []);
 
-  const [state,dispatch]= useReducer(basketReducer,creasteNewEmptyBasket()); 
+  const [state,dispatch]= useReducer(basketReducer,createNewEmptyBasket()); 
   return (
     
       <Router>

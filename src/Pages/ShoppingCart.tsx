@@ -10,7 +10,7 @@ import { useBasketContext } from '../State/Basketcontext.js';
 
 function ShoppingCart() {
 
-    const basket= useBasketContext();
+    const basket = useBasketContext();
     const navigate = useNavigate();
 
     //GPT generated
