@@ -1,12 +1,7 @@
-* {
-  box-sizing: border-box;
-}
-
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   --text-primary-color: #333333;
   --text-secondary-color: #555555;
   --accent-primary-color: #3273dc;
@@ -43,8 +38,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   margin: 0;
+  padding: 0;
+  height: 100vh;
   color: var(--text-primary-colorcolor);
   background-color: var(--background-color);
 }
@@ -56,14 +52,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0; 
 }
 
 h1 {
@@ -259,17 +247,12 @@ Most if not all of the following are AI-generated
 .page-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
-  min-height: 100vh;
   text-align: center; 
   overflow: auto;
 }
 
 .formsContainer {
-  max-width: 500px;
-  max-height: 650px;
   margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;
@@ -413,6 +396,7 @@ Most if not all of the following are AI-generated
   text-align: center;
   padding: 20px;
 }
+
 .products-container {
   display: flex;
   flex-wrap: wrap; 

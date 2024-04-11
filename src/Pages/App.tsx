@@ -27,7 +27,7 @@ function App():JSX.Element {
   return (
     
       <Router>
-        <div >
+        <div className="page-container" >
           <BasketContext.Provider value={state}>
             <BasketDispatchContext.Provider value={dispatch}>
               <div className="navContainer">

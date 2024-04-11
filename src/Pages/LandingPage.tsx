@@ -12,7 +12,7 @@ function LandingPage({products }: landingPageProps) {
 
 
     return (
-        <div className="page-container">
+        <div className="landing-page-container">
             <h1>This is a landing page</h1>
             <p>The very first page the customer sees, and where they'll be able to pick the items they want to buy</p>
             <div className="products-container">
