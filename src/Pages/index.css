@@ -519,3 +519,24 @@ li.billingAddress {
   outline: 1px solid red;
 }
 
+.comment-textarea {
+  resize: none;
+  width: 90%;
+  height: 120px; /* Or any other size you prefer */
+  padding: 0.8em;
+  margin-top: 0.5em; /* Space above the textarea */
+  border: 1px solid var(--border-color);
+  border-radius: 8px; /* Consistent with other elements */
+  background-color: var(--box-background-color);
+  color: var(--text-color); /* Will switch between light and dark mode */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; /* Consistent with the root */
+  font-size: 1rem; /* Standard font size */
+  box-shadow: 0 2px 4px var(--shadow-color); /* Shadow for depth */
+}
+
+.comment-textarea:focus {
+  border-color: var(--accent-primary-color); /* Highlight color for focus */
+  box-shadow: 0 0 0 3px var(--button-hover-color); /* Outer glow on focus */
+}
+
+
