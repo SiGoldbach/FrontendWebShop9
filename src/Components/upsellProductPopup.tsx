@@ -3,6 +3,7 @@ import { useBasketDispatchContext } from "../State/Basketcontext";
 import { useProductContext } from "../State/Productcontext";
 import "../StylingSheets/popup.css"
 import { ProductInfo } from "../TSReusedTypes/ItemsAndPrices";
+import "../Pages/index.css"
 
 type popuptForUpsellProductprops={
     closePopUp: ()=>void;
@@ -22,14 +23,35 @@ export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
         basketDispatchercontext({type: BasketItemKind.REPLACEITEMINBASKET,currentItemId: props.currentid,newProduct: upsellProduct});
         props.closePopUp
     }
+    function ImageErrorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>){
+        const targetEvent = event.target as HTMLImageElement;
+        targetEvent.src="https://via.placeholder.com/150";
+        
+
+    }
 
 
 
     return(<div className="form-popup">
-        <p> This is a popupBox</p>
-        <p>Upgrade: {props.currentid} to: {upsellProduct.id} </p>
-        <button onClick={props.closePopUp}> Close box</button>
-        <button onClick={handleUpgrade}> Upgrade</button>
+        <div>
+        <p>{upsellProduct.id} </p>
+        <img className="product-image"
+                             src={upsellProduct.imageUrl}
+                             alt="PlaceholderImage" 
+                             onError={ImageErrorHandler}/>
+        <p> Do you want to upgrade? </p>
+
+        <div className="form-button-div">
+            <div className="form-button-div">
+                <button className="add-to-cart-button" onClick={props.closePopUp}> Cancel</button>
+            </div>
+            <div className="form-button-div">
+                <button className="add-to-cart-button" onClick={handleUpgrade}> Upgrade</button>
+            </div>
+        </div>
+        </div>
+        
+        
         </div>)
 }
 
