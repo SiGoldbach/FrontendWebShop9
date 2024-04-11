@@ -7,41 +7,39 @@ import { useBasketContext } from '../State/Basketcontext.js';
 
 
 
-
 function ShoppingCart() {
 
     const basket = useBasketContext();
     const navigate = useNavigate();
 
+    
     //GPT generated
     function CheckoutSummary() {
         const originalPrice = basket.totalPrice.priceBeforeRebate;
         const total = basket.totalPrice.priceAfterRebate;
         const discount = originalPrice - total;
-        
+
         const navigateToCheckout = () => {
             navigate('/checkout'); // Use the navigate function
           };
         return (
-            <div className="page-container">
-                <div className="checkoutContainer">
-                    <div className="summaryBox">
-                        <div className="summaryRow">
-                            <h2>Price:</h2>
-                            <p>{originalPrice.toFixed(2)}</p>
-                        </div>
-                        <div className="summaryRow">
-                            <h2>Discount:</h2>
-                            <p>{discount.toFixed(2)}</p>
-                        </div>
-                        <div className="line"></div>                
-                        <div className="summaryRow">
-                            <h2>Total:</h2>
-                            <p>{total.toFixed(2)}</p>
-                        </div>
+            <div className="checkoutContainer">
+                <div className="summaryBox">
+                    <div className="summaryRow">
+                        <h2>Price:</h2>
+                        <p>{originalPrice.toFixed(2)}</p>
+                    </div>  
+                    <div className="summaryRow">
+                        <h2>Discount:</h2>
+                        <p>{discount.toFixed(2)}</p>
                     </div>
-                    <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout </button>
+                    <div className="line"></div>                
+                    <div className="summaryRow">
+                        <h2>Total:</h2>
+                        <p>{total.toFixed(2)}</p>
+                    </div>
                 </div>
+                <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout </button>
             </div>
         );
     }
