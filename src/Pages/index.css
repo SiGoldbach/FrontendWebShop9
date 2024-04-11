@@ -1,4 +1,6 @@
-
+* {
+  box-sizing: border-box;
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -252,6 +254,17 @@ Most if not all of the following are AI-generated
   padding: 20px;
   box-shadow: 0 0 10px var(--shadow-color);
   border: 1px solid var(--border-color);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  text-align: center; 
+  overflow: auto;
 }
 
 .formsContainer {
