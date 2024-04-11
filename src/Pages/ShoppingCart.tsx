@@ -3,8 +3,6 @@ import '../Pages/index.css'
 import DisplayItem from "../Components/displayItem.js";
 import { useNavigate } from 'react-router-dom';
 import { useBasketContext } from '../State/Basketcontext.js';
-import { useState } from 'react';
-
 
 
 

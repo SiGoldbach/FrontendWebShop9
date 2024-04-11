@@ -521,7 +521,7 @@ li.billingAddress {
 
 .comment-textarea {
   resize: none;
-  width: 100%;
+  width: 90%;
   height: 120px; /* Or any other size you prefer */
   padding: 0.8em;
   margin-top: 0.5em; /* Space above the textarea */
