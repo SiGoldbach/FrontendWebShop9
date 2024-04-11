@@ -46,12 +46,13 @@ export function BothForms() {
         acceptMarketingEmail: true,
     });
 
-    let loading :boolean = false; //Add a submitting message while the form is being submitted to the server
+    //let loading :boolean = false;
+    const [loading, setLoading] = useState<boolean>(false);//Add a submitting message while the form is being submitted to the server
     useEffect(() => {
         const button : HTMLElement|null = document.getElementById("checkoutButton");
-        console.log("loading? " + loading)
-        if (button != null)
+        if (button != null) {
             button.textContent = loading ? "Submitting" : "Pay"
+        }
     }, [loading]);
 
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
@@ -119,9 +120,7 @@ export function BothForms() {
         customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
 
         //TODO: Add validition on form items before "submitOrder" call
-        console.log("submit")
-        loading = true;
-        console.log(loading)
+        setLoading(!loading)
         submitOrder(basket, customerInfo)
     }
 
@@ -217,17 +216,7 @@ export function BothForms() {
                         <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
                     </li>
                 </ul>
-                <ul>
-                    <li>
-                        <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                        <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
-                    </li>
-                    <li>
-                        <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                        <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
-                    </li>
-                </ul>
-                <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay</button>
+                <button type="submit" className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} >Pay</button>
             </div>
         </div>
     </form>
