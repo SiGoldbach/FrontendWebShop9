@@ -113,7 +113,7 @@ button:focus-visible {
   align-items: center;
   border: 1px solid var(--border-color);
   width: 600px;
-  height: 300px;
+  height: 400px;
   padding: 10px;
   color: var(--text-color);
 }
@@ -468,21 +468,6 @@ Most if not all of the following are AI-generated
   object-fit: contain;
 }
 
-.add-to-cart-button {
-  background-color: var(--button-background-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  cursor: pointer;
-  margin-top: auto; 
-  transition: background-color 0.3s ease; 
-}
-
-.add-to-cart-button:hover {
-  background-color: #535bf2; 
-}
-
 input:invalid {
   border: 1px solid red;
 }
@@ -553,7 +538,6 @@ ul {
 li.billingAddress {
   display:none;
 }
-
 .IGNORE
 *{
   outline: 1px solid red;
