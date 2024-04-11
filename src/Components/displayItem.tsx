@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../Pages/index.css';
 import { BasketItemKind } from '../State/BasketState';
-import { useBasketDispatchContext } from '../State/Basketcontext';
+import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
 import { BasketItem, Price } from '../TSReusedTypes/ItemsAndPrices';
 import { PopUpForUpsellProduct } from './upsellProductPopup';
 
@@ -14,6 +14,7 @@ type displayItemProps = {
 };
 
 function DisplayItem(props: displayItemProps) {
+    const basket = useBasketContext();
     const basketDispatcher = useBasketDispatchContext();
     const [isPopUpOpen,setIsPopupOpen]= useState(false);
 
@@ -41,7 +42,7 @@ function DisplayItem(props: displayItemProps) {
         }
     }
     function PremiumHelper() {
-        if (props.basketItem.upsellProductId) {
+        if (props.basketItem.upsellProductId && basket.basketItems.map(product=> product.id).indexOf(props.basketItem.upsellProductId)===-1) {
             return (<>
                 <p> Upgrade to the premium version: </p>
                 <button onClick={openPopUp}>{props.basketItem.upsellProductId.toString()}</button>
@@ -76,7 +77,7 @@ function DisplayItem(props: displayItemProps) {
 
 
             <div className="displayItem">
-            {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} />}
+            {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} currentid={props.basketItem.id} upsellId={props.basketItem.upsellProductId} />}
 
                 <div className="leftColumn">
                     <div>
