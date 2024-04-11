@@ -216,22 +216,8 @@ export function BothForms() {
                         <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
                     </li>
                 </ul>
-<<<<<<< HEAD
-                <ul>
-                    <li>
-                        <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                        <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
-                    </li>
-                    <li>
-                        <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                        <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
-                    </li>
-                </ul>
-                <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay </button>
-                <div className="loader"></div>
-=======
                 <button type="submit" className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} >Pay</button>
->>>>>>> 5ae2fec91c65d9f2cf633aa47c7d17f05fd700b4
+                <div className="loader"></div>
             </div>
         </div>
     </form>
