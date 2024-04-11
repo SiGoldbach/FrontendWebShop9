@@ -237,9 +237,12 @@ Most if not all of the following are AI-generated
 .page-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   text-align: center; 
   overflow: auto;
+  
 }
 
 .formsContainer {

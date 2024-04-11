@@ -117,96 +117,98 @@ export function BothForms() {
 
 
     return <form className="forms">
-        <div className="formsContainer">
-            <ul>
-                <li>
-                    <label htmlFor="firstName">First name*</label>
-                    <input type="text" id="firstName" name="user_first_name" required/>
-                </li>
-                <li>
-                    <label htmlFor="lastName">Last name*</label>
-                    <input type="text" id="lastName" name="user_last_name" required/>
-                </li>
-                <li>
-                    <label htmlFor="mail">Email*</label>
-                    <input type="email" id="mail" name="user_email" required/>
-                </li>
-                <li>
-                    <label htmlFor="address1">Address line 1*</label>
-                    <input type="text" id="address1" name="user_address_1" required/>
-                </li>
-                <li>
-                    <label htmlFor="address2">Address line 2</label>
-                    <input type="text" id="address2" name="user_address_2"/>
-                </li>
-                <li>
-                    <label htmlFor="country">Country*</label>
-                    <select id="country" name="user_country" required>
-                        <option value="denmark">Danmark</option>
-                    </select>
-                </li>
-                <li>
-                    <label htmlFor="zip">Zip code*</label>
-                    <input type="number" id="zip" name="user_zip" required
-                           onChange={handleZipChange}
-                    />
-                </li>
-                <li>
-                    <label htmlFor="city">City*</label>
-                    <input type="text" id="city" name="user_city" required readOnly/>
-                </li>
-                <li>
-                    <label htmlFor="phone">Phone number*</label>
-                    <input type="text" id="phone" name="user_phone" required pattern="\d{8}"/>
-                </li>
-                <li>
-                    <label htmlFor="company">Company</label>
-                    <input type="text" id="company" name="company_name"/>
-                </li>
-                <li>
-                    <label htmlFor="companyVAT">Company VAT</label>
-                    <input type="text" id="companyVAT" name="company_VAT" pattern="\d{8}"/>
-                </li>
-                <li>
-                    <label htmlFor="alt-billing-box">Bill to a different address</label>
-                    <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
-                           onChange={toggleBillingAddress}/>
-                </li>
-                <li id="billingAddress" className="billingAddress">
-                    <label htmlFor="billAddress">Billing address</label>
-                    <input type="text" id="billAddress" name="bill_address"/>
-                </li>
-            </ul>
+        <div className="shoppingCartContainer">
+            <div className="formsContainer">
+                <ul>
+                    <li>
+                        <label htmlFor="firstName">First name*</label>
+                        <input type="text" id="firstName" name="user_first_name" required/>
+                    </li>
+                    <li>
+                        <label htmlFor="lastName">Last name*</label>
+                        <input type="text" id="lastName" name="user_last_name" required/>
+                    </li>
+                    <li>
+                        <label htmlFor="mail">Email*</label>
+                        <input type="email" id="mail" name="user_email" required/>
+                    </li>
+                    <li>
+                        <label htmlFor="address1">Address line 1*</label>
+                        <input type="text" id="address1" name="user_address_1" required/>
+                    </li>
+                    <li>
+                        <label htmlFor="address2">Address line 2</label>
+                        <input type="text" id="address2" name="user_address_2"/>
+                    </li>
+                    <li>
+                        <label htmlFor="country">Country*</label>
+                        <select id="country" name="user_country" required>
+                            <option value="denmark">Danmark</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label htmlFor="zip">Zip code*</label>
+                        <input type="number" id="zip" name="user_zip" required
+                            onChange={handleZipChange}
+                        />
+                    </li>
+                    <li>
+                        <label htmlFor="city">City*</label>
+                        <input type="text" id="city" name="user_city" required readOnly/>
+                    </li>
+                    <li>
+                        <label htmlFor="phone">Phone number*</label>
+                        <input type="text" id="phone" name="user_phone" required pattern="\d{8}"/>
+                    </li>
+                    <li>
+                        <label htmlFor="company">Company</label>
+                        <input type="text" id="company" name="company_name"/>
+                    </li>
+                    <li>
+                        <label htmlFor="companyVAT">Company VAT</label>
+                        <input type="text" id="companyVAT" name="company_VAT" pattern="\d{8}"/>
+                    </li>
+                    <li>
+                        <label htmlFor="alt-billing-box">Bill to a different address</label>
+                        <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
+                            onChange={toggleBillingAddress}/>
+                    </li>
+                    <li id="billingAddress" className="billingAddress">
+                        <label htmlFor="billAddress">Billing address</label>
+                        <input type="text" id="billAddress" name="bill_address"/>
+                    </li>
+                </ul>
+            </div>
+            <div className="paymentContainer">
+                <ul>
+                    <li>
+                        <p>Final Price: {basket.totalPrice.priceAfterRebate}</p>
+                        <label htmlFor="kortnummer">Kortnummer:</label>
+                        <input type="text" id="kortnummer" name="kort_nummer"/>
+                    </li>
+                    <li>
+                        <label htmlFor="udloebsdato">MM/YY:</label>
+                        <input type="text" id="udloebsdato" name="kort_udloebsdato"/>
+                    </li>
+                    <li>
+                        <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
+                        <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode"/>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
+                        <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
+                    </li>
+                    <li>
+                        <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
+                        <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
+                    </li>
+                </ul>
+                <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay</button>
+            </div>
         </div>
-        <div className="paymentContainer">
-            <ul>
-                <li>
-                    <p>Final Price: {basket.totalPrice.priceAfterRebate}</p>
-                    <label htmlFor="kortnummer">Kortnummer:</label>
-                    <input type="text" id="kortnummer" name="kort_nummer"/>
-                </li>
-                <li>
-                    <label htmlFor="udloebsdato">MM/YY:</label>
-                    <input type="text" id="udloebsdato" name="kort_udloebsdato"/>
-                </li>
-                <li>
-                    <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
-                    <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode"/>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                    <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
-                </li>
-                <li>
-                    <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                    <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
-                </li>
-            </ul>
-
-        </div>
-        <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay</button>
+        
     </form>
 
 }
