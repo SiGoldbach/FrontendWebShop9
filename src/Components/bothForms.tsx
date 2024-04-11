@@ -227,7 +227,8 @@ export function BothForms() {
                         <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
                     </li>
                 </ul>
-                <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay</button>
+                <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay </button>
+                <div className="loader"></div>
             </div>
         </div>
     </form>
