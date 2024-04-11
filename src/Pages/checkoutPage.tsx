@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
-import "../Pages/ShoppingCart"
+import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
 import { useBasketContext } from '../State/Basketcontext.ts';
 
@@ -29,7 +29,7 @@ async function getMunicipalities(): Promise<Municipality[]> {
 
 
 
-export function BothForms() {
+export function CheckoutPage() {
     const basket = useBasketContext();
 
     const [orderComment, setOrderComment] = useState(() => {
@@ -294,4 +294,4 @@ export function BothForms() {
 
 }
 
-export default BothForms
+export default CheckoutPage

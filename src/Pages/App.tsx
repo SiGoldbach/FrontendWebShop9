@@ -7,7 +7,7 @@ import { getItems } from '../Networking/networking.ts'
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import Adminpanel from './Adminpanel.tsx'
-import BothForms from "../Components/bothForms.tsx";
+import CheckoutPage from "./checkoutPage.tsx";
 import { basketReducer, createNewEmptyBasket } from '../State/BasketState.tsx'
 import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 import { ProductContext } from '../State/Productcontext.ts'
@@ -45,9 +45,9 @@ function App():JSX.Element {
               <Routes>
                 <Route path="/" element={<LandingPage/>} />
                 <Route path="/cart" element={<ShoppingCart/>} />
-                <Route path="/checkout" element={<BothForms />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/admin" element={<Adminpanel />} />
-                <Route path="/bothForms" element={<BothForms />} />
+                <Route path="/bothForms" element={<CheckoutPage />} />
               </Routes>
               </ProductContext.Provider>
           </BasketDispatchContext.Provider>
