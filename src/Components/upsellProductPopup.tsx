@@ -40,6 +40,7 @@ export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
                              alt="PlaceholderImage" 
                              onError={ImageErrorHandler}/>
         <p> Do you want to upgrade? </p>
+        <p> Price: {upsellProduct.price} {upsellProduct.currency}</p>
 
         <div className="form-button-div">
             <div className="form-button-div">
