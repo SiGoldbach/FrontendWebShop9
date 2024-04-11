@@ -125,7 +125,7 @@ function decreaseAmount(state: Basket, id: string): Basket{
 function removeItem(state: Basket, id: string):Basket{
     const tempBasketItems: BasketItem[] = state.basketItems.filter(item => item.id !== id);
 
-    return{
+      return{
         ...state,
         basketItems: tempBasketItems,
 
@@ -195,7 +195,8 @@ function clearBasket(){
   
 
 }
-  //The two next functions calculate the new prices of the products and needs to be called every time the state of the basket gets updated. 
+  //The two next functions calculate the new prices of the items. Theese functions should not be called in in the dispatcher function but should exist.
+  //In the component where basket is first created. 
 export function calculateItemPrices(basketItems: BasketItem[]):Price[] {
     const itemPrices: Price[] = []
     basketItems.forEach((item) => {
