@@ -68,6 +68,23 @@ export function BothForms() {
         acceptMarketingEmail: true,
     });
 
+    //let loading :boolean = false;
+    const [loading, setLoading] = useState<boolean>(false);//Add a submitting message while the form is being submitted to the server
+    useEffect(() => {
+        const button : HTMLElement|null = document.getElementById("checkoutButton");
+        if (button != null) {
+            if (loading) {
+                button.textContent = "Submitting";
+                button.classList.add("button--loading");
+                console.log("loading")
+            } else {
+                button.textContent = "Pay";
+                button.classList.remove("button--loading");
+                console.log("not loading")
+            }
+        }
+    }, [loading]);
+
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
     useEffect(() => {
         async function fetchData() {
@@ -135,7 +152,7 @@ export function BothForms() {
         customerInfo.optionalComment = orderComment;
         submitOrder(basket, customerInfo);
         //TODO: Add validition on form items before "submitOrder" call
-        console.log("submit")
+        setLoading(!loading)
         submitOrder(basket, customerInfo)
     }
 
@@ -216,17 +233,19 @@ export function BothForms() {
             <div className="paymentContainer">
                 <ul>
                     <li>
-                        <p>Final Price: {basket.totalPrice.priceAfterRebate}</p>
+                        <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
                         <label htmlFor="kortnummer">Kortnummer:</label>
-                        <input type="text" id="kortnummer" name="kort_nummer"/>
+                        <input type="text" id="kortnummer" name="kort_nummer" required
+                               pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
                     </li>
                     <li>
                         <label htmlFor="udloebsdato">MM/YY:</label>
-                        <input type="text" id="udloebsdato" name="kort_udloebsdato"/>
+                        <input type="text" id="udloebsdato" name="kort_udloebsdato" required
+                               pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
                     </li>
                     <li>
                         <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
-                        <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode"/>
+                        <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
                     </li>
                 </ul>
                 <ul>
@@ -236,14 +255,14 @@ export function BothForms() {
                     </li>
                     <li>
                         <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                        <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
+                        <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
                     </li>
                 </ul>
-                <button type="submit" className="checkoutButton" onClick={onSubmitClick} >Pay</button>
+                <button type="submit" className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} >Pay</button>
+                <div className="loader"></div>
             </div>
         </div>
-
-        </form>
+    </form>
 
 }
 

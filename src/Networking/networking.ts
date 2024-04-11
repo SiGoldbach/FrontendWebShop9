@@ -46,11 +46,9 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
         const responseInfo: number = await response.json();
         console.log(response.status);
         return responseInfo;
-        
 
-    }catch (error){
+    } catch (error){
         throw new Error("Fetch error: "+ error);
-
     }
 
 }

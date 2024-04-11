@@ -13,7 +13,7 @@ import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 import { ProductContext } from '../State/Productcontext.ts'
 
 
-/* GPT generated */
+
 function App():JSX.Element {
   const [productInfos, setProductInfos] = useState<ProductInfo[]>([])
   useEffect(() => {
@@ -27,6 +27,7 @@ function App():JSX.Element {
   const [state,dispatch]= useReducer(basketReducer,createNewEmptyBasket()); 
   return (
     
+    /* router is gpt generated */
       <Router>
         <div className="page-container" >
           <BasketContext.Provider value={state}>
