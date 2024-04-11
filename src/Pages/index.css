@@ -135,7 +135,7 @@ button:focus-visible {
   align-items: center;
   border: 1px solid var(--border-color);
   width: 600px;
-  height: 300px;
+  height: 400px;
   padding: 10px;
   color: var(--text-color);
 }
@@ -537,7 +537,6 @@ li.billingAddress {
   display:none;
 }
 
-.IGNORE
 *{
   outline: 1px solid red;
 }

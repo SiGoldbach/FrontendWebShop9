@@ -1,0 +1,12 @@
+.form-popup{
+    display: block;
+    background-color: aliceblue;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    height: 50%;
+    z-index: 9999;
+
+}
