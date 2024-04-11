@@ -166,7 +166,7 @@ function addItemToBasket(state: Basket, product: ProductInfo):Basket{
         priceList: tempPriceList,
         totalPrice: temptotalPrice
     }
-};
+}
 
 
 

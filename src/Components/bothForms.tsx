@@ -136,6 +136,9 @@ export function BothForms() {
         }
     }
 
+    const [isPopUpOpen,setIsPopupOpen]= useState(false);
+    function opencheckoutPopUp(){setIsPopupOpen(true); console.log("Popupbox is: "+isPopUpOpen);}
+
     const onSubmitClick = () :void => {
         //const form = document.getElementById("forms");
         const firstName :HTMLInputElement = document.getElementById("firstName") as HTMLInputElement;
@@ -170,7 +173,7 @@ export function BothForms() {
         const result = submitOrder(basket, customerInfo)
         result.then(() => {
             setLoading(false)
-            popupFunction()
+            opencheckoutPopUp()
         })
         .catch(error => {
             console.log(error)
@@ -179,10 +182,7 @@ export function BothForms() {
         })
     }
 
-    const popupFunction = (): void => {
-
-    }
-
+    
     return <form className="forms">
         <div className="shoppingCartContainer">
             <div className="formsContainer">
