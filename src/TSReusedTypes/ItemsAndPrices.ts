@@ -11,7 +11,7 @@ export interface ProductInfo{
     currency: string;
     rebateQuantity: number;
     rebatePercent: number;
-    upsellProductId: unknown;
+    upsellProductId: string | null;
     imageUrl: string
 
 }

@@ -1,0 +1,23 @@
+.form-popup{
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+    background: var(--box-background-color);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+
+}
+
+
+.form-button-div{
+    padding: 5px;
+    display: flex;
+    margin: 5px;
+}

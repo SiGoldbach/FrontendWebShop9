@@ -5,7 +5,8 @@ export enum BasketItemKind{
     ADDTOBASKET= "ADDTOBASKET",
     INCREASE="INCREASE",
     DECREASE="DECREASE",
-    REMOVE="REMOVE"
+    REMOVE="REMOVE",
+    REPLACEITEMINBASKET="REPLACEITEMINBASKET"
 
 }
 interface changeQunatityAction {
@@ -16,9 +17,14 @@ interface addItemToBasketAction{
     type: BasketItemKind.ADDTOBASKET;
     productinfo: ProductInfo;
 }
+interface replaceItemFromBasketAction{
+  type: BasketItemKind.REPLACEITEMINBASKET;
+  currentItemId: string;
+  newProduct: ProductInfo;
+}
 
 
-export type Action = changeQunatityAction | addItemToBasketAction;
+export type Action = changeQunatityAction | addItemToBasketAction | replaceItemFromBasketAction;
 
 
 
@@ -49,6 +55,10 @@ export function basketReducer(state: Basket, action: Action):Basket{
             return removeItem(state,action.id)
         case BasketItemKind.ADDTOBASKET:
             return addItemToBasket(state,action.productinfo)
+        case BasketItemKind.REPLACEITEMINBASKET:
+          return replaceItemInBasket(state,action.currentItemId,action.newProduct)
+          
+
             
 
 
@@ -88,6 +98,7 @@ function increaseAmount(state: Basket, id: string): Basket{
  * Decreases quantity of specific item by 1 cant go under 1
  * @param state of the current basket 
  * @param id of the item that needs its quantity decreased by 1
+ * @returns updated state 
  */
 function decreaseAmount(state: Basket, id: string): Basket{
     const tempBasketItems:BasketItem[]  = state.basketItems.map((item) => {
@@ -108,10 +119,10 @@ function decreaseAmount(state: Basket, id: string): Basket{
 }
 
 /**
- * 
- * @param state 
- * @param id 
- * @returns 
+ * Removes an item from the basket updates
+ * @param state of the current basket 
+ * @param id of the item that needs to be removed from the basket 
+ * @returns updated state 
  */
 function removeItem(state: Basket, id: string):Basket{
     const tempBasketItems: BasketItem[] = state.basketItems.filter(item => item.id !== id);
@@ -126,6 +137,12 @@ function removeItem(state: Basket, id: string):Basket{
     }
 
 }
+/**
+ * Add a product from the product list to the basket 
+ * @param state of the current basket
+ * @param product that needs to be added to the basket 
+ * @returns updated state 
+ */
 
 function addItemToBasket(state: Basket, product: ProductInfo):Basket{
     const existingItem = state.basketItems.find(item => item.id === product.id);
@@ -139,15 +156,56 @@ function addItemToBasket(state: Basket, product: ProductInfo):Basket{
       tempBasketItems=([...state.basketItems, { ...product, quantity: 1 }]);
     }
     const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
-    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
+    const temptotalPrice:Price = calculateTotalPrice(tempPriceList);
     return{
         ...state,
         basketItems: tempBasketItems,
         priceList: tempPriceList,
         totalPrice: temptotalPrice
     }
-  };
+};
 
+
+
+function replaceItemInBasket(state: Basket,currentProductId:string, newProduct: ProductInfo){
+  const indexOfProductToBeReplaced:number = state.basketItems.map(product=> product.id).indexOf(currentProductId);
+  if (indexOfProductToBeReplaced===-1){
+    return state
+  }
+  else {
+    const newBasketItem: BasketItem={
+      quantity: state.basketItems[indexOfProductToBeReplaced].quantity,
+      id: newProduct.id,
+      name: newProduct.name,
+      price: newProduct.price,
+      currency: newProduct.currency,
+      rebateQuantity: newProduct.rebateQuantity,
+      rebatePercent: newProduct.rebatePercent,
+      upsellProductId: newProduct.upsellProductId,
+      imageUrl: newProduct.imageUrl
+      
+
+    }
+    const tempBasketItems: BasketItem[] = state.basketItems;
+    tempBasketItems[indexOfProductToBeReplaced]=newBasketItem
+    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
+    const temptotalPrice:Price = calculateTotalPrice(tempPriceList);
+    return{
+        ...state,
+        basketItems: tempBasketItems,
+        priceList: tempPriceList,
+        totalPrice: temptotalPrice
+    }
+  }
+
+
+
+
+}
+
+
+
+  //The two next functions calculate the new prices of the products and needs to be called every time the state of the basket gets updated. 
 function calculateItemPrices(basketItems: BasketItem[]):Price[] {
     const itemPrices: Price[] = []
     basketItems.forEach((item) => {
@@ -177,7 +235,6 @@ function calculateItemPrices(basketItems: BasketItem[]):Price[] {
   
   }
   
-  //TODO: Move calculateItemPrices to a price handeling component
   function calculateTotalPrice(itemPrices: Price[]):Price {
     if (itemPrices.length===0){
       const totalPrice: Price = {
