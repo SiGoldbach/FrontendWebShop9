@@ -201,7 +201,7 @@ export function BothForms() {
                 </li>
                 <li>
                     <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                    <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition"/>
+                    <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
                 </li>
             </ul>
 
