@@ -68,22 +68,36 @@ export function BothForms() {
         acceptMarketingEmail: true,
     });
 
-    //let loading :boolean = false;
     const [loading, setLoading] = useState<boolean>(false);//Add a submitting message while the form is being submitted to the server
     useEffect(() => {
         const button : HTMLElement|null = document.getElementById("checkoutButton");
-        if (button != null) {
+        const loader : HTMLElement|null = document.getElementById("loader");
+        if (button != null && loader != null) {
             if (loading) {
-                button.textContent = "Submitting";
-                button.classList.add("button--loading");
+                //button.textContent = "Submitting";
+                loader.style.display = 'inline-block';
                 console.log("loading")
             } else {
-                button.textContent = "Pay";
-                button.classList.remove("button--loading");
+                //button.textContent = "Pay";
+                loader.style.display = 'none';
                 console.log("not loading")
             }
         }
     }, [loading]);
+
+    /*const button : HTMLElement|null = document.getElementById("checkoutButton");
+    const loader : HTMLElement|null = document.getElementById("loader");
+    if (loader != null && button != null) {
+        button.addEventListener('click', () => {
+            loader.style.display = 'inline-block';
+            button.textContent = "Submitting";
+            setTimeout(() => {
+                loader.style.display = 'none';
+                button.textContent = "Pay";
+            }, 2000);
+
+        });
+    }*/
 
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
     useEffect(() => {
@@ -190,7 +204,7 @@ export function BothForms() {
                     <li>
                         <label htmlFor="zip">Zip code*</label>
                         <input type="number" id="zip" name="user_zip" required
-                            onChange={handleZipChange}
+                               onChange={handleZipChange}
                         />
                     </li>
                     <li>
@@ -212,7 +226,11 @@ export function BothForms() {
                     <li>
                         <label htmlFor="alt-billing-box">Bill to a different address</label>
                         <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
-                            onChange={toggleBillingAddress}/>
+                               onChange={toggleBillingAddress}/>
+                    </li>
+                    <li id="billingAddress" className="billingAddress">
+                        <label htmlFor="billAddress">Billing address</label>
+                        <input type="text" id="billAddress" name="bill_address"/>
                     </li>
                     <li>
                         <div className="comment-container">
@@ -223,10 +241,6 @@ export function BothForms() {
                                 placeholder="Add a comment to your order (optional)"
                             />
                         </div>
-                    </li>
-                    <li id="billingAddress" className="billingAddress">
-                        <label htmlFor="billAddress">Billing address</label>
-                        <input type="text" id="billAddress" name="bill_address"/>
                     </li>
                 </ul>
             </div>
@@ -258,8 +272,10 @@ export function BothForms() {
                         <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
                     </li>
                 </ul>
-                <button type="submit" className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} >Pay</button>
-                <div className="loader"></div>
+                <button className="checkoutButton" id="checkoutButton" onClick={onSubmitClick}>
+                    Pay
+                    <div className="loader" id="loader"></div>
+                </button>
             </div>
         </div>
     </form>
