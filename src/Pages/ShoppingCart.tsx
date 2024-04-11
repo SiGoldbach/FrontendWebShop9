@@ -3,7 +3,7 @@ import '../Pages/index.css'
 import DisplayItem from "../Components/displayItem.js";
 import { useNavigate } from 'react-router-dom';
 import { useBasketContext } from '../State/Basketcontext.js';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 
@@ -14,25 +14,13 @@ function ShoppingCart() {
     const basket = useBasketContext();
     const navigate = useNavigate();
 
-    //Mostly GPT generated
+    
+    //GPT generated
     function CheckoutSummary() {
         const originalPrice = basket.totalPrice.priceBeforeRebate;
         const total = basket.totalPrice.priceAfterRebate;
         const discount = originalPrice - total;
-        const [orderComment, setOrderComment] = useState(''); // State to hold the order comment
-        useEffect(() => {
-            const savedComment = localStorage.getItem('orderComment');
 
-            if (savedComment) {
-              setOrderComment(savedComment);
-            }
-          }, []);
-        
-          // Save comment to local storage when it changes
-          useEffect(() => {
-            sessionStorage.setItem('orderComment', orderComment);
-          }, [orderComment]);
-        
         const navigateToCheckout = () => {
             navigate('/checkout'); // Use the navigate function
           };
@@ -52,14 +40,6 @@ function ShoppingCart() {
                         <div className="summaryRow">
                             <h2>Total:</h2>
                             <p>{total.toFixed(2)}</p>
-                        </div>
-                        <div className="comment-container">
-                        <textarea
-                            className="comment-textarea"
-                            value={orderComment}
-                            onChange={(e) => setOrderComment(e.target.value)}
-                            placeholder="Add a comment to your order (optional)"
-                        />
                         </div>
                     </div>
                     <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout </button>
