@@ -38,6 +38,29 @@ This file contains a lot of AI usage for the basic styles, edited manually to fi
   }
 }
 
+@media screen and (max-width: 768px) { /* <768px should be vertical mobile */
+  .shoppingCartContainer {
+    flex-direction: column;
+  }
+  .displayItem {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .leftColumn, .rightColumn {
+    width: 100%;
+  }
+  .displayItemPrice {
+    padding-top: 10px;
+  }
+  .formsContainer {
+    flex-direction: column;
+  }
+  .paymentContainer {
+    margin-top: 10px;
+  }
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -354,29 +377,12 @@ button:focus-visible {
   margin: auto;
 }
 
-.formsContainer{
+.formsContainer {
   display: flex;
   width: 90%;
   justify-content: center;
   padding: 20px;
   align-items: center;
-}
-
-@media screen and (max-width: 768px) { /* <768px should be vertical mobile */
-  .shoppingCartContainer {
-    flex-direction: column;
-  }
-  .displayItem {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  .leftColumn, .rightColumn {
-    width: 100%;
-  }
-  .displayItemPrice {
-    padding-top: 10px;
-  }
 }
 
 .product-card {
