@@ -250,44 +250,44 @@ export function CheckoutPage() {
                 />
               </div>
             </li>
-            </ul>
-          </div>
-          <div className="paymentContainer">
-            <ul>
-              <li>
-                  <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
-                    <label htmlFor="kortnummer">Kortnummer:</label>
-                    <input type="text" id="kortnummer" name="kort_nummer" required
-                      pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
-              </li>
-              <li>
-                <label htmlFor="udloebsdato">MM/YY:</label>
-                <input type="text" id="udloebsdato" name="kort_udloebsdato" required
-                  pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
-              </li>
-              <li>
-                <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
-                <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
-              </li>
-            </ul>
-            <ul>
-              <div className='checkBoxContainer'>
-                <li>
-                  <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                  <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
-                </li>
-                <li>
-                  <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                  <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
-                </li>
-              </div>
-            </ul>
-            <button className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} disabled>
-              Pay
-              <div className="loader" id="loader"></div>
-            </button>
-          </div>
+          </ul>
         </div>
+        <div className="paymentContainer">
+          <ul>
+            <li>
+              <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
+                <label htmlFor="kortnummer">Kortnummer:</label>
+                <input type="text" id="kortnummer" name="kort_nummer" required
+                  pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
+            </li>
+            <li>
+              <label htmlFor="udloebsdato">MM/YY:</label>
+              <input type="text" id="udloebsdato" name="kort_udloebsdato" required
+                pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
+            </li>
+            <li>
+              <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
+              <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
+            </li>
+          </ul>
+          <ul>
+            <div className='checkBoxContainer'>
+              <li>
+                <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
+                <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
+              </li>
+              <li>
+                <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
+                <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
+              </li>
+            </div>
+          </ul>
+          <button className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} disabled>
+            Pay
+          <div className="loader" id="loader"></div>
+          </button>
+        </div>
+      </div>
     </form>
 }
 
