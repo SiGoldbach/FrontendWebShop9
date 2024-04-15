@@ -467,7 +467,7 @@ input:valid {
 
 label {
   /* Uniform size & alignment */
-  display: inline-block;
+  display: inline;
   width: 90%;
   text-align: left;
   margin: 0.1em;
@@ -524,6 +524,7 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  justify-content: left;
 }
 
 li.billingAddress {
