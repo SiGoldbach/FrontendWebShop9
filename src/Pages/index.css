@@ -434,22 +434,13 @@ button:focus-visible {
   object-fit: contain;
 }
 
-input:invalid {
-  border: 1px solid red;
-}
+/* FORMS */
 
-input:valid {
-  border: 2px solid black;
-}
-
-label {
-  /* Uniform size & alignment */
-  display: inline;
-  width: 90%;
-  text-align: left;
-  margin: 0.1em;
-  flex: 1;
-  margin-right: 10px;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: left;
 }
 
 li {
@@ -458,6 +449,18 @@ li {
   align-items: center;
 }
 
+li.billingAddress {
+  display:none;
+}
+
+label {
+  /* Uniform size & alignment */
+  display: inline;
+  width: 90%;
+  text-align: left;
+  flex: 1;
+  margin: 0.1em 10px 0.1em 0.1em;
+}
 
 input {
   /* To make sure that all text fields have the same font settings
@@ -479,6 +482,16 @@ input:focus {
   /* Additional highlight for focused elements */
   border-color: #000;
 }
+
+input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 2px solid black;
+}
+
+/* NAV */
 
 .navContainer {
   display: flex;
@@ -508,16 +521,10 @@ nav {
 }
 
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: left;
-}
 
-li.billingAddress {
-  display:none;
-}
+
+
+
 .IGNORE
 *{
   outline: 1px solid red;
