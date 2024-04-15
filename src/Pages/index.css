@@ -1,9 +1,13 @@
+/*
+This file contains a lot of AI usage for the basic styles, edited manually to fit preferences
+*/
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   min-height: 100vh;
   line-height: 1.5;
   font-weight: 400;
-  --text-primary-color: #333333;
+  --text-color: #333333;
   --text-secondary-color: #555555;
   --accent-primary-color: #3273dc;
   --accent-secondary-color: #4e8ef7;
@@ -13,8 +17,7 @@
   --button-background-color: #646cff; 
   --button-text-color: #fff; 
   --border-color: #dddddd; 
-  --shadow-color: rgba(0, 0, 0, 0.1); 
-  --inactive-color: #666;
+  --shadow-color: rgba(0, 0, 0, 0.1);
   color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -22,7 +25,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color: #E0E0E0; 
+    --text-color: #E0E0E0;
+    --text-secondary-color: #a2a2a2;
     --background-color: #121212; 
     --box-background-color: #1E1E1E; 
     --line-color: #2C2C2C; 
@@ -30,8 +34,7 @@
     --button-hover-color: #7A7AFF;
     --button-text-color: #fff; 
     --border-color: #2C2C2C; 
-    --shadow-color: rgba(255, 255, 255, 0.05); 
-    --inactive-color: #555; 
+    --shadow-color: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -70,29 +73,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 
-.cartItemsContainer {
-  max-width: 1280px;
+
+.cartItemsContainer, .checkoutContainer {
   margin: auto;
   background: var(--box-background-color);
   border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: 8px;
-  text-align: center;
-  align-items: center;
   box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.cartItemsContainer {
+  margin-bottom: 20px;
 }
 
 .image-text {
@@ -214,24 +207,7 @@ button:focus-visible {
 
 .displaySingleItemPrice {
   font-size: 0.7em;
-  color: var(--inactive-color);
-}
-
-
-
-/* 
-Most if not all of the following are AI-generated
-*/
-
-.checkoutContainer {
-  max-width: 500px;
-  max-height: 350px;
-  margin-left: 20px;
-  background: var(--box-background-color);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 0 10px var(--shadow-color);
-  border: 1px solid var(--border-color);
+  color: var(--text-secondary-color);
 }
 
 .page-container {
@@ -242,8 +218,8 @@ Most if not all of the following are AI-generated
   padding: 20px;
   text-align: center; 
   overflow: auto;
-  
 }
+
 
 .formsContainer {
   margin-left: 20px;
@@ -384,6 +360,14 @@ Most if not all of the following are AI-generated
   display: flex;
   justify-content: center;
   padding: 20px;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) { /* <768px should be vertical mobile */
+  .shoppingCartContainer {
+    flex-direction: column;
+    margin: auto;
+  }
 }
 
 .product-card {
@@ -404,7 +388,7 @@ Most if not all of the following are AI-generated
 }
 
 .product-name {
-  color: var(--text-primary-color);
+  color: var(--text-color);
   font-size: 1.2em;
   margin-bottom: 8px;
 }
@@ -467,7 +451,7 @@ Most if not all of the following are AI-generated
 
 .product-description {
   font-size: 1rem;
-  color: var(--inactive-color); 
+  color: var(--text-secondary-color); 
   margin-bottom: 12px;
 }
 
