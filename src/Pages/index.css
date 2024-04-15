@@ -467,6 +467,27 @@ label {
   margin: 0.1em;
 }
 
+ul.addressFormList label {
+  display: inline;
+}
+
+.addressFormList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addressFormList label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.addressFormList input {
+  flex: 1;
+}
+
+
+
 input {
   /* To make sure that all text fields have the same font settings
      By default, textareas have a monospace font */
@@ -475,6 +496,7 @@ input {
   /* Uniform text field size */
   max-width: 600px;
   box-sizing: border-box;
+  display: inline;
 
   /* Match form field borders */
   border: 1px solid #999;
