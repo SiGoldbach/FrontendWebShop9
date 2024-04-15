@@ -220,8 +220,7 @@ button:focus-visible {
   overflow: auto;
 }
 
-
-.formsContainer {
+.addressformsContainer {
   margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;
@@ -358,6 +357,14 @@ button:focus-visible {
 
 .shoppingCartContainer {
   display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+}
+
+.formsContainer{
+  display: flex;
+  width: 90%;
   justify-content: center;
   padding: 20px;
   align-items: center;
