@@ -38,29 +38,6 @@ This file contains a lot of AI usage for the basic styles, edited manually to fi
   }
 }
 
-@media screen and (max-width: 768px) { /* <768px should be vertical mobile */
-  .shoppingCartContainer {
-    flex-direction: column;
-  }
-  .displayItem {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  .leftColumn, .rightColumn {
-    width: 100%;
-  }
-  .displayItemPrice {
-    padding-top: 10px;
-  }
-  .formsContainer {
-    flex-direction: column;
-  }
-  .paymentContainer {
-    margin-top: 10px;
-  }
-}
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -122,14 +99,13 @@ button:focus-visible {
 .displayItem {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: normal;
   border: 1px solid var(--border-color);
-  width: 70%;
+  width: 100%;
   height: auto;
   padding: 10px;
   color: var(--text-color);
   box-sizing: border-box;
-  margin: 10px auto;
 }
 
 .leftColumn, .rightColumn {
@@ -143,7 +119,6 @@ button:focus-visible {
 
 .rightColumn{
   text-align: right;
-  flex: 1;
 }
 
 .displayItemName {
@@ -165,6 +140,8 @@ button:focus-visible {
 .displayItemPrice {
   text-align: right;
   padding-top: 5px;
+  line-height: 0.5;
+  font-size: 13px
 }
 
 .column {
@@ -373,7 +350,7 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   padding: 20px;
-  align-items: center;
+  align-items: start;
   margin: auto;
 }
 
@@ -574,3 +551,32 @@ li.billingAddress {
 }
 
 
+/* Keep at the end */
+@media screen and (max-width: 768px) { /* <768px should be vertical mobile */
+  .shoppingCartContainer {
+    flex-direction: column;
+    padding: 3px;
+    align-items: normal;
+  }
+  .displayItem {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .leftColumn, .rightColumn {
+    text-align: center;
+  }
+  .leftColumn {
+    width: 100%;
+  }
+  .displayItemPrice {
+    padding-top: 10px;
+    text-align: center;
+  }
+  .formsContainer {
+    flex-direction: column;
+  }
+  .paymentContainer {
+    margin-top: 10px;
+  }
+}

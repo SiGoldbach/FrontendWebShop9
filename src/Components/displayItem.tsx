@@ -105,7 +105,6 @@ function DisplayItem(props: displayItemProps) {
                     </div>
                     <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: props.basketItem.id})}>Remove</button>
                     <div className="displayItemPrice">
-                        <p>Per item:  {props.basketItem.price} {props.basketItem.currency}</p>
                         <DiscountHelper />
                         <p>Total : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
                     </div>
