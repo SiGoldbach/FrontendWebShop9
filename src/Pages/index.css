@@ -567,7 +567,7 @@ li.billingAddress {
     text-align: center;
   }
   .formsContainer {
-    flex-direction: row;
+    flex-direction: column;
   }
   .paymentContainer {
     margin-top: 10px;

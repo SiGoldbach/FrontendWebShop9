@@ -256,6 +256,8 @@ export function CheckoutPage() {
           <ul>
             <li>
               <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
+            </li>
+            <li>
                 <label htmlFor="kortnummer">Kortnummer:</label>
                 <input type="text" id="kortnummer" name="kort_nummer" required
                   pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
