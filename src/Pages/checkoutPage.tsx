@@ -180,7 +180,7 @@ export function CheckoutPage() {
     return <div className="formsContainer">
       <form className="forms" id='forms'>
         <div className="addressFormsContainer">
-          <ul className="addressFormList">
+          <ul>
             <li>
               <label htmlFor="firstName">First name*</label>
               <input type="text" id="firstName" name="user_first_name" required/>
