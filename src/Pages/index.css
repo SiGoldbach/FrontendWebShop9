@@ -213,7 +213,7 @@ button:focus-visible {
   overflow: auto;
 }
 
-.addressformsContainer {
+.addressFormsContainer {
   margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;
@@ -448,27 +448,15 @@ label {
   width: 90%;
   text-align: left;
   margin: 0.1em;
-}
-
-ul.addressFormList label {
-  display: inline;
-}
-
-.addressFormList li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.addressFormList label {
   flex: 1;
   margin-right: 10px;
 }
 
-.addressFormList input {
-  flex: 1;
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
 
 
 input {
@@ -484,6 +472,7 @@ input {
   /* Match form field borders */
   border: 1px solid #999;
   margin: 0.1em;
+  flex: 1;
 }
 
 input:focus {
