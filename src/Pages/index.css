@@ -207,7 +207,6 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  text-align: center; 
   overflow: auto;
 }
 
@@ -360,7 +359,6 @@ button:focus-visible {
 
 .formsContainer {
   display: flex;
-  width: 90%;
   justify-content: center;
   padding: 20px;
   align-items: center;
