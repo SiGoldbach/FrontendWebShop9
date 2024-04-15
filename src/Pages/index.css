@@ -76,16 +76,12 @@ button:focus-visible {
 
 
 .cartItemsContainer, .checkoutContainer {
-  margin: auto;
+  margin: 10px;
   background: var(--box-background-color);
   border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px var(--shadow-color);
-}
-
-.cartItemsContainer {
-  margin-bottom: 20px;
 }
 
 .image-text {
@@ -103,34 +99,34 @@ button:focus-visible {
 .displayItem {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   border: 1px solid var(--border-color);
-  width: 600px;
-  height: 400px;
+  width: 70%;
+  height: auto;
   padding: 10px;
   color: var(--text-color);
+  box-sizing: border-box;
+  margin: 10px auto;
+}
+
+.leftColumn, .rightColumn {
+  padding: 5px;
 }
 
 .leftColumn {
   text-align: left;
-  position: relative;
-  height: 100%;
-  padding: 5px;
-  width: 50%;
+  flex: 1;
 }
 
 .rightColumn{
   text-align: right;
-  position: relative;
-  height: 100%;
-  padding: 5px;
-  width: 50%
+  flex: 1;
 }
-
 
 .displayItemName {
   text-align: left;
   font-size: 14px;
+  margin-bottom: 5px;
 }
 .displayItemQuant {
   margin-left: auto;
@@ -139,24 +135,19 @@ button:focus-visible {
   justify-content: space-between;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  width: 90px;
-  padding: 0;
+  min-width: 90px;
+  padding: 5px;
 }
+
 .displayItemPrice {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   text-align: right;
-  vertical-align: bottom;
+  padding-top: 5px;
 }
+
 .column {
   float: left;
   width: 50%;
 }
-
-
-
-
 
 .quantityButton {
   background-color: var(--box-background-color);
@@ -361,12 +352,23 @@ button:focus-visible {
   justify-content: center;
   padding: 20px;
   align-items: center;
+  margin: auto;
 }
 
 @media screen and (max-width: 768px) { /* <768px should be vertical mobile */
   .shoppingCartContainer {
     flex-direction: column;
-    margin: auto;
+  }
+  .displayItem {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .leftColumn, .rightColumn {
+    width: 100%;
+  }
+  .displayItemPrice {
+    padding-top: 10px;
   }
 }
 
