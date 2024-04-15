@@ -155,6 +155,15 @@ function addItemToBasket(state: Basket, product: ProductInfo):Basket{
 
     }
 }
+/**
+ * 
+ * @returns Returns an empty basket completely resetting the basket state
+ */
+function clearBasket(){
+  return createNewEmptyBasket();
+  
+
+}
 
 
 
@@ -189,11 +198,7 @@ function replaceItemInBasket(state: Basket,currentProductId:string, newProduct: 
 
 
 }
-function clearBasket(){
-  return createNewEmptyBasket();
-  
 
-}
   //The two next functions calculate the new prices of the items. Theese functions should not be called in in the dispatcher function but should exist.
   //In the component where basket is first created. 
 export function calculateItemPrices(basketItems: BasketItem[]):Price[] {
