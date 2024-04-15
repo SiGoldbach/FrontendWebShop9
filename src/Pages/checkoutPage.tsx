@@ -178,113 +178,115 @@ export function CheckoutPage() {
 
     
     return <form className="forms">
-        <div className="shoppingCartContainer">
-            <div className="formsContainer">
-                <ul>
-                    <li>
-                        <label htmlFor="firstName">First name*</label>
-                        <input type="text" id="firstName" name="user_first_name" required/>
-                    </li>
-                    <li>
-                        <label htmlFor="lastName">Last name*</label>
-                        <input type="text" id="lastName" name="user_last_name" required/>
-                    </li>
-                    <li>
-                        <label htmlFor="mail">Email*</label>
-                        <input type="email" id="mail" name="user_email" required/>
-                    </li>
-                    <li>
-                        <label htmlFor="address1">Address line 1*</label>
-                        <input type="text" id="address1" name="user_address_1" required/>
-                    </li>
-                    <li>
-                        <label htmlFor="address2">Address line 2</label>
-                        <input type="text" id="address2" name="user_address_2"/>
-                    </li>
-                    <li>
-                        <label htmlFor="country">Country*</label>
-                        <select id="country" name="user_country" required>
-                            <option value="denmark">Danmark</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label htmlFor="zip">Zip code*</label>
-                        <input type="number" id="zip" name="user_zip" required
-                               onChange={handleZipChange}
-                        />
-                    </li>
-                    <li>
-                        <label htmlFor="city">City*</label>
-                        <input type="text" id="city" name="user_city" required readOnly/>
-                    </li>
-                    <li>
-                        <label htmlFor="phone">Phone number*</label>
-                        <input type="text" id="phone" name="user_phone" required pattern="\d{8}|\s*\+45\s*\d{2}\s*\d{2}\s*\d{2}\s*\d{2}\s*"/>
-                    </li>
-                    <li>
-                        <label htmlFor="company">Company</label>
-                        <input type="text" id="company" name="company_name"/>
-                    </li>
-                    <li>
-                        <label htmlFor="companyVAT">Company VAT</label>
-                        <input type="text" id="companyVAT" name="company_VAT" pattern="\d{8}"/>
-                    </li>
-                    <li>
-                        <label htmlFor="alt-billing-box">Bill to a different address</label>
-                        <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
-                               onChange={toggleBillingAddress}/>
-                    </li>
-                    <li id="billingAddress" className="billingAddress">
-                        <label htmlFor="billAddress">Billing address</label>
-                        <input type="text" id="billAddress" name="bill_address"/>
-                    </li>
-                    <li>
-                        <div className="comment-container">
-                            <textarea
-                                id="comment"
-                                name="comment"
-                                className="comment-textarea"
-                                value={orderComment}
-                                onChange={(e) => setOrderComment(e.target.value)}
-                                placeholder="Add a comment to your order (optional)"
-                            />
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div className="paymentContainer">
-                <ul>
-                    <li>
-                        <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
-                        <label htmlFor="kortnummer">Kortnummer:</label>
-                        <input type="text" id="kortnummer" name="kort_nummer" required
-                               pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
-                    </li>
-                    <li>
-                        <label htmlFor="udloebsdato">MM/YY:</label>
-                        <input type="text" id="udloebsdato" name="kort_udloebsdato" required
-                               pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
-                    </li>
-                    <li>
-                        <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
-                        <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                        <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
-                    </li>
-                    <li>
-                        <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
-                        <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
-                    </li>
-                </ul>
-                <button className="checkoutButton" id="checkoutButton" onClick={onSubmitClick}>
-                    Pay
-                    <div className="loader" id="loader"></div>
-                </button>
-            </div>
+      <div className="shoppingCartContainer">
+        <div className="formsContainer">
+          <ul>
+            <li>
+              <label htmlFor="firstName">First name*</label>
+              <input type="text" id="firstName" name="user_first_name" required/>
+            </li>
+            <li>
+              <label htmlFor="lastName">Last name*</label>
+              <input type="text" id="lastName" name="user_last_name" required/>
+            </li>
+            <li>
+              <label htmlFor="mail">Email*</label>
+              <input type="email" id="mail" name="user_email" required/>
+            </li>
+            <li>
+              <label htmlFor="address1">Address line 1*</label>
+              <input type="text" id="address1" name="user_address_1" required/>
+            </li>
+            <li>
+              <label htmlFor="address2">Address line 2</label>
+              <input type="text" id="address2" name="user_address_2"/>
+            </li>
+            <li>
+              <label htmlFor="country">Country*</label>
+              <select id="country" name="user_country" required>
+                <option value="denmark">Danmark</option>
+              </select>
+            </li>
+            <li>
+              <label htmlFor="zip">Zip code*</label>
+              <input type="number" id="zip" name="user_zip" required
+                onChange={handleZipChange}
+              />
+            </li>
+            <li>
+              <label htmlFor="city">City*</label>
+              <input type="text" id="city" name="user_city" required readOnly/>
+            </li>
+            <li>
+              <label htmlFor="phone">Phone number*</label>
+              <input type="text" id="phone" name="user_phone" required pattern="\d{8}|\s*\+45\s*\d{2}\s*\d{2}\s*\d{2}\s*\d{2}\s*"/>
+            </li>
+            <li>
+              <label htmlFor="company">Company</label>
+              <input type="text" id="company" name="company_name"/>
+            </li>
+            <li>
+              <label htmlFor="companyVAT">Company VAT</label>
+              <input type="text" id="companyVAT" name="company_VAT" pattern="\d{8}"/>
+            </li>
+            <li>
+              <label htmlFor="alt-billing-box">Bill to a different address</label>
+              <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
+                onChange={toggleBillingAddress}/>
+            </li>
+            <li id="billingAddress" className="billingAddress">
+              <label htmlFor="billAddress">Billing address</label>
+              <input type="text" id="billAddress" name="bill_address"/>
+            </li>
+            <li>
+              <div className="comment-container">
+                <textarea
+                  id="comment"
+                  name="comment"
+                  className="comment-textarea"
+                  value={orderComment}
+                  onChange={(e) => setOrderComment(e.target.value)}
+                  placeholder="Add a comment to your order (optional)"
+                />
+              </div>
+            </li>
+            </ul>
+          </div>
+          <div className="paymentContainer">
+            <ul>
+              <li>
+                  <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
+                    <label htmlFor="kortnummer">Kortnummer:</label>
+                    <input type="text" id="kortnummer" name="kort_nummer" required
+                      pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
+              </li>
+              <li>
+                <label htmlFor="udloebsdato">MM/YY:</label>
+                <input type="text" id="udloebsdato" name="kort_udloebsdato" required
+                  pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
+              </li>
+              <li>
+                <label htmlFor="sikkerhedskode">Sikkerhedskode*:</label>
+                <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
+              </li>
+            </ul>
+            <ul>
+              <div className='checkBoxContainer'>
+                <li>
+                  <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
+                  <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
+                </li>
+                <li>
+                  <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
+                  <input type="checkbox" id="acceptTermsAndCondition" name="acceptTermsAndCondition" required/>
+                </li>
+              </div>
+            </ul>
+            <button className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} disabled>
+              Pay
+              <div className="loader" id="loader"></div>
+            </button>
+          </div>
         </div>
     </form>
 }

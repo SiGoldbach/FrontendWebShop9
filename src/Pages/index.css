@@ -365,10 +365,19 @@ Most if not all of the following are AI-generated
   width: 100%;
   text-align: center;
   box-shadow: 0 2px 4px var(--shadow-color); 
+  margin-top: 30px;
 }
 
 .checkoutButton:hover {
   background-color: #535bf2;
+}
+
+.checkoutButton:disabled {
+  background-color: #555;
+}
+
+.checkBoxContainer {
+  margin-top: 30px;
 }
 
 .shoppingCartContainer {
