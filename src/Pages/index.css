@@ -480,7 +480,7 @@ label {
   /* Uniform size & alignment */
   display: inline-block;
   width: 90%;
-  text-align: right;
+  text-align: left;
   margin: 0.1em;
 }
 
