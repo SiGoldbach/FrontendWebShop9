@@ -213,7 +213,7 @@ button:focus-visible {
   overflow: auto;
 }
 
-.addressformsContainer {
+.addressFormsContainer {
   margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;

@@ -179,7 +179,7 @@ export function CheckoutPage() {
     
     return <div className="formsContainer">
       <form className="forms" id='forms'>
-        <div className="addressformsContainer">
+        <div className="addressFormsContainer">
           <ul className="addressFormList">
             <li>
               <label htmlFor="firstName">First name*</label>
