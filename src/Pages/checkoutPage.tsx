@@ -177,8 +177,8 @@ export function CheckoutPage() {
     }
 
     
-    return <form className="forms">
-      <div className="formsContainer">
+    return <div className="formsContainer">
+      <form className="forms" id='forms'>
         <div className="addressformsContainer">
           <ul>
             <li>
@@ -287,8 +287,8 @@ export function CheckoutPage() {
           <div className="loader" id="loader"></div>
           </button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
 }
 
 
