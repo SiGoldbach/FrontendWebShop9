@@ -211,8 +211,13 @@ button:focus-visible {
   overflow: auto;
 }
 
+.forms {
+  display: flex;
+  width: 100%;
+}
+
 .addressformsContainer {
-  margin-left: 20px;
+  height: fit-content;
   background: var(--box-background-color);
   border-radius: 8px;
   padding: 20px;
@@ -221,14 +226,13 @@ button:focus-visible {
 } 
 
 .paymentContainer {
-  max-width: 600px;
-   max-height: 550px;
-   margin-left: 20px;
-   background: var(--box-background-color);
-   border-radius: 8px;
-   padding: 20px;
-   box-shadow: 0 0 10px var(--shadow-color);
-   border: 1px solid var(--border-color);
+  height: fit-content;
+  margin-left: 20px;
+  background: var(--box-background-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  border: 1px solid var(--border-color);
  } 
 
 .CheckBox {
