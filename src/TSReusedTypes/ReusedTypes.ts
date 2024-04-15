@@ -50,3 +50,8 @@ export interface OrderInformation {
     basket: Basket;
 }
 
+export interface Municipality {
+    zip: number,
+    city: string
+}
+

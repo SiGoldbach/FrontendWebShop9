@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../Pages/index.css';
 import { BasketItemKind } from '../State/BasketState';
 import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
-import { BasketItem, Price } from '../TSReusedTypes/ItemsAndPrices';
+import { BasketItem, Price } from '../TSReusedTypes/ReusedTypes';
 import { PopUpForUpsellProduct } from './upsellProductPopup';
 
 

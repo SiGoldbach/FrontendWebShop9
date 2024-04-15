@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { Basket } from "../TSReusedTypes/ItemsAndPrices";
+import { Basket } from "../TSReusedTypes/ReusedTypes";
 import { Action } from "./BasketState";
 
 export const BasketContext = createContext<Basket | undefined>(undefined);

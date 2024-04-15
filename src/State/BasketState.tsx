@@ -1,4 +1,4 @@
-import {Basket,Price, BasketItem, ProductInfo,} from "../TSReusedTypes/ItemsAndPrices"
+import {Basket,Price, BasketItem, ProductInfo,} from "../TSReusedTypes/ReusedTypes"
 
 //Enum which describes the different commands the basket reducer should have 
 export enum BasketItemKind{

@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route, Link,} from 'react-router-dom'
-import {  ProductInfo  } from '../TSReusedTypes/ItemsAndPrices.ts'
+import {  ProductInfo  } from '../TSReusedTypes/ReusedTypes.ts'
 import { useEffect, useReducer, useState } from 'react'
 import { getItems } from '../Networking/networking.ts'
 //import {CheckoutPage} from "./Checkoutpage.tsx"

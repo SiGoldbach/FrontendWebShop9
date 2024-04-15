@@ -2,7 +2,7 @@ import { BasketItemKind } from "../State/BasketState";
 import { useBasketDispatchContext } from "../State/Basketcontext";
 import { useProductContext } from "../State/Productcontext";
 import "../StylingSheets/popup.css"
-import { ProductInfo } from "../TSReusedTypes/ItemsAndPrices";
+import { ProductInfo } from "../TSReusedTypes/ReusedTypes";
 import "../Pages/index.css"
 
 

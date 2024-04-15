@@ -1,4 +1,4 @@
-import { ProductInfo, Basket,CustomerInfo,OrderInformation } from "../TSReusedTypes/ItemsAndPrices.js"
+import { ProductInfo, Basket,CustomerInfo,OrderInformation, Municipality } from "../TSReusedTypes/ReusedTypes.js"
 
 
 //This function is getting all the items that needs to be displayed in the store. 
@@ -38,4 +38,18 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
         throw new Error("Fetch error: "+ error);
     }
 
+}
+
+export async function getMunicipalities(): Promise<Municipality[]> {
+    let data: Municipality[] =[];
+    try {
+        const url :string = `https://api.dataforsyningen.dk/postnumre`;
+        const response = await fetch(url);
+        const mbResult:Municipality[] = await response.json();
+        data = mbResult;
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return data;
+    }
 }
