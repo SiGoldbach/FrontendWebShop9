@@ -211,8 +211,7 @@ button:focus-visible {
   overflow: auto;
 }
 
-
-.formsContainer {
+.addressformsContainer {
   margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;
@@ -353,6 +352,14 @@ button:focus-visible {
   padding: 20px;
   align-items: center;
   margin: auto;
+}
+
+.formsContainer{
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) { /* <768px should be vertical mobile */
