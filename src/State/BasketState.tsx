@@ -50,6 +50,7 @@ export function createNewEmptyBasket(): Basket{
 
 }
 
+//This reducer only affects basketitem price gets handled seperately
 export function basketReducer(state: Basket, action: Action):Basket{
     switch (action.type){
         case BasketItemKind.INCREASE:
@@ -86,13 +87,10 @@ function increaseAmount(state: Basket, id: string): Basket{
         }
         else return item;
     });
-    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
-    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
     return{
         ...state,
         basketItems: tempBasketItems,
-        priceList: tempPriceList,
-        totalPrice: temptotalPrice
+
     }
 
 }
@@ -109,13 +107,10 @@ function decreaseAmount(state: Basket, id: string): Basket{
         }
         else return item;
     });
-    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
-    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
     return{
         ...state,
         basketItems: tempBasketItems,
-        priceList: tempPriceList,
-        totalPrice: temptotalPrice
+
     }
 
 }
@@ -129,13 +124,10 @@ function decreaseAmount(state: Basket, id: string): Basket{
 function removeItem(state: Basket, id: string):Basket{
     const tempBasketItems: BasketItem[] = state.basketItems.filter(item => item.id !== id);
 
-    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
-    const temptotalPrice:Price = calculateTotalPrice(tempPriceList)
-    return{
+      return{
         ...state,
         basketItems: tempBasketItems,
-        priceList: tempPriceList,
-        totalPrice: temptotalPrice
+
     }
 
 }
@@ -157,13 +149,10 @@ function addItemToBasket(state: Basket, product: ProductInfo):Basket{
     } else {
       tempBasketItems=([...state.basketItems, { ...product, quantity: 1 }]);
     }
-    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
-    const temptotalPrice:Price = calculateTotalPrice(tempPriceList);
     return{
         ...state,
         basketItems: tempBasketItems,
-        priceList: tempPriceList,
-        totalPrice: temptotalPrice
+
     }
 }
 
@@ -189,14 +178,10 @@ function replaceItemInBasket(state: Basket,currentProductId:string, newProduct: 
 
     }
     const tempBasketItems: BasketItem[] = state.basketItems;
-    tempBasketItems[indexOfProductToBeReplaced]=newBasketItem
-    const tempPriceList: Price[] = calculateItemPrices(tempBasketItems);
-    const temptotalPrice:Price = calculateTotalPrice(tempPriceList);
+    tempBasketItems[indexOfProductToBeReplaced]=newBasketItem;
     return{
         ...state,
         basketItems: tempBasketItems,
-        priceList: tempPriceList,
-        totalPrice: temptotalPrice
     }
   }
 
@@ -209,11 +194,9 @@ function clearBasket(){
   
 
 }
-
-
-
-  //The two next functions calculate the new prices of the products and needs to be called every time the state of the basket gets updated. 
-function calculateItemPrices(basketItems: BasketItem[]):Price[] {
+  //The two next functions calculate the new prices of the items. Theese functions should not be called in in the dispatcher function but should exist.
+  //In the component where basket is first created. 
+export function calculateItemPrices(basketItems: BasketItem[]):Price[] {
     const itemPrices: Price[] = []
     basketItems.forEach((item) => {
         if (item.quantity >= item.rebateQuantity) {
@@ -242,7 +225,7 @@ function calculateItemPrices(basketItems: BasketItem[]):Price[] {
   
   }
   
-  function calculateTotalPrice(itemPrices: Price[]):Price {
+export function calculateTotalPrice(itemPrices: Price[]):Price {
     if (itemPrices.length===0){
       const totalPrice: Price = {
         priceBeforeRebate: 0,
@@ -274,8 +257,3 @@ function calculateItemPrices(basketItems: BasketItem[]):Price[] {
     };
     return totalPrice;
   }
-
-
-
-
-
