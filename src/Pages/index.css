@@ -523,6 +523,7 @@ input:focus {
 }
 
 nav {
+  display: flex;
   width: 100%;
 }
 .navLink {
