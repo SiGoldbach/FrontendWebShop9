@@ -479,8 +479,9 @@ input:valid {
 label {
   /* Uniform size & alignment */
   display: inline-block;
-  width: 90px;
+  width: 90%;
   text-align: right;
+  margin: 0.1em;
 }
 
 input {
