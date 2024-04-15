@@ -9,21 +9,21 @@ import "../Pages/index.css"
 type popuptForUpsellProductprops={
     closePopUp: ()=>void;
     currentid: string;
-    upsellId: any;
+    upsellId: string | null;
 
 } 
 
 
-export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
-    console.log(props.currentid);
-    console.log(props.upsellId);
+export function PopUpForUpsellProduct({closePopUp,currentid,upsellId}:popuptForUpsellProductprops){
+    console.log(currentid);
+    console.log(upsellId);
     const products = useProductContext();
     const basketDispatchercontext= useBasketDispatchContext();
-    const upsellProduct:ProductInfo = products.filter((product)=>product.id==props.upsellId)[0]
+    const upsellProduct:ProductInfo = products.filter((product)=>product.id==upsellId)[0]
 
     function handleUpgrade(){
-        basketDispatchercontext({type: BasketItemKind.REPLACEITEMINBASKET,currentItemId: props.currentid,newProduct: upsellProduct});
-        props.closePopUp
+        basketDispatchercontext({type: BasketItemKind.REPLACEITEMINBASKET,currentItemId: currentid,newProduct: upsellProduct});
+        closePopUp
     }
     function ImageErrorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>){
         const targetEvent = event.target as HTMLImageElement;
@@ -45,7 +45,7 @@ export function PopUpForUpsellProduct(props:popuptForUpsellProductprops){
 
         <div className="form-button-div">
             <div className="form-button-div">
-                <button className="add-to-cart-button" onClick={props.closePopUp}> Cancel</button>
+                <button className="add-to-cart-button" onClick={closePopUp}> Cancel</button>
             </div>
             <div className="form-button-div">
                 <button className="add-to-cart-button" onClick={handleUpgrade}> Upgrade</button>

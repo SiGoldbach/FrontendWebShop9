@@ -12,7 +12,7 @@ type displayItemProps = {
 }
 
 
-function DisplayItem(props: displayItemProps) {
+function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
     const basket = useBasketContext();
     const basketDispatcher = useBasketDispatchContext();
     const [isPopUpOpen,setIsPopupOpen]= useState(false);
@@ -27,14 +27,14 @@ function DisplayItem(props: displayItemProps) {
 
 
     function DiscountHelper() {
-        if (props.basketItemPrice.priceBeforeRebate === props.basketItemPrice.priceAfterRebate)
+        if (basketItemPrice.priceBeforeRebate === basketItemPrice.priceAfterRebate)
             return (<>
             </>
             )
         else {
             return (<>
-                <p>Subtotal: {props.basketItemPrice.priceBeforeRebate} {props.basketItem.currency}</p>
-                <p>Disount: {(props.basketItemPrice.priceBeforeRebate - props.basketItemPrice.priceAfterRebate).toFixed(2)}</p>
+                <p>Subtotal: {basketItemPrice.priceBeforeRebate} {basketItem.currency}</p>
+                <p>Disount: {(basketItemPrice.priceBeforeRebate - basketItemPrice.priceAfterRebate).toFixed(2)}</p>
             </>
             )
         }
@@ -42,10 +42,10 @@ function DisplayItem(props: displayItemProps) {
 
 
     function PremiumHelper() {
-        if (props.basketItem.upsellProductId && basket.basketItems.map(product=> product.id).indexOf(props.basketItem.upsellProductId)===-1) {
+        if (basketItem.upsellProductId && basket.basketItems.map(product=> product.id).indexOf(basketItem.upsellProductId)===-1) {
             return (<>
                 <p> Upgrade to the premium version: </p>
-                <button onClick={openPopUp}>{props.basketItem.upsellProductId.toString()}</button>
+                <button onClick={openPopUp}>{basketItem.upsellProductId.toString()}</button>
             </>)
         } else {
             return (<>
@@ -55,13 +55,13 @@ function DisplayItem(props: displayItemProps) {
 
 
     function RebateInformationHelper() {
-        if (props.basketItem.rebatePercent === 0) {
+        if (basketItem.rebatePercent === 0) {
             return (<>
             </>)
         }
         else {
             return (
-            <p> Buy {props.basketItem.rebateQuantity} get {props.basketItem.rebatePercent}% rebate </p>
+            <p> Buy {basketItem.rebateQuantity} get {basketItem.rebatePercent}% rebate </p>
             )
         }
     }
@@ -74,22 +74,22 @@ function DisplayItem(props: displayItemProps) {
     return (
         <>
             <div className="displayItem">
-            {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} currentid={props.basketItem.id} upsellId={props.basketItem.upsellProductId} />}
+            {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} currentid={basketItem.id} upsellId={basketItem.upsellProductId} />}
 
                 <div className="leftColumn">
                     <div>
-                        <b className='displayItemName'>{props.basketItem.name}</b>
+                        <b className='displayItemName'>{basketItem.name}</b>
                     </div>
                     <div>
                         <img className="product-image"
-                             src={props.basketItem.imageUrl}
+                             src={basketItem.imageUrl}
                              alt="PlaceholderImage" 
                              onError={ImageErrorHandler}/>
                              
                     </div>
                     <div>
                         <div className="displaySingleItemPrice">
-                            {props.basketItem.price} {props.basketItem.currency} {"/ stk"}
+                            {basketItem.price} {basketItem.currency} {"/ stk"}
                         </div>
                         <RebateInformationHelper/>
                         <PremiumHelper />
@@ -97,17 +97,17 @@ function DisplayItem(props: displayItemProps) {
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: props.basketItem.id})}>
-                            <span style={props.basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
+                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: basketItem.id})}>
+                            <span style={basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
                         </button>
-                        {props.basketItem.quantity}
-                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: props.basketItem.id})}>+</button>
+                        {basketItem.quantity}
+                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: basketItem.id})}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: props.basketItem.id})}>Remove</button>
+                    <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: basketItem.id})}>Remove</button>
                     <div className="displayItemPrice">
-                        <p>Per item:  {props.basketItem.price} {props.basketItem.currency}</p>
+                        <p>Per item:  {basketItem.price} {basketItem.currency}</p>
                         <DiscountHelper />
-                        <p>Total : {props.basketItemPrice.priceAfterRebate} {props.basketItem.currency}</p>
+                        <p>Total : {basketItemPrice.priceAfterRebate} {basketItem.currency}</p>
                     </div>
                 </div>
             </div>
