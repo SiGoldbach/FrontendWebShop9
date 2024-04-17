@@ -214,7 +214,6 @@ button:focus-visible {
 }
 
 .addressFormsContainer {
-  margin-left: 20px;
   background: var(--box-background-color);
   border-radius: 8px;
   padding: 20px;
@@ -578,5 +577,6 @@ nav {
   }
   .paymentContainer {
     margin-top: 10px;
+    flex-direction: column;
   }
 }
