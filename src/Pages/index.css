@@ -119,32 +119,22 @@ nav {
 /* LANDING PAGE */
 
 .product-card {
-  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  background: var(--box-background-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 16px;
-  text-align: center;
+  text-align: left;
   width: 200px;
-  box-shadow: 0 1px 3px var(--shadow-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
   margin: 16px;
 }
 
-.product-image { /* TODO used alot, check back here later */
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 8px;
-}
-
 .product-name {
+  font-size: 1.2rem;
   color: var(--text-color);
-  font-size: 1.2em;
-  margin-bottom: 8px;
-}
-
-.product-details { /* TODO in use? */
-  font-size: 1em;
-  margin-bottom: 16px;
+  margin: 8px 0;
 }
 
 .add-to-cart-button {
@@ -180,37 +170,21 @@ nav {
   padding: 20px;
 }
 
-.product-card {
-  background: var(--box-background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  width: 200px;
-  padding: 16px;
-  box-shadow: 0 2px 4px var(--shadow-color);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-name {
-  font-size: 1.2rem;
-  color: var(--text-color);
-  margin: 8px 0;
-}
-
 .product-description {
   font-size: 1rem;
   color: var(--text-secondary-color);
   margin-bottom: 12px;
 }
 
-.product-image{ /* TODO Check back later */
+/* ITEM DISPLAY  */
+
+.product-image {
   width: 150px;
   height: 150px;
   object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 8px;
 }
-
-/* ITEM DISPLAY */
 
 .image-text {
   position: absolute;
@@ -301,17 +275,12 @@ nav {
   box-sizing: border-box;
 }
 
-.removeItemPicture { /* TODO is this in use? */
-  height: 40px;
-  width: auto;
-}
-
 .displaySingleItemPrice {
   font-size: 0.7em;
   color: var(--text-secondary-color);
 }
 
-/* SHOPPING CART */
+/* SHOPPING CART PAGE */
 
 .cartItemsContainer, .checkoutContainer {
   margin: 10px;
@@ -404,11 +373,6 @@ nav {
 .forms {
   display: flex;
   width: 100%;
-}
-
-.productImage{ /* TODO In use? */
-  width: 150px;
-  height: 150px;
 }
 
 .addressFormsContainer {
