@@ -4,6 +4,7 @@ import { BasketItemKind } from '../State/BasketState';
 import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
 import { BasketItem, Price } from '../TSReusedTypes/ReusedTypes';
 import { PopUpForUpsellProduct } from './upsellProductPopup';
+import { ImageHandler } from './ImageHanlder';
 
 
 type displayItemProps = {
@@ -42,7 +43,7 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
 
 
     function PremiumHelper() {
-        if (basketItem.upsellProductId && basket.basketItems.map(product=> product.id).indexOf(basketItem.upsellProductId)===-1) {
+        if (basketItem.upsellProductId && basket.basketItems.map(product=> product.product_id).indexOf(basketItem.upsellProductId)===-1) {
             return (<>
                 <p> Upgrade to the premium version: </p>
                 <button onClick={openPopUp}>{basketItem.upsellProductId.toString()}</button>
@@ -65,26 +66,20 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
             )
         }
     }
-    function ImageErrorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>){
-        const targetEvent = event.target as HTMLImageElement;
-        targetEvent.src="https://via.placeholder.com/150";
-    }
+
 
 
     return (
         <>
             <div className="displayItem">
-            {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} currentid={basketItem.id} upsellId={basketItem.upsellProductId} />}
+            {isPopUpOpen && <PopUpForUpsellProduct closePopUp={closePopUp} currentid={basketItem.product_id} upsellId={basketItem.upsellProductId} />}
 
                 <div className="leftColumn">
                     <div>
                         <b className='displayItemName'>{basketItem.name}</b>
                     </div>
                     <div>
-                        <img className="product-image"
-                             src={basketItem.imageUrl}
-                             alt="PlaceholderImage" 
-                             onError={ImageErrorHandler}/>
+                        <ImageHandler url={basketItem.image_url}/>
                              
                     </div>
                     <div>
@@ -97,13 +92,13 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
                 </div>
                 <div className="rightColumn">
                     <div className="displayItemQuant">
-                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: basketItem.id})}>
+                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: basketItem.product_id})}>
                             <span style={basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
                         </button>
                         {basketItem.quantity}
-                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: basketItem.id})}>+</button>
+                        <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: basketItem.product_id})}>+</button>
                     </div>
-                    <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: basketItem.id})}>Remove</button>
+                    <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: basketItem.product_id})}>Remove</button>
                     <div className="displayItemPrice">
                         <p>Per item:  {basketItem.price} {basketItem.currency}</p>
                         <DiscountHelper />

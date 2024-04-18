@@ -5,14 +5,14 @@ export interface BasketItem extends ProductInfo{
 }
 
 export interface ProductInfo{
-    id: string;
+    product_id: string;
     name: string;
     price: number;
     currency: string;
     rebateQuantity: number;
     rebatePercent: number;
     upsellProductId: string | null;
-    imageUrl: string
+    image_url: string | null;
 
 }
 export interface Price{

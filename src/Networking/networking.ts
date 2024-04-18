@@ -3,7 +3,7 @@ import { ProductInfo, Basket,CustomerInfo,OrderInformation, Municipality } from 
 
 //This function is getting all the items that needs to be displayed in the store. 
 export async function getItems(): Promise<ProductInfo[]>{
-    const URL="https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
+    const URL="http://130.225.170.52:10191/productinfo"
     const response = await fetch(URL);
     const responseAsJson:ProductInfo[] = await response.json();
     return responseAsJson;
