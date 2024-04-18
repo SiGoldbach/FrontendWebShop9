@@ -174,11 +174,12 @@ export function CheckoutPage() {
             setLoading(false)
             //Warning at the top: Order failed
         })
+        console.log("submitted")
     }
 
     
     return <div className="formsContainer">
-      <form className="forms" id='forms'>
+      <form className="forms" id='forms' >
         <div className="addressFormsContainer">
           <ul>
             <li>
@@ -284,7 +285,12 @@ export function CheckoutPage() {
               </li>
             </div>
           </ul>
-          <button className="checkoutButton" id="checkoutButton" onClick={onSubmitClick} disabled>
+          <button className="checkoutButton" id="checkoutButton"
+                  onClick={(e) => {
+              e.preventDefault(); // Prevent default form submission behavior
+              onSubmitClick();
+              console.log("hi")
+          }} >
             Pay
           <div className="loader" id="loader"></div>
           </button>
