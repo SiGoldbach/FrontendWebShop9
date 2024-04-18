@@ -51,8 +51,12 @@ export function CheckoutPage() {
       const data: Municipality[] = await getMunicipalities();
       setMunicipalities(data);
     }
-
-    fetchData();
+    fetchData().catch(error => {
+      console.log("Error: Failed to retrieve municipality data")
+      console.log(error)
+      const cityInput = document.getElementById('city') as HTMLInputElement;
+      cityInput.disabled = false; //If the zip code cannot be verified, unlock the city field
+    })
   }, []);
 
 
@@ -99,7 +103,7 @@ export function CheckoutPage() {
     
 
   const onSubmitClick = () :void => {
-    //const form = document.getElementById("forms");
+    //Get info from form
     const firstName :HTMLInputElement = document.getElementById("firstName") as HTMLInputElement;
     customerInfo.firstName = firstName.value
     const lastName = document.getElementById("lastName") as HTMLInputElement;
@@ -126,7 +130,6 @@ export function CheckoutPage() {
     customerInfo.optionalComment = comment.value
     const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
     customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
-    //TODO: Add validation on form items before "submitOrder" call
         
     setLoading(true)
 
@@ -226,11 +229,13 @@ export function CheckoutPage() {
             </li>
             <li>
               <label htmlFor="kortnummer">Kortnummer*</label>
-              <input type="text" id="kortnummer" name="kort_nummer" required pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
+              <input type="text" id="kortnummer" name="kort_nummer" required
+                     pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
             </li>
             <li>
               <label htmlFor="udloebsdato">MM/YY*</label>
-              <input type="text" id="udloebsdato" name="kort_udloebsdato" required pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
+              <input type="text" id="udloebsdato" name="kort_udloebsdato" required
+                pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
             </li>
             <li>
               <label htmlFor="sikkerhedskode">Sikkerhedskode*</label>
@@ -249,8 +254,19 @@ export function CheckoutPage() {
               </li>
             </div>
           </ul>
-          <button className="checkoutButton" id="checkoutButton" onClick={(e) => {e.preventDefault();onSubmitClick();}}>
-            Pay
+          <button className="checkoutButton" id="checkoutButton"
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent default form submission behavior
+                    const form = document.getElementById("forms") as HTMLFormElement;
+                    if (form.checkValidity()) {
+                      console.log("Is form valid? " + form.checkValidity())
+                      onSubmitClick()
+                    } else {
+                      form.reportValidity()
+                      console.log("Is form valid? " + form.checkValidity())
+                    }
+                  }}
+          > Pay
             <div className="loader" id="loader"></div>
           </button>
         </div>
