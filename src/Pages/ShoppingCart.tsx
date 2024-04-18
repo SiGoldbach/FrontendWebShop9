@@ -20,7 +20,7 @@ function ShoppingCart() {
 
         const navigateToCheckout = () => {
             navigate('/checkout'); // Use the navigate function
-          };
+        };
         return (
             <div className="checkoutContainer">
                 <div className="summaryBox">
@@ -52,7 +52,7 @@ function ShoppingCart() {
         }
         else {
             return basket.basketItems.map((basketItem, index) =>
-                <ul key={basketItem.id}>
+                <ul key={basketItem.product_id}>
 
                     <DisplayItem
                         basketItem={basketItem}

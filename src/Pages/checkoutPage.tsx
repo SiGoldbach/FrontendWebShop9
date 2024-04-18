@@ -225,12 +225,12 @@ export function CheckoutPage() {
               <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
             </li>
             <li>
-                <label htmlFor="kortnummer">Kortnummer</label>
+                <label htmlFor="kortnummer">Kortnummer*</label>
                 <input type="text" id="kortnummer" name="kort_nummer" required
                   pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
             </li>
             <li>
-              <label htmlFor="udloebsdato">MM/YY</label>
+              <label htmlFor="udloebsdato">MM/YY*</label>
               <input type="text" id="udloebsdato" name="kort_udloebsdato" required
                 pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
             </li>
@@ -243,7 +243,7 @@ export function CheckoutPage() {
             <div className='checkBoxContainer'>
               <li>
                 <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail"/>
+                <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail" checked/>
               </li>
               <li>
                 <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
