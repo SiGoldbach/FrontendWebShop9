@@ -470,6 +470,26 @@ nav {
   align-items: center;
 }
 
+
+
+.popup_checkoutWarning .warningText {
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  width: max-content;
+  background-color: var(--error-color);
+  color: var(--button-text-color);
+  justify-content: center;
+  border-radius: 6px;
+  padding: 8px;
+  margin-left: 160px;
+}
+
+.popup_checkoutWarning .show {
+  visibility: visible;
+}
+
+
 /**********************************************************************************************/
 /* CHECKOUT POPUP */
 /**********************************************************************************************/
