@@ -46,8 +46,10 @@ export async function getMunicipalities(): Promise<Municipality[]> {
     try {
         const url :string = `https://api.dataforsyningen.dk/postnumre`;
         const response = await fetch(url);
-        const mbResult:Municipality[] = await response.json();
-        data = mbResult;
+        const mbResult = await response.json();
+        data = mbResult.map(({ nr, navn }:{nr: number, navn: string}) => {
+            return { zip: nr, city: navn };
+        });
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);

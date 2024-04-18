@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { CustomerInfo,Municipality} from "../TSReusedTypes/ReusedTypes.ts";
 import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
-import { useBasketContext} from '../State/Basketcontext';
+import {useBasketContext} from '../State/Basketcontext';
 import {getMunicipalities} from "../Networking/networking.ts"
 import { CheckoutPopUp } from '../Components/checkoutPopup.tsx';
 
