@@ -130,16 +130,16 @@ export function CheckoutPage() {
 
         const result = submitOrder(basket, customerInfo)
         result.then(() => {
-            console.log("Popup opened result")
-            openCheckoutPopUp
-            setLoading(false)
+          //console.log("Popup opened result")
+          openCheckoutPopUp
+          setLoading(false)
         })
         .catch(error => {
-            console.log(error)
-            setLoading(false)
-            //TODO Add a warning at the top: Order failed
+          console.log(error)
+          setLoading(false)
+          //TODO Add a warning at the top: Order failed
         })
-        console.log("submitted")
+        //console.log("submitted")
         openCheckoutPopUp()
     }
 
@@ -255,7 +255,7 @@ export function CheckoutPage() {
                   onClick={(e) => {
               e.preventDefault(); // Prevent default form submission behavior
               onSubmitClick();
-              console.log("hi")
+              //console.log("hi")
           }} >
             Pay
           <div className="loader" id="loader"></div>
