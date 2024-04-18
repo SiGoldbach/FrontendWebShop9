@@ -5,19 +5,19 @@ export interface BasketItem extends ProductInfo{
 }
 
 export interface ProductInfo{
-    id: string;
+    product_id: string;
     name: string;
     price: number;
     currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
+    discount_amount: number | null;
+    discount_percent: number | null;
     upsellProductId: string | null;
-    imageUrl: string
+    image_url: string | null;
 
 }
 export interface Price{
     priceBeforeRebate: number;
-    rebatePercentage: number;
+    rebatePercentage: number| null;
     priceAfterRebate: number;
 
 }
@@ -48,5 +48,10 @@ export interface CustomerInfo {
 export interface OrderInformation {
     customerInfo: CustomerInfo;
     basket: Basket;
+}
+
+export interface Municipality {
+    zip: number,
+    city: string
 }
 

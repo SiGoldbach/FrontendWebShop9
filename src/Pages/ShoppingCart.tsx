@@ -1,4 +1,3 @@
-import '../Data/product.json'
 import '../Pages/index.css'
 import DisplayItem from "../Components/displayItem.js";
 import { useNavigate } from 'react-router-dom';

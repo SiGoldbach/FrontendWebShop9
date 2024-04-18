@@ -1,32 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
+import { CustomerInfo,Municipality} from "../TSReusedTypes/ReusedTypes.ts";
 import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
 import { useBasketContext} from '../State/Basketcontext';
-import { CheckoutPopUp } from '../Components/checkoutPopup.tsx';
-
-
-interface Municipality {
-    zip: number,
-    city: string
-}
-
-
-async function getMunicipalities(): Promise<Municipality[]> {
-    let data: Municipality[] =[];
-    try {
-        const url :string = `https://api.dataforsyningen.dk/postnumre`;
-        const response = await fetch(url);
-        const mbResult = await response.json();
-        data = mbResult.map(({ nr, navn }:{nr: number, navn: string}) => {
-            return { zip: nr, city: navn };
-        });
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return data;
-    }
-}
+import {getMunicipalities} from "../Networking/networking.ts"
 
 
 export function CheckoutPage() {

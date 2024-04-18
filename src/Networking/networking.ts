@@ -1,25 +1,13 @@
-import { ProductInfo, Basket,CustomerInfo,OrderInformation } from "../TSReusedTypes/ItemsAndPrices.js"
+import { ProductInfo, Basket,CustomerInfo,OrderInformation, Municipality } from "../TSReusedTypes/ReusedTypes.js"
 
 
-//This function is getting all the items that needs to be displayed in the store 
+//This function is getting all the items that needs to be displayed in the store. 
 export async function getItems(): Promise<ProductInfo[]>{
-    let data: ProductInfo[] =[];
-
-    const URL="https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
+    const URL="http://130.225.170.52:10191/productinfo"
     const response = await fetch(URL);
-    const responseAsJson= await response.json();
-    data = responseAsJson.map(({ id, name,price,currency,rebateQuantity,rebatePercent,upsellProductId,imageUrl }:
-        {id: string, name: string,price: number, currency: string,rebateQuantity:number,rebatePercent:number,upsellProductId:string,imageUrl:string}) => {
-        return { id: id,
-                 name: name,
-                 price: price, 
-                 currency: currency, 
-                 rebateQuantity: rebateQuantity, 
-                 rebatePercent: rebatePercent, 
-                 upsellProductId: upsellProductId, 
-                 imageUrl: imageUrl };
-    });
-    return data
+    const responseAsJson:ProductInfo[] = await response.json();
+    console.log(responseAsJson[7]);
+    return responseAsJson;
 }
 //This is the function for submitting an order. 
 //Its very poorly implemented right now needs to change. 
@@ -51,4 +39,18 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
         throw new Error("Fetch error: "+ error);
     }
 
+}
+
+export async function getMunicipalities(): Promise<Municipality[]> {
+    let data: Municipality[] =[];
+    try {
+        const url :string = `https://api.dataforsyningen.dk/postnumre`;
+        const response = await fetch(url);
+        const mbResult:Municipality[] = await response.json();
+        data = mbResult;
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return data;
+    }
 }

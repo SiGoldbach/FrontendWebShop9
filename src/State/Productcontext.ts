@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ProductInfo } from "../TSReusedTypes/ItemsAndPrices";
+import { ProductInfo } from "../TSReusedTypes/ReusedTypes";
 
 
 export const ProductContext = createContext<ProductInfo[] | undefined>(undefined);
