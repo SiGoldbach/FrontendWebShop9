@@ -20,7 +20,7 @@ export function CheckoutPopUp(props:popuptForUpsellProductprops){
     
 
     return(
-      <div className="checkout-popup">
+      <div className="form-popup">
         <div className="text_and_image">
           <button className="exit-button" onClick={props.closePopUp}> X</button>
           <p> Successful transaction </p>
