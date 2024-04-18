@@ -4,6 +4,7 @@ import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
 import { useBasketContext} from '../State/Basketcontext';
 import {getMunicipalities} from "../Networking/networking.ts"
+import { CheckoutPopUp } from '../Components/checkoutPopup.tsx';
 
 
 export function CheckoutPage() {
