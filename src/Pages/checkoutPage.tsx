@@ -35,11 +35,9 @@ export function CheckoutPage() {
       if (loading) {
         //button.textContent = "Submitting";
         loader.style.display = 'inline-block';
-        console.log("loading")
       } else {
         //button.textContent = "Pay";
         loader.style.display = 'none';
-        console.log("not loading")
       }
     }
   }, [loading]);
@@ -242,7 +240,7 @@ export function CheckoutPage() {
             <div className='checkBoxContainer'>
               <li>
                 <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail" checked/>
+                <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail" />
               </li>
               <li>
                 <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
@@ -254,11 +252,10 @@ export function CheckoutPage() {
             e.preventDefault(); // Prevent default form submission behavior
             const form = document.getElementById("forms") as HTMLFormElement;
             if (form.checkValidity()) {
-              console.log("Is form valid? " + form.checkValidity())
               onSubmitClick()
             } else {
               form.reportValidity()
-              console.log("Is form valid? " + form.checkValidity())
+              console.log("Form is not valid. Try again")
             }
           }}
           > Pay
