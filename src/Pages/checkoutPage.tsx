@@ -92,14 +92,12 @@ export function CheckoutPage() {
   const [isPopCheckUpOpen,setIsCheckPopupOpen]= useState(false);
   function closeCheckoutPopUp(){
     setIsCheckPopupOpen(false);
-    console.log("closed popup");
   }
 
 
   function openCheckoutPopUp(){
     setIsCheckPopupOpen(true);
-    console.log("Popupbox is: "+isPopCheckUpOpen);
-  }
+    }
     
 
   const onSubmitClick = () :void => {
@@ -135,7 +133,6 @@ export function CheckoutPage() {
 
     const result = submitOrder(basket, customerInfo)
     result.then(() => {
-      //console.log("Popup opened result")
       openCheckoutPopUp
       setLoading(false)
     })
@@ -144,7 +141,6 @@ export function CheckoutPage() {
       setLoading(false)
       //TODO Add a warning at the top: Order failed
     })
-    //console.log("submitted")
     openCheckoutPopUp()
   }
 

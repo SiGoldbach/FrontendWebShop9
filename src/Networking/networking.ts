@@ -6,13 +6,12 @@ export async function getItems(): Promise<ProductInfo[]>{
   const URL="http://130.225.170.52:10191/productinfo"
   const response = await fetch(URL);
   const responseAsJson:ProductInfo[] = await response.json();
-  console.log(responseAsJson[7]);
+  //console.log(responseAsJson[7]);
   return responseAsJson;
 }
 //This is the function for submitting an order. 
 //Its very poorly implemented right now needs to change. 
 export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Promise<unknown>{
-  console.log("In the procces of submitting order")
   const orderInfo: OrderInformation ={
     basket,
     customerInfo
@@ -25,17 +24,14 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
     body : JSON.stringify(orderInfo)
   }
 
+  console.log("Submitting order to server")
   try {
     const response = await fetch("http://130.225.170.52:10191/order/succes",postOptions)
         
-    if(!response.ok){
-      throw new Error("Bad response")
-    }
+    if(!response.ok){ console.log("Bad response") }
     console.log("Response was good");
-    const responseInfo: number = await response.json();
-    console.log(response.status);
-    return responseInfo;
-
+    console.log(response)
+    return response;
   } catch (error){
     throw new Error("Fetch error: "+ error);
   }
