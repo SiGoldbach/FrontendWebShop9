@@ -9,15 +9,15 @@ export interface ProductInfo{
     name: string;
     price: number;
     currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
+    discount_amount: number | null;
+    discount_percent: number | null;
     upsellProductId: string | null;
     image_url: string | null;
 
 }
 export interface Price{
     priceBeforeRebate: number;
-    rebatePercentage: number;
+    rebatePercentage: number| null;
     priceAfterRebate: number;
 
 }

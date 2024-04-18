@@ -55,15 +55,29 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
     }
 
 
-    function RebateInformationHelper() {
-        if (basketItem.rebatePercent === 0) {
+    type rebateInformationHelperprops={
+        rebatePercent: number|null;
+        rebateQuantity: number|null;
+
+    }
+    function RebateInformationHelper(props: rebateInformationHelperprops) {
+        if (props.rebatePercent!==null && props.rebateQuantity!==null){
+            const rebateQ: number = props.rebateQuantity
+            const rebateP: number = props.rebatePercent
+            console.log(rebateP);
+            console.log(rebateQ);
+            return (
+                <p> Buy {rebateQ} get {rebateP}% rebate </p>
+                )
+        }
+
+
+        if (props.rebatePercent === 0 || props.rebatePercent===null) {
             return (<>
             </>)
         }
         else {
-            return (
-            <p> Buy {basketItem.rebateQuantity} get {basketItem.rebatePercent}% rebate </p>
-            )
+            
         }
     }
 
@@ -86,7 +100,7 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
                         <div className="displaySingleItemPrice">
                             {basketItem.price} {basketItem.currency} {"/ stk"}
                         </div>
-                        <RebateInformationHelper/>
+                        <RebateInformationHelper rebatePercent={basketItem.discount_percent} rebateQuantity={basketItem.discount_amount}/>
                         <PremiumHelper />
                     </div>
                 </div>

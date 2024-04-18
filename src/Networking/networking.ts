@@ -6,6 +6,7 @@ export async function getItems(): Promise<ProductInfo[]>{
     const URL="http://130.225.170.52:10191/productinfo"
     const response = await fetch(URL);
     const responseAsJson:ProductInfo[] = await response.json();
+    console.log(responseAsJson[7]);
     return responseAsJson;
 }
 //This is the function for submitting an order. 

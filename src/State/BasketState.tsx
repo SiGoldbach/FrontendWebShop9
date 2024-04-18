@@ -179,8 +179,8 @@ function replaceItemInBasket(state: Basket,currentProductId:string, newProduct: 
       name: newProduct.name,
       price: newProduct.price,
       currency: newProduct.currency,
-      rebateQuantity: newProduct.rebateQuantity,
-      rebatePercent: newProduct.rebatePercent,
+      discount_amount: newProduct.discount_amount,
+      discount_percent: newProduct.discount_percent,
       upsellProductId: newProduct.upsellProductId,
       image_url: newProduct.image_url
       
@@ -204,26 +204,39 @@ function replaceItemInBasket(state: Basket,currentProductId:string, newProduct: 
 export function calculateItemPrices(basketItems: BasketItem[]):Price[] {
     const itemPrices: Price[] = []
     basketItems.forEach((item) => {
-        if (item.quantity >= item.rebateQuantity) {
+      if(item.discount_amount!==null && item.discount_percent!==null){
+        if (item.quantity >= item.discount_amount) {
+          const price: Price = {
+            priceBeforeRebate: item.price * item.quantity,
+            rebatePercentage: item.discount_percent,
+            priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity) * (item.discount_percent / 100))
+    
+          };
+          itemPrices.push(price)
+    
+        } else {
+          const price: Price = {
+            priceBeforeRebate: item.price * item.quantity,
+            rebatePercentage: item.discount_percent,
+            priceAfterRebate: (item.price * item.quantity)
+    
+    
+          };
+          itemPrices.push(price)
+    
+        }
+      }else{
         const price: Price = {
           priceBeforeRebate: item.price * item.quantity,
-          rebatePercentage: item.rebatePercent,
-          priceAfterRebate: (item.price * item.quantity) - ((item.price * item.quantity) * (item.rebatePercent / 100))
-  
-        };
-        itemPrices.push(price)
-  
-      } else {
-        const price: Price = {
-          priceBeforeRebate: item.price * item.quantity,
-          rebatePercentage: item.rebatePercent,
+          rebatePercentage: item.discount_amount,
           priceAfterRebate: (item.price * item.quantity)
   
   
         };
         itemPrices.push(price)
-  
+
       }
+        
   
     });
     return itemPrices;
