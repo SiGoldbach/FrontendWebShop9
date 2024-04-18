@@ -254,18 +254,17 @@ export function CheckoutPage() {
               </li>
             </div>
           </ul>
-          <button className="checkoutButton" id="checkoutButton"
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent default form submission behavior
-                    const form = document.getElementById("forms") as HTMLFormElement;
-                    if (form.checkValidity()) {
-                      console.log("Is form valid? " + form.checkValidity())
-                      onSubmitClick()
-                    } else {
-                      form.reportValidity()
-                      console.log("Is form valid? " + form.checkValidity())
-                    }
-                  }}
+          <button className="checkoutButton" id="checkoutButton" onClick={(e) => {
+            e.preventDefault(); // Prevent default form submission behavior
+            const form = document.getElementById("forms") as HTMLFormElement;
+            if (form.checkValidity()) {
+              console.log("Is form valid? " + form.checkValidity())
+              onSubmitClick()
+            } else {
+              form.reportValidity()
+              console.log("Is form valid? " + form.checkValidity())
+            }
+          }}
           > Pay
             <div className="loader" id="loader"></div>
           </button>
@@ -274,6 +273,5 @@ export function CheckoutPage() {
     </div>
   )
 }
-
 
 export default CheckoutPage
