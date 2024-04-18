@@ -2,6 +2,10 @@
 This file contains a lot of AI usage for the basic styles, edited manually to fit preferences
 */
 
+
+/* STANDARD */
+
+/* Standard, light mode */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   min-height: 100vh;
@@ -23,6 +27,7 @@ This file contains a lot of AI usage for the basic styles, edited manually to fi
   background-color: var(--background-color);
 }
 
+/* Standard, dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #E0E0E0;
@@ -73,16 +78,139 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* APP */
 
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: auto;
+}
 
-.cartItemsContainer, .checkoutContainer {
-  margin: 10px;
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  background: var(--background-color);
+  box-shadow: var(--shadow-color)
+}
+
+nav {
+  display: flex;
+  width: 100%;
+}
+.navLink {
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: var(--box-background-color)
+}
+
+/* LANDING PAGE */
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  margin: 16px;
+}
+
+.product-image { /* TODO used alot, check back here later */
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.product-name {
+  color: var(--text-color);
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.product-details { /* TODO in use? */
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+.add-to-cart-button {
+  background-image: linear-gradient(to bottom right, var(--accent-primary-color), var(--accent-secondary-color));
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+}
+
+.add-to-cart-button:hover {
+  background-image: linear-gradient(to bottom right, var(--accent-secondary-color), var(--accent-primary-color));
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transform: translateY(-2px);
+}
+
+.landing-page-container{
+  text-align: center;
+  padding: 20px;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
   background: var(--box-background-color);
   border: 1px solid var(--border-color);
-  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px var(--shadow-color);
+  width: 200px;
+  padding: 16px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
+
+.product-name {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 8px 0;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: var(--text-secondary-color);
+  margin-bottom: 12px;
+}
+
+.product-image{ /* TODO Check back later */
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+/* ITEM DISPLAY */
 
 .image-text {
   position: absolute;
@@ -171,14 +299,29 @@ button:focus-visible {
   border: 1px solid var(--border-color);
   display: inline-block;
   box-sizing: border-box;
-
 }
-.removeItemPicture {
+
+.removeItemPicture { /* TODO is this in use? */
   height: 40px;
   width: auto;
-    
-
 }
+
+.displaySingleItemPrice {
+  font-size: 0.7em;
+  color: var(--text-secondary-color);
+}
+
+/* SHOPPING CART */
+
+.cartItemsContainer, .checkoutContainer {
+  margin: 10px;
+  background: var(--box-background-color);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--shadow-color);
+}
+
 .emptyBasket {
   border-radius: 8px;
   margin: 10px;
@@ -188,29 +331,84 @@ button:focus-visible {
   border-width: 1px;
 }
 
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.summaryRow div,
+.summaryRow h2,
+.summaryRow p {
+  margin: 0;
+}
+
+.summaryBox, .addressBox {
+  margin-bottom: 20px;
+}
+
+.summaryBox {
+  background: var(--box-background-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.summaryBox h2 {
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.summaryBox p {
+  text-align: right;
+  margin: 5px 0;
+}
+
+.line {
+  border-bottom: 1px solid var(--line-color);
+  margin: 10px 0;
+}
+
+.checkoutButton {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin-top: 30px;
+}
+
+.checkoutButton:hover {
+  background-color: #535bf2;
+}
+
+.checkoutButton:disabled {
+  background-color: #555;
+}
+
+.shoppingCartContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: start;
+  margin: auto;
+}
+
+/* CHECKOUT PAGE */
+
 .forms {
   display: flex;
   width: 100%;
 }
 
-.productImage{
+.productImage{ /* TODO In use? */
   width: 150px;
   height: 150px;
-}
-
-
-.displaySingleItemPrice {
-  font-size: 0.7em;
-  color: var(--text-secondary-color);
-}
-
-.page-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  overflow: auto;
 }
 
 .addressFormsContainer {
@@ -229,18 +427,7 @@ button:focus-visible {
   padding: 20px;
   box-shadow: 0 0 10px var(--shadow-color);
   border: 1px solid var(--border-color);
- } 
-
-.CheckBox {
-  display: flex;
-  align-items: center;
-}
-
-.CheckBox input[type="checkbox"] {
-  flex: 1;
-  width: 100%;
-}
-
+ }
 
 .loader {
   display: none;
@@ -263,78 +450,6 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.summaryRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.summaryRow div, 
-.summaryRow h2, 
-.summaryRow p {
-  margin: 0;
-}
-
-.summaryBox, .addressBox {
-  margin-bottom: 20px;
-}
-
-.summaryBox {
-  background: var(--box-background-color);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.summaryBox h2 {
-  font-weight: 700; 
-  margin: 10px 0; 
-}
-
-.summaryBox p {
-  text-align: right; 
-  margin: 5px 0; 
-}
-
-.line {
-  border-bottom: 1px solid var(--line-color); 
-  margin: 10px 0; 
-}
-
-.checkoutButton {
-  background-color: var(--button-background-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 2px 4px var(--shadow-color); 
-  margin-top: 30px;
-}
-
-.checkoutButton:hover {
-  background-color: #535bf2;
-}
-
-.checkoutButton:disabled {
-  background-color: #555;
-}
-
-.checkBoxContainer {
-  margin-top: 30px;
-}
-
-.shoppingCartContainer {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  align-items: start;
-  margin: auto;
-}
-
 .formsContainer {
   display: flex;
   justify-content: center;
@@ -342,96 +457,6 @@ button:focus-visible {
   align-items: center;
 }
 
-.product-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
-  width: 200px;
-  box-shadow: 0 1px 3px var(--shadow-color);
-  margin: 16px; 
-}
-.product-image {
-  width: 100%; 
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 8px;
-}
-
-.product-name {
-  color: var(--text-color);
-  font-size: 1.2em;
-  margin-bottom: 8px;
-}
-
-.product-details {
-  font-size: 1em;
-  margin-bottom: 16px;
-}
-
-.add-to-cart-button {
-  background-image: linear-gradient(to bottom right, var(--accent-primary-color), var(--accent-secondary-color));
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px var(--shadow-color);
-  text-transform: uppercase; 
-  font-weight: bold;
-  letter-spacing: 0.05rem;
-}
-
-.add-to-cart-button:hover {
-  background-image: linear-gradient(to bottom right, var(--accent-secondary-color), var(--accent-primary-color));
-  box-shadow: 0 4px 8px var(--shadow-color);
-  transform: translateY(-2px); 
-}
-
-.landing-page-container{
-  text-align: center;
-  padding: 20px;
-}
-
-.products-container {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 20px;
-  padding: 20px;
-}
-
-.product-card {
-  background: var(--box-background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  width: 200px; 
-  padding: 16px;
-  box-shadow: 0 2px 4px var(--shadow-color);
-  text-align: left; 
-  display: flex;
-  flex-direction: column; 
-}
-
-.product-name {
-  font-size: 1.2rem;
-  color: var(--text-color);
-  margin: 8px 0;
-}
-
-.product-description {
-  font-size: 1rem;
-  color: var(--text-secondary-color); 
-  margin-bottom: 12px;
-}
-
-.product-image{
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-}
 
 /* FORMS */
 
@@ -490,43 +515,18 @@ input:valid {
   border: 2px solid black;
 }
 
-/* NAV */
+.checkBoxContainer {
+  margin-top: 30px;
+}
 
-.navContainer {
+.CheckBox {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin: 20px auto;
-  padding: 10px;
-  background: var(--background-color);
-  box-shadow: var(--shadow-color)
 }
 
-nav {
-  display: flex;
+.CheckBox input[type="checkbox"] {
+  flex: 1;
   width: 100%;
-}
-.navLink {
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.navLink:hover {
-  background-color: var(--box-background-color)
-}
-
-
-
-
-
-
-.IGNORE
-*{
-  outline: 1px solid red;
 }
 
 .comment-textarea {
@@ -549,6 +549,13 @@ nav {
   box-shadow: 0 0 0 3px var(--button-hover-color); /* Outer glow on focus */
 }
 
+
+/* META */
+
+.IGNORE
+*{
+  outline: 1px solid red;
+}
 
 /* Keep at the end */
 @media screen and (max-width: 768px) { /* <768px should be vertical mobile */
