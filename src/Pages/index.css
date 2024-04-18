@@ -23,6 +23,7 @@ This file contains a lot of AI usage for the basic styles, edited manually to fi
   --button-text-color: #fff; 
   --border-color: #dddddd; 
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --error-color: #f44336;
   color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -386,14 +387,13 @@ nav {
 .popup .popuptext {
   visibility: hidden;
   width: 160px;
-  background-color: var(--border-color);
-  color: var(--text-color);
+  background-color: var(--error-color);
+  color: var(--button-text-color);
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
-  z-index: 1;
-  bottom: 125%;
+  bottom: 65%;
   left: 50%;
   margin-left: -80px;
 }
@@ -407,7 +407,7 @@ nav {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--border-color) transparent transparent transparent;
+  border-color: var(--error-color) transparent transparent transparent;
 }
 
 /* Toggle this class - hide and show the popup */
