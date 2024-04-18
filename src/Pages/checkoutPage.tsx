@@ -131,7 +131,7 @@ export function CheckoutPage() {
 
     const result = submitOrder(basket, customerInfo)
     result.then(() => {
-      openCheckoutPopUp
+      openCheckoutPopUp()
       setLoading(false)
     })
     .catch(error => {
@@ -139,7 +139,6 @@ export function CheckoutPage() {
       setLoading(false)
       //TODO Add a warning at the top: Order failed
     })
-    openCheckoutPopUp()
   }
 
     

@@ -11,7 +11,6 @@ function ShoppingCart() {
   const basket = useBasketContext();
   const navigate = useNavigate();
 
-    
   //GPT generated
   function CheckoutSummary() {
     const originalPrice = basket.totalPrice.priceBeforeRebate;
@@ -19,30 +18,39 @@ function ShoppingCart() {
     const discount = originalPrice - total;
 
     const navigateToCheckout = () => {
-      navigate('/checkout'); // Use the navigate function
+      if (basket.basketItems.length > 0) {
+        navigate('/checkout'); // Use the navigate function
+      } else {
+        const popup = document.getElementById("basketPopup") as HTMLElement;
+        popup.classList.toggle("show");
+      }
     };
-    
+
     return (
-      <div className="checkoutContainer">
-        <div className="summaryBox">
-          <div className="summaryRow">
-            <h2>Price:</h2>
-            <p>{originalPrice.toFixed(2)}</p>
-          </div>  
-          <div className="summaryRow">
-            <h2>Discount:</h2>
-            <p>{discount.toFixed(2)}</p>
+        <div className="checkoutContainer">
+          <div className="summaryBox">
+            <div className="summaryRow">
+              <h2>Price:</h2>
+              <p>{originalPrice.toFixed(2)}</p>
+            </div>
+            <div className="summaryRow">
+              <h2>Discount:</h2>
+              <p>{discount.toFixed(2)}</p>
+            </div>
+            <div className="line"></div>
+            <div className="summaryRow">
+              <h2>Total:</h2>
+              <p>{total.toFixed(2)}</p>
+            </div>
           </div>
-          <div className="line"></div>                
-          <div className="summaryRow">
-            <h2>Total:</h2>
-            <p>{total.toFixed(2)}</p>
+          <div className="popup">
+            <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout</button>
+            <span className="popuptext" id="basketPopup">Warning: Your basket is empty</span>
           </div>
         </div>
-        <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout </button>
-      </div>
     );
   }
+
   function DisplayItemsInBasket() {
     if (basket.basketItems.length === 0) {
       return (

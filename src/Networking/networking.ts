@@ -11,7 +11,7 @@ export async function getItems(): Promise<ProductInfo[]>{
 }
 //This is the function for submitting an order. 
 //Its very poorly implemented right now needs to change. 
-export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Promise<unknown>{
+export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Promise<number>{
   const orderInfo: OrderInformation ={
     basket,
     customerInfo
@@ -31,7 +31,7 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
     if(!response.ok){ console.log("Bad response") }
     console.log("Response was good");
     console.log(response)
-    return response;
+    return response.status;
   } catch (error){
     throw new Error("Fetch error: "+ error);
   }
