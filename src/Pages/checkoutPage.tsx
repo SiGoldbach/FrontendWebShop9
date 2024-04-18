@@ -3,6 +3,7 @@ import { CustomerInfo} from "../TSReusedTypes/ItemsAndPrices.ts";
 import "./ShoppingCart.tsx"
 import {submitOrder} from "../Networking/networking.ts";
 import { useBasketContext} from '../State/Basketcontext';
+import { CheckoutPopUp } from '../Components/checkoutPopup.tsx';
 
 
 interface Municipality {
@@ -126,6 +127,10 @@ export function CheckoutPage() {
 
     
     const [isPopCheckUpOpen,setIsCheckPopupOpen]= useState(false);
+    function closeCheckoutPopUp(){
+      setIsCheckPopupOpen(false);
+      console.log("closed popup");
+  }
     function openCheckoutPopUp(){
         setIsCheckPopupOpen(true);
         console.log("Popupbox is: "+isPopCheckUpOpen);
@@ -165,7 +170,7 @@ export function CheckoutPage() {
         setLoading(true)
         const result = submitOrder(basket, customerInfo)
         result.then(() => {
-            console.log("Popup opened")
+            console.log("Popup opened result")
             openCheckoutPopUp
             setLoading(false)
         })
@@ -178,7 +183,10 @@ export function CheckoutPage() {
     }
 
     
-    return <div className="formsContainer">
+    return (
+    <div className="formsContainer">
+      {isPopCheckUpOpen && <CheckoutPopUp closePopUp={closeCheckoutPopUp} basket={}/>}
+
       <form className="forms" id='forms' >
         <div className="addressFormsContainer">
           <ul>
@@ -297,6 +305,7 @@ export function CheckoutPage() {
         </div>
       </form>
     </div>
+    )
 }
 
 
