@@ -4,13 +4,13 @@ import { ProductInfo } from "../TSReusedTypes/ReusedTypes";
 
 export const ProductContext = createContext<ProductInfo[] | undefined>(undefined);
 
+
 export function useProductContext(){
-    const basketContext = useContext(ProductContext);
+  const basketContext = useContext(ProductContext);
 
-    if (basketContext===undefined){
-        throw new Error("userContext is undefined");
-    }
+  if (basketContext===undefined){
+    throw new Error("userContext is undefined");
+  }
 
-    return basketContext;
-
+  return basketContext;
 }

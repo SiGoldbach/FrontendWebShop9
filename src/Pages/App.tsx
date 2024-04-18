@@ -13,7 +13,6 @@ import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 import { ProductContext } from '../State/Productcontext.ts'
 
 
-
 function App():JSX.Element {
   const [productInfos, setProductInfos] = useState<ProductInfo[]>([])
   useEffect(() => {
@@ -22,7 +21,7 @@ function App():JSX.Element {
         setProductInfos(data)
     }
     fetchData();
-}, []);
+  }, []);
 
   const [state,dispatch]= useReducer(basketReducer,createNewEmptyBasket());
   state.priceList=calculateItemPrices(state.basketItems);
