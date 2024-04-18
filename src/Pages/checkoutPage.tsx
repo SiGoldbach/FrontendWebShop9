@@ -31,26 +31,6 @@ async function getMunicipalities(): Promise<Municipality[]> {
 
 export function CheckoutPage() {
     const basket = useBasketContext();
-
-    const [orderComment, setOrderComment] = useState(() => {
-        // Get the comment from sessionStorage if it exists
-        const savedComment = sessionStorage.getItem('orderComment');
-        return savedComment ?? '';
-    });
-
-    // Load comment from sessionStorage when component mounts
-    useEffect(() => {
-        const savedComment = sessionStorage.getItem('orderComment');
-        if (savedComment) {
-            setOrderComment(savedComment);
-        }
-    }, []);
-
-    // Save comment to sessionStorage when it changes
-    useEffect(() => {
-        sessionStorage.setItem('orderComment', orderComment);
-    }, [orderComment]);
-
     
     const [customerInfo] = useState<CustomerInfo>({
         firstName: "",
@@ -161,10 +141,11 @@ export function CheckoutPage() {
         customerInfo.company = company.value
         const companyVAT = document.getElementById("companyVAT") as HTMLInputElement;
         customerInfo.companyVat = companyVAT.value
+        const comment = document.getElementById("comment") as HTMLInputElement;
+        customerInfo.optionalComment = comment.value
         const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
         customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
 
-        customerInfo.optionalComment = orderComment;
         submitOrder(basket, customerInfo);
         //TODO: Add validation on form items before "submitOrder" call
         setLoading(true)
@@ -177,7 +158,7 @@ export function CheckoutPage() {
         .catch(error => {
             console.log(error)
             setLoading(false)
-            //Warning at the top: Order failed
+            //TODO Add a warning at the top: Order failed
         })
         console.log("submitted")
     }
@@ -253,8 +234,6 @@ export function CheckoutPage() {
                   id="comment"
                   name="comment"
                   className="comment-textarea"
-                  value={orderComment}
-                  onChange={(e) => setOrderComment(e.target.value)}
                   placeholder="Add a comment to your order (optional)"
                 />
               </div>
