@@ -8,140 +8,142 @@ import { CheckoutPopUp } from '../Components/checkoutPopup.tsx';
 
 
 export function CheckoutPage() {
-    const basket = useBasketContext();
+  const basket = useBasketContext();
     
-    const [customerInfo] = useState<CustomerInfo>({
-        firstName: "",
-        lastName: "",
-        email: "",
-        addressLine1:"",
-        addressLine2:"",
-        country: "",
-        zipCode: "",
-        city: "",
-        phoneNumber: "",
-        optionalComment: "",
-        company: "",
-        companyVat: "",
-        acceptMarketingEmail: true,
-    });
-
-    const [loading, setLoading] = useState<boolean>(false);//Add a submitting message while the form is being submitted to the server
-    useEffect(() => {
-        const button : HTMLElement|null = document.getElementById("checkoutButton");
-        const loader : HTMLElement|null = document.getElementById("loader");
-        if (button != null && loader != null) {
-            if (loading) {
-                //button.textContent = "Submitting";
-                loader.style.display = 'inline-block';
-                console.log("loading")
-            } else {
-                //button.textContent = "Pay";
-                loader.style.display = 'none';
-                console.log("not loading")
-            }
-        }
-    }, [loading]);
+  const [customerInfo] = useState<CustomerInfo>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    addressLine1:"",
+    addressLine2:"",
+    country: "",
+    zipCode: "",
+    city: "",
+    phoneNumber: "",
+    optionalComment: "",
+    company: "",
+    companyVat: "",
+    acceptMarketingEmail: true,
+  });
 
 
-    const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
-    useEffect(() => {
-        async function fetchData() {
-            const data: Municipality[] = await getMunicipalities();
-            setMunicipalities(data);
-        }
-
-        fetchData();
-    }, []);
-
-
-    const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const enteredZip: number = parseInt(event.target.value);
-        const isValidZip: boolean = municipalities.some(({zip}) => zip == enteredZip); //Checks whether the zip exists in the array
-        event.target.setCustomValidity(isValidZip ? '' : 'Zip not found') //setCustomValidity sets the validity to true if the message is empty
-        if (isValidZip) {
-            const municipality = municipalities.find((m) => m.zip == enteredZip); //Gets the municipality (zip+city) of the zip
-            if (municipality != null) {     //This should always happen.
-                const cityInput = document.getElementById('city') as HTMLInputElement | null;
-                if (cityInput) {
-                    cityInput.value = municipality.city;
-                }
-            }
-        }
-    };
+  const [loading, setLoading] = useState<boolean>(false);//Add a submitting message while the form is being submitted to the server
+  useEffect(() => {
+    const button : HTMLElement|null = document.getElementById("checkoutButton");
+    const loader : HTMLElement|null = document.getElementById("loader");
+    if (button != null && loader != null) {
+      if (loading) {
+        //button.textContent = "Submitting";
+        loader.style.display = 'inline-block';
+        console.log("loading")
+      } else {
+        //button.textContent = "Pay";
+        loader.style.display = 'none';
+        console.log("not loading")
+      }
+    }
+  }, [loading]);
 
 
-    const toggleBillingAddress = (): void => {
-        const checkBox: HTMLInputElement = document.getElementById("alt-billing-box") as HTMLInputElement;
-        const billingAddress: HTMLElement = document.getElementById("billingAddress") as HTMLElement;
-        if (checkBox != null && billingAddress != null) {
-            if (checkBox.checked) {
-                billingAddress.style.display = "block";
-            } else {
-                billingAddress.style.display = "none";
-            }
-        }
+  const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const data: Municipality[] = await getMunicipalities();
+      setMunicipalities(data);
     }
 
-    
-    const [isPopCheckUpOpen,setIsCheckPopupOpen]= useState(false);
-    function closeCheckoutPopUp(){
-      setIsCheckPopupOpen(false);
-      console.log("closed popup");
+    fetchData();
+  }, []);
+
+
+  const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const enteredZip: number = parseInt(event.target.value);
+    const isValidZip: boolean = municipalities.some(({zip}) => zip == enteredZip); //Checks whether the zip exists in the array
+    event.target.setCustomValidity(isValidZip ? '' : 'Zip not found') //setCustomValidity sets the validity to true if the message is empty
+    if (isValidZip) {
+      const municipality = municipalities.find((m) => m.zip == enteredZip); //Gets the municipality (zip+city) of the zip
+      if (municipality != null) {     //This should always happen.
+        const cityInput = document.getElementById('city') as HTMLInputElement | null;
+        if (cityInput) {
+          cityInput.value = municipality.city;
+        }
+      }
+    }
   }
-    function openCheckoutPopUp(){
-        setIsCheckPopupOpen(true);
-        console.log("Popupbox is: "+isPopCheckUpOpen);
+
+
+  const toggleBillingAddress = (): void => {
+    const checkBox: HTMLInputElement = document.getElementById("alt-billing-box") as HTMLInputElement;
+    const billingAddress: HTMLElement = document.getElementById("billingAddress") as HTMLElement;
+    if (checkBox != null && billingAddress != null) {
+      if (checkBox.checked) {
+        billingAddress.style.display = "block";
+      } else {
+        billingAddress.style.display = "none";
+      }
     }
+  }
+
+    
+  const [isPopCheckUpOpen,setIsCheckPopupOpen]= useState(false);
+  function closeCheckoutPopUp(){
+    setIsCheckPopupOpen(false);
+    console.log("closed popup");
+  }
+
+
+  function openCheckoutPopUp(){
+    setIsCheckPopupOpen(true);
+    console.log("Popupbox is: "+isPopCheckUpOpen);
+  }
     
 
-    const onSubmitClick = () :void => {
-        //const form = document.getElementById("forms");
-        const firstName :HTMLInputElement = document.getElementById("firstName") as HTMLInputElement;
-        customerInfo.firstName = firstName.value
-        const lastName = document.getElementById("lastName") as HTMLInputElement;
-        customerInfo.lastName = lastName.value
-        const email = document.getElementById("mail") as HTMLInputElement;
-        customerInfo.email = email.value
-        const addressLine1 = document.getElementById("address1") as HTMLInputElement;
-        customerInfo.addressLine1 = addressLine1.value
-        const addressLine2 = document.getElementById("address2") as HTMLInputElement;
-        customerInfo.addressLine2 = addressLine2.value
-        const country = document.getElementById("country") as HTMLInputElement;
-        customerInfo.country = country.value
-        const zipCode = document.getElementById("zip") as HTMLInputElement;
-        customerInfo.zipCode = zipCode.value
-        const city = document.getElementById("city") as HTMLInputElement;
-        customerInfo.city = city.value
-        const phoneNumber = document.getElementById("phone") as HTMLInputElement;
-        customerInfo.phoneNumber = phoneNumber.value
-        const company = document.getElementById("company") as HTMLInputElement;
-        customerInfo.company = company.value
-        const companyVAT = document.getElementById("companyVAT") as HTMLInputElement;
-        customerInfo.companyVat = companyVAT.value
-        const comment = document.getElementById("comment") as HTMLInputElement;
-        customerInfo.optionalComment = comment.value
-        const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
-        customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
-
-        //TODO: Add validation on form items before "submitOrder" call
+  const onSubmitClick = () :void => {
+    //const form = document.getElementById("forms");
+    const firstName :HTMLInputElement = document.getElementById("firstName") as HTMLInputElement;
+    customerInfo.firstName = firstName.value
+    const lastName = document.getElementById("lastName") as HTMLInputElement;
+    customerInfo.lastName = lastName.value
+    const email = document.getElementById("mail") as HTMLInputElement;
+    customerInfo.email = email.value
+    const addressLine1 = document.getElementById("address1") as HTMLInputElement;
+    customerInfo.addressLine1 = addressLine1.value
+    const addressLine2 = document.getElementById("address2") as HTMLInputElement;
+    customerInfo.addressLine2 = addressLine2.value
+    const country = document.getElementById("country") as HTMLInputElement;
+    customerInfo.country = country.value
+    const zipCode = document.getElementById("zip") as HTMLInputElement;
+    customerInfo.zipCode = zipCode.value
+    const city = document.getElementById("city") as HTMLInputElement;
+    customerInfo.city = city.value
+    const phoneNumber = document.getElementById("phone") as HTMLInputElement;
+    customerInfo.phoneNumber = phoneNumber.value
+    const company = document.getElementById("company") as HTMLInputElement;
+    customerInfo.company = company.value
+    const companyVAT = document.getElementById("companyVAT") as HTMLInputElement;
+    customerInfo.companyVat = companyVAT.value
+    const comment = document.getElementById("comment") as HTMLInputElement;
+    customerInfo.optionalComment = comment.value
+    const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
+    customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
+    //TODO: Add validation on form items before "submitOrder" call
         
-        setLoading(true)
+    setLoading(true)
 
-        const result = submitOrder(basket, customerInfo)
-        result.then(() => {
-          //console.log("Popup opened result")
-          openCheckoutPopUp
-          setLoading(false)
-        })
-        .catch(error => {
-          console.log(error)
-          setLoading(false)
-          //TODO Add a warning at the top: Order failed
-        })
-        //console.log("submitted")
-        openCheckoutPopUp()
-    }
+    const result = submitOrder(basket, customerInfo)
+    result.then(() => {
+      //console.log("Popup opened result")
+      openCheckoutPopUp
+      setLoading(false)
+    })
+    .catch(error => {
+      console.log(error)
+      setLoading(false)
+      //TODO Add a warning at the top: Order failed
+    })
+    //console.log("submitted")
+    openCheckoutPopUp()
+  }
 
     
     return (
@@ -178,9 +180,7 @@ export function CheckoutPage() {
             </li>
             <li>
               <label htmlFor="zip">Zip code*</label>
-              <input type="number" id="zip" name="user_zip" required
-                onChange={handleZipChange}
-              />
+              <input type="number" id="zip" name="user_zip" required onChange={handleZipChange}/>
             </li>
             <li>
               <label htmlFor="city">City*</label>
@@ -225,14 +225,12 @@ export function CheckoutPage() {
               <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
             </li>
             <li>
-                <label htmlFor="kortnummer">Kortnummer*</label>
-                <input type="text" id="kortnummer" name="kort_nummer" required
-                  pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
+              <label htmlFor="kortnummer">Kortnummer*</label>
+              <input type="text" id="kortnummer" name="kort_nummer" required pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
             </li>
             <li>
               <label htmlFor="udloebsdato">MM/YY*</label>
-              <input type="text" id="udloebsdato" name="kort_udloebsdato" required
-                pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
+              <input type="text" id="udloebsdato" name="kort_udloebsdato" required pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
             </li>
             <li>
               <label htmlFor="sikkerhedskode">Sikkerhedskode*</label>
@@ -251,19 +249,14 @@ export function CheckoutPage() {
               </li>
             </div>
           </ul>
-          <button className="checkoutButton" id="checkoutButton"
-                  onClick={(e) => {
-              e.preventDefault(); // Prevent default form submission behavior
-              onSubmitClick();
-              //console.log("hi")
-          }} >
+          <button className="checkoutButton" id="checkoutButton" onClick={(e) => {e.preventDefault();onSubmitClick();}}>
             Pay
-          <div className="loader" id="loader"></div>
+            <div className="loader" id="loader"></div>
           </button>
         </div>
       </form>
     </div>
-    )
+  )
 }
 
 
