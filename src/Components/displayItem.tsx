@@ -57,8 +57,8 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
     rebateQuantity: number|null;
   }
   function RebateInformationHelper(props: rebateInformationHelperprops) {
-    if (props.rebatePercent!==null && props.rebateQuantity!==null){
-      const rebateQ: number = props.rebateQuantity
+    if (props.rebatePercent!==null && props.rebateQuantity!==null && props.rebatePercent !== 0 && props.rebateQuantity !== 0){
+      const rebateQ: number = props.rebateQuantity  
       const rebateP: number = props.rebatePercent
       console.log(rebateP);
       console.log(rebateQ);
