@@ -46,6 +46,7 @@ function App():JSX.Element {
               {/* Define routes */}
               <Routes>
                 <Route path="/" element={<LandingPage/>} />
+                <Route path="/store" element={<LandingPage/>} />
                 <Route path="/cart" element={<ShoppingCart/>} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/admin" element={<Adminpanel />} />

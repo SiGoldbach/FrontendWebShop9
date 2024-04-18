@@ -147,7 +147,9 @@ export function CheckoutPage() {
         customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
 
         //TODO: Add validation on form items before "submitOrder" call
+        
         setLoading(true)
+
         const result = submitOrder(basket, customerInfo)
         result.then(() => {
             console.log("Popup opened result")
