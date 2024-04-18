@@ -421,6 +421,11 @@ nav {
   align-items: center;
 }
 
+/* CHECKOUT POPUP */
+
+.exit-button{
+  background-color: var(--line-color);
+}
 
 /* FORMS */
 
