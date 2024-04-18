@@ -146,7 +146,6 @@ export function CheckoutPage() {
         const acceptMarketingEmail = document.getElementById("billAddress") as HTMLInputElement;
         customerInfo.acceptMarketingEmail = acceptMarketingEmail.checked
 
-        submitOrder(basket, customerInfo);
         //TODO: Add validation on form items before "submitOrder" call
         setLoading(true)
         const result = submitOrder(basket, customerInfo)
@@ -161,13 +160,13 @@ export function CheckoutPage() {
             //TODO Add a warning at the top: Order failed
         })
         console.log("submitted")
+        openCheckoutPopUp()
     }
 
     
     return (
     <div className="formsContainer">
-      {isPopCheckUpOpen && <CheckoutPopUp closePopUp={closeCheckoutPopUp} basket={}/>}
-
+      {isPopCheckUpOpen && <CheckoutPopUp closePopUp={closeCheckoutPopUp} />}
       <form className="forms" id='forms' >
         <div className="addressFormsContainer">
           <ul>
