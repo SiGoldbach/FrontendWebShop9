@@ -253,6 +253,3 @@ export function calculateTotalPrice(itemPrices: Price[]):Price {
   };
   return totalPrice;
 }
-
-
-

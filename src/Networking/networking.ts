@@ -5,9 +5,23 @@ import { ProductInfo, Basket,CustomerInfo,OrderInformation, Municipality } from 
 export async function getItems(): Promise<ProductInfo[]>{
   const URL="http://130.225.170.52:10191/productinfo"
   const response = await fetch(URL);
-  const responseAsJson:ProductInfo[] = await response.json();
+  const responseAsJson = await response.json();
+  console.log(responseAsJson[0]);
+  const data:ProductInfo[] = responseAsJson.map(({ product_id, name, price, currency, discount_amount, discount_percent, upsell_id,image_url }:
+    {product_id: number, name: string, price: number, currency: string, discount_amount: number| null, discount_percent: number| null, upsell_id: number| null,image_url: string}) => {
+    return { product_id: product_id.toString(),
+      name: name,
+      price: price,
+      currency: currency,
+      discount_amount: discount_amount,
+      discount_percent: discount_percent,
+      upsellProductId: upsell_id?.toString(),
+      image_url: image_url };
+  });
+  console.log(data[0]);
+
   //console.log(responseAsJson[7]);
-  return responseAsJson;
+  return data;
 }
 //This is the function for submitting an order. 
 //Its very poorly implemented right now needs to change. 

@@ -2,9 +2,10 @@ import { useState } from 'react';
 import '../Pages/index.css';
 import { BasketItemKind } from '../State/BasketState';
 import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
-import { BasketItem, Price } from '../TSReusedTypes/ReusedTypes';
+import { BasketItem, Price, ProductInfo } from '../TSReusedTypes/ReusedTypes';
 import { PopUpForUpsellProduct } from './upsellProductPopup';
 import { ImageHandler } from './ImageHanlder';
+import { useProductContext } from '../State/Productcontext';
 
 
 type displayItemProps = {
@@ -15,6 +16,7 @@ type displayItemProps = {
 
 function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
   const basket = useBasketContext();
+  const products = useProductContext();
   const basketDispatcher = useBasketDispatchContext();
   const [isPopUpOpen,setIsPopupOpen]= useState(false);
 
@@ -42,9 +44,11 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
 
   function PremiumHelper() {
     if (basketItem.upsellProductId && basket.basketItems.map(product=> product.product_id).indexOf(basketItem.upsellProductId)===-1) {
+      const premiumItem:ProductInfo= products.filter((product)=>product.product_id===basketItem.upsellProductId)[0];
+
       return (<>
         <p> Upgrade to the premium version: </p>
-        <button onClick={openPopUp}>{basketItem.upsellProductId.toString()}</button>
+        <button className="checkoutButton" onClick={openPopUp}>{premiumItem.name}</button>
       </>)
     } else {
       return (<>  </>)
