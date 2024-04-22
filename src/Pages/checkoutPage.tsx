@@ -199,11 +199,13 @@ export function CheckoutPage() {
                 <label htmlFor="companyVAT">Company VAT</label>
                 <input type="text" id="companyVAT" name="company_VAT" pattern="\d{8}"/>
               </li>
-              <li>
-                <label htmlFor="alt-billing-box">Bill to a different address</label>
-                <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
-                  onChange={toggleBillingAddress}/>
-              </li>
+              <div className='checkBoxContainer'>
+                <li>
+                  <label htmlFor="alt-billing-box">Bill to a different address</label>
+                  <input type="checkbox" id="alt-billing-box" name="alt_billing_address"
+                    onChange={toggleBillingAddress}/>
+                </li>
+              </div>
               <li id="billingAddress" className="billingAddress">
                 <label htmlFor="billAddress">Billing address</label>
                 <input type="text" id="billAddress" name="bill_address"/>
@@ -223,11 +225,11 @@ export function CheckoutPage() {
           <div className="paymentContainer">
             <ul>
               <li>
-                <p>Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
+                <p id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
               </li>
               <li>
                 <label htmlFor="kortnummer">Kortnummer*</label>
-                <input type="text" id="kortnummer" name="kort_nummer" required
+                <input type="text" id="kortnummer" name="kort_nummer"  required
                        pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
               </li>
               <li>

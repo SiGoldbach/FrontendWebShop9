@@ -24,6 +24,7 @@ This file contains a lot of AI usage for the basic styles, edited manually to fi
   --border-color: #dddddd; 
   --shadow-color: rgba(0, 0, 0, 0.1);
   --error-color: #f44336;
+  --radius-inputs: 0.35em;
   color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -553,27 +554,26 @@ input {
   display: inline;
 
   /* Match form field borders */
-  border: 1px solid #999;
+  border: 1px solid --text-secondary-color;
   margin: 0.1em;
 
 }
 
 input:focus {
   /* Additional highlight for focused elements */
-  border-color: #000;
+  border-color: --text-secondary-color;
 }
 
 input:invalid {
-  border: 1px solid red;
+  border: 1px solid rgba(255, 0, 0, 0.7);
 }
 
 input:valid {
-  border: 2px solid black;
+  border: 2px solid --text-secondary-color;
 }
 
 .checkBoxContainer {
   margin-top: 20px;
-  height: 50px;
 }
 
 input[type="checkbox"] {
@@ -581,12 +581,16 @@ input[type="checkbox"] {
   margin-right: 20px;
 }
 
+input[type="text"] {border-radius: var(--radius-inputs); margin-top: 7px;}
+input[type="email"] {border-radius: var(--radius-inputs); margin-top: 7px;}
+input[type="number"] {border-radius: var(--radius-inputs); margin-top: 7px;}
+
 .comment-textarea {
   resize: none;
-  width: 90%;
+  width: 100%;
   height: 120px; /* Or any other size you prefer */
   padding: 0.8em;
-  margin-top: 0.5em; /* Space above the textarea */
+  margin-top: 25px; /* Space above the textarea */
   border: 1px solid var(--border-color);
   border-radius: 8px; /* Consistent with other elements */
   background-color: var(--box-background-color);
