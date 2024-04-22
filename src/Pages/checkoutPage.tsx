@@ -244,7 +244,7 @@ export function CheckoutPage() {
               <div className='checkBoxContainer'>
                 <li>
                   <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
-                  <input type="checkbox" id="acceptMarketingEmail" name="acceptMarketingEmail" />
+                  <input type="checkbox" className="inputcheckbox" id="acceptMarketingEmail" name="acceptMarketingEmail" />
                 </li>
                 <li>
                   <label htmlFor="acceptTermsAndCondition">I agree to the terms & conditions</label>
