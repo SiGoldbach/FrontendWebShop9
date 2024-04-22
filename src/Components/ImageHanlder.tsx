@@ -14,14 +14,14 @@ export function ImageHandler(props: imagehandlerProps){
     return (        
       <img className="product-image"
       src={props.url}
-      alt="PlaceholderImage" 
+      alt="Image of the product"
       onError={ImageErrorHandler}/>
     )
   }else{
     return (        
       <img className="product-image"
       src={"https://via.placeholder.com/150"}
-      alt="PlaceholderImage"/>
+      alt="Placeholder for product image"/>
     )
   }
 }

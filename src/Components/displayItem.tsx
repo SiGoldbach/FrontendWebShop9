@@ -99,13 +99,19 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
       </div>
       <div className="rightColumn">
         <div className="displayItemQuant">
-          <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: basketItem.product_id})}>
+          <button className="quantityButton" aria-label="Decrease quantity"
+            onClick={() => basketDispatcher({type: BasketItemKind.DECREASE,id: basketItem.product_id})}>
             <span style={basketItem.quantity === 1 ? { color: "#b5b5b5" } : {}}>-</span>
           </button>
-          {basketItem.quantity}
-          <button className="quantityButton" onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: basketItem.product_id})}>+</button>
+          <p title="item quantity">{basketItem.quantity}</p>
+          <button className="quantityButton" aria-label="Increase quantity"
+            onClick={() => basketDispatcher({type: BasketItemKind.INCREASE,id: basketItem.product_id})}>
+            +
+          </button>
         </div>
-        <button className="removeItemButton" onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: basketItem.product_id})}>Remove</button>
+        <button className="removeItemButton" aria-label="Remove item from basket"
+          onClick={() => basketDispatcher({type: BasketItemKind.REMOVE,id: basketItem.product_id})}>Remove
+        </button>
         <div className="displayItemPrice">
           <p>Per item:  {basketItem.price} {basketItem.currency}</p>
           <DiscountHelper />

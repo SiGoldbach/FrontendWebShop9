@@ -150,7 +150,7 @@ export function CheckoutPage() {
       </div>
       <div className="formsContainer">
         {isPopCheckUpOpen && <CheckoutPopUp closePopUp={closeCheckoutPopUp} />}
-        <form className="forms" id='forms' >
+        <form className="forms" id='forms' title="Payment form">
           <div className="addressFormsContainer">
             <ul>
               <li>

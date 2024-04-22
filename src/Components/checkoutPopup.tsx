@@ -26,7 +26,7 @@ export function CheckoutPopUp(props:popuptForUpsellProductprops){
         <p> Successful transaction </p>
         <img className="product-image"
           //src={upsellProduct.imageUrl}
-          alt="PlaceholderImage" />
+          alt="Product Image" />
         <p> Order Successful </p>
 
         <div className="continue_button">
