@@ -40,7 +40,7 @@ export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Pr
 
   console.log("Submitting order to server")
   try {
-    const response = await fetch("http://130.225.170.52:10191/order/succes",postOptions)
+    const response = await fetch("http://130.225.170.52:10191/order",postOptions)
         
     if(!response.ok){ console.log("Bad response") }
     console.log("Response was good");
