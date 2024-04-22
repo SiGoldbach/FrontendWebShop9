@@ -48,7 +48,7 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
 
       return (<>
         <p> Upgrade to the premium version: </p>
-        <button className="checkoutButton" onClick={openPopUp}>{premiumItem.name}</button>
+        <button className="upgradeButton" onClick={openPopUp}>{premiumItem.name}</button>
       </>)
     } else {
       return (<>  </>)

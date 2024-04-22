@@ -362,6 +362,20 @@ nav {
   margin-top: 30px;
 }
 
+.upgradeButton {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  max-width: 250px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin-top: 30px;
+}
+
 .checkoutButton:hover {
   background-color: #535bf2;
 }
