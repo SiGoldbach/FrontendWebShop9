@@ -5,6 +5,8 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 import App from "../Pages/App";
 import LandingPage from "../Pages/LandingPage";
 import ShoppingCart from "../Pages/ShoppingCart";
+import CheckoutPage from "../Pages/checkoutPage";
+import AdminPanel from "../Pages/Adminpanel";
 
 //tests are around 50% AI generated
 
@@ -17,6 +19,16 @@ vi.mock('../Pages/LandingPage', () => {
 
 vi.mock("../Pages/ShoppingCart", () => {
     return { default: () => <div>Shopping Cart Page</div> };
+});
+
+vi.mock('../Pages/checkoutPage', () => {
+    return { default: () => <div>CheckoutPage</div> };
+
+});
+  
+vi.mock('../Pages/Adminpanel', () => {
+    return { default: () => <div>Adminpanel</div> };
+
 });
 
 
@@ -45,5 +57,33 @@ describe('ShoppingCart Routing', () => {
             </MemoryRouter>
         );
         expect(screen.getByText('Shopping Cart Page')).toBeInTheDocument();
+    });
+});
+
+
+describe('CheckoutPage Routing', () => {
+    it('renders the Checkout page when navigated to', () => {
+        render(
+            <MemoryRouter initialEntries={['/checkout']}>
+                <Routes>
+                    <Route path="/checkout" element={<CheckoutPage />} />
+                </Routes>
+            </MemoryRouter>
+        );
+        expect(screen.getByText('CheckoutPage')).toBeInTheDocument();
+    });
+});
+
+
+describe('AdminPanel Routing', () => {
+    it('renders the AdminPanel when navigated to', () => {
+        render(
+            <MemoryRouter initialEntries={['/checkout']}>
+                <Routes>
+                    <Route path="/adminpanel" element={<AdminPanel />} />
+                </Routes>
+            </MemoryRouter>
+        );
+        expect(screen.getByText('AdminPanel')).toBeInTheDocument();
     });
 });
