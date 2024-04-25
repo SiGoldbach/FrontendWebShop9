@@ -603,6 +603,10 @@ input[type="text"] {border-radius: var(--radius-inputs); margin-top: 7px;}
 input[type="email"] {border-radius: var(--radius-inputs); margin-top: 7px;}
 input[type="number"] {border-radius: var(--radius-inputs); margin-top: 7px;}
 
+.comment-container {
+  width: 90%;
+}
+
 .comment-textarea {
   resize: none;
   width: 100%;
