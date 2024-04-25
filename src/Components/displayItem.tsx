@@ -45,7 +45,11 @@ function DisplayItem({basketItem,basketItemPrice}: displayItemProps) {
   function PremiumHelper() {
     if (basketItem.upsellProductId && basket.basketItems.map(product=> product.product_id).indexOf(basketItem.upsellProductId)===-1) {
       const premiumItem:ProductInfo= products.filter((product)=>product.product_id===basketItem.upsellProductId)[0];
-
+      //This little if is added since when the page is reloaded the products are fetched from the server again meaning premiumitem is undefined for a short while
+      //This is not a very good fix but is it ok for now
+      if(premiumItem===undefined){
+        return (<>  </>)
+      }
       return (<>
         <p> Upgrade to the premium version: </p>
         <button className="upgradeButton" onClick={openPopUp}>{premiumItem.name}</button>
