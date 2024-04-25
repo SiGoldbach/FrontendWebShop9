@@ -102,13 +102,16 @@ button:focus-visible {
   margin: 20px auto;
   padding: 10px;
   background: var(--background-color);
-  box-shadow: var(--shadow-color)
+  box-shadow: var(--shadow-color);
+  position: sticky;  
 }
 
 nav {
   display: flex;
   width: 100%;
+  position: sticky;  
 }
+
 .navLink {
   text-decoration: none;
   color: var(--text-color);
@@ -125,6 +128,14 @@ nav {
 /* LANDING PAGE */
 /**********************************************************************************************/
 
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
 .product-card {
   display: flex;
   flex-direction: column;
@@ -134,6 +145,7 @@ nav {
   padding: 16px;
   text-align: left;
   width: 200px;
+  height:auto;
   box-shadow: 0 2px 4px var(--shadow-color);
   margin: 16px;
 }
@@ -156,6 +168,7 @@ nav {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.05rem;
+  justify-self:auto;
 }
 
 .add-to-cart-button:hover {
@@ -166,14 +179,6 @@ nav {
 
 .landing-page-container{
   text-align: center;
-  padding: 20px;
-}
-
-.products-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
   padding: 20px;
 }
 
@@ -482,10 +487,8 @@ nav {
   display: flex;
   justify-content: center;
   padding: 20px;
-  align-items: center;
+  /*align-items: center;*/
 }
-
-
 
 .popup_checkoutWarning .warningText {
   display: flex;
@@ -509,9 +512,25 @@ nav {
 /* CHECKOUT POPUP */
 /**********************************************************************************************/
 
+.form-popup {
+  width: 200px;
+  height: 300px;
+}
+
 .exit-button{
   background-color: var(--line-color);
+  justify-content: center;
 }
+
+.check { 
+  height: 50px; 
+  width: 18px; 
+  border-bottom: 10px solid green; 
+  border-right: 10px solid green; 
+  transform: rotate(45deg); 
+  margin-bottom: 20px;
+  margin-left: 20px; 
+} 
 
 /**********************************************************************************************/
 /* FORMS */
