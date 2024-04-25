@@ -25,6 +25,7 @@ export async function getItems(): Promise<ProductInfo[]>{
 }
 //This is the function for submitting an order. 
 //Its very poorly implemented right now needs to change. 
+//Template built by chat GPT. I mostly needed help with building the postoptions
 export async function submitOrder(basket: Basket, customerInfo:CustomerInfo): Promise<number>{
   const orderInfo: OrderInformation ={
     basket,

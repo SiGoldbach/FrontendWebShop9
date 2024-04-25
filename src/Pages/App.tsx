@@ -8,9 +8,10 @@ import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import Adminpanel from './Adminpanel.tsx'
 import CheckoutPage from "./checkoutPage.tsx";
-import { basketReducer, calculateItemPrices, calculateTotalPrice, createNewEmptyBasket } from '../State/BasketState.tsx'
+import { basketReducer, calculateItemPrices, calculateTotalPrice } from '../State/BasketState.tsx'
 import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 import { ProductContext } from '../State/Productcontext.ts'
+import { getBasket } from '../State/SessionStorage.ts'
 
 
 function App():JSX.Element {
@@ -23,7 +24,7 @@ function App():JSX.Element {
     fetchData();
   }, []);
 
-  const [state,dispatch]= useReducer(basketReducer,createNewEmptyBasket());
+  const [state,dispatch]= useReducer(basketReducer,getBasket());
   state.priceList=calculateItemPrices(state.basketItems);
   state.totalPrice=calculateTotalPrice(state.priceList); 
   return (

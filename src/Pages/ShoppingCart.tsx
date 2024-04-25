@@ -2,6 +2,8 @@ import '../Pages/index.css'
 import DisplayItem from "../Components/displayItem.js";
 import { useNavigate } from 'react-router-dom';
 import { useBasketContext } from '../State/Basketcontext.js';
+import { useEffect } from 'react';
+import { storeBasketInSession } from '../State/SessionStorage.js';
 
 
 
@@ -10,12 +12,32 @@ function ShoppingCart() {
 
   const basket = useBasketContext();
   const navigate = useNavigate();
+  
+  useEffect(()=>{
+    function handeReloadPage(){
+      console.log("Logging to session storage");
+      storeBasketInSession(basket);
+    }
+    window.addEventListener("beforeunload",handeReloadPage);
+
+    return ()=>{
+      window.removeEventListener("beforeunload",handeReloadPage);
+    };
+
+  },[basket]);
+
+
+
 
   //GPT generated
   function CheckoutSummary() {
     const originalPrice = basket.totalPrice.priceBeforeRebate;
     const total = basket.totalPrice.priceAfterRebate;
     const discount = originalPrice - total;
+
+
+
+    
 
     const navigateToCheckout = () => {
       if (basket.basketItems.length > 0) {

@@ -36,6 +36,7 @@ export type Action = changeQunatityAction | addItemToBasketAction | replaceItemF
 
 //Function for initialising a basket with defaulf values
 export function createNewEmptyBasket(): Basket{
+  console.log("Creating New empty basket")
   const price: Price={
     priceBeforeRebate: 0,
     rebatePercentage: 0,

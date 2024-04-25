@@ -16,6 +16,8 @@ export function CheckoutPopUp(props:popuptForUpsellProductprops){
   const navigate = useNavigate();
   const navigateToStore = () => {
     basketDispatchercontext({type: BasketItemKind.ClEARBASKET});
+    //Setting lolcalstoarge
+    sessionStorage.clear();
     navigate('/store'); // Use the navigate function
   };
 
