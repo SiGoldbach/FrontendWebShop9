@@ -57,6 +57,10 @@ describe(App.name, async () => {
     expect(expectedAmountOfUniqueItems-2==screen.getAllByText("Remove").length)
     const removeItem2= screen.getAllByText("Remove")
     fireEvent.click(removeItem2[0]);
+
+
+    //Going the next page and trying to see if the Price element is there
+    fireEvent.click(screen.getByText("Continue to checkout"));
   });
 });
 //This test is testing the networking of getItems the first test is that the item list is atleast one 
@@ -66,7 +70,8 @@ describe("Testing getItemsFuncionality", async ()=>{
     expect(data.length!=0)
     console.log(data[0])
   })
-
-
-  
 })
+
+
+
+

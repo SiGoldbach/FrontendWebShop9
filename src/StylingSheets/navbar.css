@@ -1,13 +1,13 @@
 .navbarHeader {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
 }
+
 .navContaioner {
-    display: flex;
-    flex-direction: column;
-    row-gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.5rem;
 }
