@@ -23,6 +23,7 @@ export function CheckoutPopUp(props:popuptForUpsellProductprops){
     <div className="form-popup">
       <div className="text_and_image">
         <button className="exit-button" onClick={props.closePopUp}> X</button>
+        <h3 className="Ordersuccess" id="Ordersuccess">Order Successful, thank you!</h3>
         <p> Transaction was Successful and order has been placed </p>
 
         <div className="check"></div>

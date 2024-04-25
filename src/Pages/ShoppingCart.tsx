@@ -71,6 +71,7 @@ function ShoppingCart() {
   return (
     <div className="shoppingCartContainer">
       <div className="cartItemsContainer">
+        <h3 className="ItemsinCart" id="ItemsinCart">Items in Cart:</h3>
         <p>Get an additional 10% discount with any purchase over 300 DKK</p>
         <DisplayItemsInBasket />
       </div>
