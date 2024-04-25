@@ -160,6 +160,9 @@ export function CheckoutPage() {
             <form className="forms" id='forms' title="Payment form">
             <ul>
               <li>
+                  <h3 className="Userinfo" id="Userinfo">Customer Information</h3>
+              </li>
+              <li>
                 <label htmlFor="firstName">First name*</label>
                 <input type="text" id="firstName" name="user_first_name" required/>
               </li>
@@ -233,7 +236,7 @@ export function CheckoutPage() {
             <form className="forms" id='forms' title="Payment form">
               <ul>
                 <li>
-                  <p id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
+                  <h3 className="Finalprice" id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</h3>
                </li>
                <li>
                  <label htmlFor="kortnummer">Kortnummer*</label>
