@@ -487,7 +487,6 @@ nav {
   display: flex;
   justify-content: center;
   padding: 20px;
-  /*align-items: center;*/
 }
 
 .popup_checkoutWarning .warningText {
@@ -656,9 +655,11 @@ input[type="number"] {border-radius: var(--radius-inputs); margin-top: 7px;}
   }
   .formsContainer {
     flex-direction: column;
+    align-items: center;
   }
   .paymentContainer {
     margin-top: 10px;
+    margin-left: 0px;
     flex-direction: column;
   }
 }

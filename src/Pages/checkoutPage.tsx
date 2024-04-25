@@ -142,16 +142,22 @@ export function CheckoutPage() {
     })
   }
 
+  /*
+        <form className="forms" id='forms' title="Payment form">
+        </form>
+
+
+  */
     
     return (
-    <div>
+    <div className="formsPage">
       <div className="popup_checkoutWarning">
         <span className="warningText" id="checkoutPopup">An error occurred during order submission. Try again later.</span>
       </div>
       <div className="formsContainer">
         {isPopCheckUpOpen && <CheckoutPopUp closePopUp={closeCheckoutPopUp} />}
-        <form className="forms" id='forms' title="Payment form">
           <div className="addressFormsContainer">
+            <form className="forms" id='forms' title="Payment form">
             <ul>
               <li>
                 <label htmlFor="firstName">First name*</label>
@@ -221,28 +227,28 @@ export function CheckoutPage() {
                 </div>
               </li>
             </ul>
+            </form>
           </div>
           <div className="paymentContainer">
-            <ul>
-              <li>
-                <p id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
-              </li>
-              <li>
-                <label htmlFor="kortnummer">Kortnummer*</label>
-                <input type="text" id="kortnummer" name="kort_nummer"  required
+            <form className="forms" id='forms' title="Payment form">
+              <ul>
+                <li>
+                  <p id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</p>
+               </li>
+               <li>
+                 <label htmlFor="kortnummer">Kortnummer*</label>
+                 <input type="text" id="kortnummer" name="kort_nummer"  required
                        pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
-              </li>
-              <li>
-                <label htmlFor="udloebsdato">MM/YY*</label>
-                <input type="text" id="udloebsdato" name="kort_udloebsdato" required
-                  pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
-              </li>
-              <li>
-                <label htmlFor="sikkerhedskode">Sikkerhedskode*</label>
+                </li>
+                <li>
+                 <label htmlFor="udloebsdato">MM/YY*</label>
+                  <input type="text" id="udloebsdato" name="kort_udloebsdato" required
+                   pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
+               </li>
+                <li>
+                 <label htmlFor="sikkerhedskode">Sikkerhedskode*</label>
                 <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
               </li>
-            </ul>
-            <ul>
               <div className='checkBoxContainer'>
                 <li>
                   <label htmlFor="acceptMarketingEmail">I agree to receive marketing emails</label>
@@ -254,6 +260,7 @@ export function CheckoutPage() {
                 </li>
               </div>
             </ul>
+            </form>
             <button className="checkoutButton" id="checkoutButton" onClick={(e) => {
               e.preventDefault(); // Prevent default form submission behavior
               const form = document.getElementById("forms") as HTMLFormElement;
@@ -268,7 +275,6 @@ export function CheckoutPage() {
               <div className="loader" id="loader"></div>
             </button>
           </div>
-        </form>
       </div>
     </div>
   )
