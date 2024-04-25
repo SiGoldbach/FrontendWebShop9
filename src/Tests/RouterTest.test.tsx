@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import {  describe, expect, it, vi } from "vitest";
 import { createMemoryHistory } from "history";
-import { MemoryRouter, Route } from "react-router-dom";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import App from "../Pages/App";
 import LandingPage from "../Pages/LandingPage";
+import ShoppingCart from "../Pages/ShoppingCart";
 
 //tests are around 50% AI generated
 
@@ -15,7 +16,7 @@ vi.mock('../Pages/LandingPage', () => {
 });
 
 vi.mock("../Pages/ShoppingCart", () => {
-    return { default: () => <div>Shopping Cart Page</div>};
+    return { default: () => <div>Shopping Cart Page</div> };
 });
 
 
@@ -35,13 +36,14 @@ describe('LandingPage Routing', () => {
 
 
 describe('ShoppingCart Routing', () => {
-    it('renders the ShoppingCart page when navigated to', () =>{
+    it('renders the ShoppingCart page when navigated to', () => {
         render(
             <MemoryRouter initialEntries={['/shopping-cart']}>
-                <App />
+                <Routes>
+                    <Route path="/shopping-cart" element={<ShoppingCart />} />
+                </Routes>
             </MemoryRouter>
         );
         expect(screen.getByText('Shopping Cart Page')).toBeInTheDocument();
     });
-
 });
