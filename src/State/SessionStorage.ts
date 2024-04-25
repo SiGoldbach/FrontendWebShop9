@@ -5,14 +5,14 @@ const basketKey: string="basket";
 //This function will save 
 export function storeBasketInSession(basket: Basket){
     console.log("I am storing the basket");
-    localStorage.setItem(basketKey,JSON.stringify(basket));
+    sessionStorage.setItem(basketKey,JSON.stringify(basket));
 }
 //The basket should never be null since it is instantiated when rendering app which is akways rendered
 //Since it is the parent of the components this should be used ind. 
 export function getBasketInSession(): Basket|null{
     
 
-    const basketAsString = localStorage.getItem(basketKey)
+    const basketAsString = sessionStorage.getItem(basketKey)
     console.log(basketAsString);
     if(basketAsString!=null){
         const basket: Basket = JSON.parse(basketAsString);

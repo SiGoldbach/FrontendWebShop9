@@ -21,7 +21,6 @@ function ShoppingCart() {
     window.addEventListener("beforeunload",handeReloadPage);
 
     return ()=>{
-      console.log("Removing event listener");
       window.removeEventListener("beforeunload",handeReloadPage);
     };
 

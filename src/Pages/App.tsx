@@ -8,7 +8,7 @@ import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
 import Adminpanel from './Adminpanel.tsx'
 import CheckoutPage from "./checkoutPage.tsx";
-import { basketReducer, calculateItemPrices, calculateTotalPrice, createNewEmptyBasket } from '../State/BasketState.tsx'
+import { basketReducer, calculateItemPrices, calculateTotalPrice } from '../State/BasketState.tsx'
 import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
 import { ProductContext } from '../State/Productcontext.ts'
 import { getBasket } from '../State/SessionStorage.ts'
