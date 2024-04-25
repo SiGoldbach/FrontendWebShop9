@@ -6,7 +6,7 @@ import App from "../Pages/App";
 import LandingPage from "../Pages/LandingPage";
 import ShoppingCart from "../Pages/ShoppingCart";
 import CheckoutPage from "../Pages/checkoutPage";
-import AdminPanel from "../Pages/Adminpanel";
+import Adminpanel from "../Pages/Adminpanel";
 
 //tests are around 50% AI generated
 
@@ -75,15 +75,15 @@ describe('CheckoutPage Routing', () => {
 });
 
 
-describe('AdminPanel Routing', () => {
+describe('Adminpanel Routing', () => {
     it('renders the AdminPanel when navigated to', () => {
         render(
-            <MemoryRouter initialEntries={['/checkout']}>
+            <MemoryRouter initialEntries={['/Adminpanel']}>
                 <Routes>
-                    <Route path="/adminpanel" element={<AdminPanel />} />
+                    <Route path="/adminpanel" element={<Adminpanel />} />
                 </Routes>
             </MemoryRouter>
         );
-        expect(screen.getByText('AdminPanel')).toBeInTheDocument();
+        expect(screen.getByText('Adminpanel')).toBeInTheDocument();
     });
 });
