@@ -45,6 +45,12 @@ export function CheckoutPage() {
 
     }
     window.addEventListener("beforeunload",beforUnloadHandler);
+
+    return () =>{
+      window.removeEventListener("beforeunload",beforUnloadHandler);
+
+
+    }
   }, [loading]);
 
 
