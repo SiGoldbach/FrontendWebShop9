@@ -40,6 +40,11 @@ export function CheckoutPage() {
         loader.style.display = 'none';
       }
     }
+    function beforUnloadHandler(event: BeforeUnloadEvent){
+      event.preventDefault();
+
+    }
+    window.addEventListener("beforeunload",beforUnloadHandler);
   }, [loading]);
 
 
