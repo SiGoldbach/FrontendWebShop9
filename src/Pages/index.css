@@ -182,6 +182,7 @@ nav {
   background-image: linear-gradient(to bottom right, var(--accent-secondary-color), var(--accent-primary-color));
   box-shadow: 0 4px 8px var(--shadow-color);
   transform: translateY(-2px);
+  width: 80%;
 }
 
 .landing-page-container{
@@ -519,13 +520,17 @@ nav {
 /**********************************************************************************************/
 
 .form-popup {
-  width: 200px;
-  height: 385px;
+  display: flex;
+}
+
+.inner-popup {
+  width: max-content;
 }
 
 .exit-button{
   background-color: var(--line-color);
   justify-content: center;
+  margin: auto;
 }
 
 .check { 
