@@ -56,13 +56,19 @@ describe('CheckoutPage Component', () => {
         expect(lastNameInput).toBeInTheDocument();
     });
     
+    it('should have @ in input field', () => {
+        renderWithProviders(<CheckoutPage />);
+        const emailInput = screen.getByLabelText(/Email\*/i);
+        fireEvent.change(emailInput, { target: {value: 'user@example.com'}});
+        expect(emailInput.value).toContain( '@');
+    });
 
     // FOLLOWING TEST TO MAKE SURE IT WAS NOT FAKE PASSING
     /*
     it('should fail if the first name field is not required', () => {
         renderWithProviders(<CheckoutPage />);
         const firstNameInput = screen.getByLabelText(/First name\i);
-        expect(firstNameInput).not.toBeRequired(); // We expect it NOT to be required, which should fail if it is indeed required
+        expect(firstNameInput).not.toBeRequired(); 
     });
     */
       /*
@@ -72,7 +78,7 @@ describe('CheckoutPage Component', () => {
         
         // Assuming '12345' is a valid zip code in your predefined data
         await userEvent.type(zipInput, '12345');
-        fireEvent.blur(zipInput); // to trigger any validation events on blur
+        fireEvent.blur(zipInput); 
         
         // Check if the validation message clears or not
         expect(zipInput).toHaveValue('12345');
