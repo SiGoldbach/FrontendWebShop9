@@ -30,16 +30,14 @@ export function PopUpForUpsellProduct({closePopUp,currentid,upsellId}:popuptForU
 
   return(
     <div className="form-popup">
-      <div>
+      <div className="inner-popup"> 
+        <button className="exit-button" onClick={closePopUp}> X</button>
         <p>{upsellProduct.name} </p>
         <ImageHandler url={upsellProduct.image_url}/>
         <p> Do you want to upgrade? </p>
         <p> Price: {upsellProduct.price} {upsellProduct.currency}</p>
 
         <div className="form-button-div">
-          <div className="form-button-div">
-            <button className="add-to-cart-button" onClick={closePopUp}> Cancel</button>
-          </div>
           <div className="form-button-div">
             <button className="add-to-cart-button" onClick={handleUpgrade}> Upgrade</button>
           </div>

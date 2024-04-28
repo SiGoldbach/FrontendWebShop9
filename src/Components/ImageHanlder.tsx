@@ -1,3 +1,6 @@
+import { memo } from "react";
+import placeHolder from "../Data/150.png"
+
 interface imagehandlerProps {
   url: string | null;
 }
@@ -5,12 +8,12 @@ interface imagehandlerProps {
 
 function ImageErrorHandler(event: React.SyntheticEvent<HTMLImageElement, Event>){
   const targetEvent = event.target as HTMLImageElement;
-  targetEvent.src="https://via.placeholder.com/150";
+  targetEvent.src=placeHolder;
 }
 
 
-export function ImageHandler(props: imagehandlerProps){
-  if(props.url!=null){
+export const ImageHandler = memo(function ImageHandler1(props: imagehandlerProps){
+  if(props.url!==null){
     return (        
       <img className="product-image"
       src={props.url}
@@ -20,9 +23,10 @@ export function ImageHandler(props: imagehandlerProps){
   }else{
     return (        
       <img className="product-image"
-      src={"https://via.placeholder.com/150"}
+      src={placeHolder}
       alt="Placeholder for product image"/>
     )
   }
-}
+
+});
  

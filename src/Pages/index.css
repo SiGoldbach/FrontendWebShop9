@@ -519,13 +519,17 @@ nav {
 /**********************************************************************************************/
 
 .form-popup {
-  width: 200px;
-  height: 385px;
+  display: flex;
+}
+
+.inner-popup {
+  width: max-content;
 }
 
 .exit-button{
   background-color: var(--line-color);
   justify-content: center;
+  margin: auto;
 }
 
 .check { 

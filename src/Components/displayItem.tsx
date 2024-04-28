@@ -4,7 +4,7 @@ import { BasketItemKind } from '../State/BasketState';
 import { useBasketContext, useBasketDispatchContext } from '../State/Basketcontext';
 import { BasketItem, Price, ProductInfo } from '../TSReusedTypes/ReusedTypes';
 import { PopUpForUpsellProduct } from './upsellProductPopup';
-import { ImageHandler } from './ImageHanlder';
+import { ImageHandler,  } from './ImageHanlder';
 import { useProductContext } from '../State/Productcontext';
 
 
