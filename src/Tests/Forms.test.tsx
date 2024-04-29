@@ -2,9 +2,11 @@ import React, { ReactElement } from 'react';
 import { render, screen, fireEvent, RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CheckoutPage } from '../Pages/checkoutPage';
+
 import { describe, expect, it, vi } from 'vitest';
 import { BasketContext, BasketDispatchContext } from '../State/Basketcontext';
 import { Basket } from '../TSReusedTypes/ReusedTypes'; 
+
 
 //Mocking of basket interface
 const mockBasket: Basket = {
@@ -17,7 +19,8 @@ const mockBasket: Basket = {
     },
 };
 
-  
+
+
   const mockDispatch = vi.fn();
 
 interface CustomRenderOptions extends RenderOptions {
@@ -62,6 +65,7 @@ describe('CheckoutPage Component', () => {
         fireEvent.change(emailInput, { target: {value: 'user@example.com'}});
         expect(emailInput.value).toContain( '@');
     });
+
 
     // FOLLOWING TEST TO MAKE SURE IT WAS NOT FAKE PASSING
     /*
