@@ -7,7 +7,6 @@ import { storeBasketInSession } from '../State/SessionStorage.js';
 
 
 
-
 function ShoppingCart() {
 
   const basket = useBasketContext();
@@ -23,10 +22,7 @@ function ShoppingCart() {
     return ()=>{
       window.removeEventListener("beforeunload",handeReloadPage);
     };
-
   },[basket]);
-
-
 
 
   //GPT generated
@@ -35,9 +31,6 @@ function ShoppingCart() {
     const total = basket.totalPrice.priceAfterRebate;
     const discount = originalPrice - total;
 
-
-
-    
 
     const navigateToCheckout = () => {
       if (basket.basketItems.length > 0) {
@@ -49,27 +42,27 @@ function ShoppingCart() {
     };
 
     return (
-        <div className="checkoutContainer">
-          <div className="summaryBox">
-            <div className="summaryRow">
-              <h2>Price:</h2>
-              <p>{originalPrice.toFixed(2)}</p>
-            </div>
-            <div className="summaryRow">
-              <h2>Discount:</h2>
-              <p>{discount.toFixed(2)}</p>
-            </div>
-            <div className="line"></div>
-            <div className="summaryRow">
-              <h2>Total:</h2>
-              <p>{total.toFixed(2)}</p>
-            </div>
+      <div className="checkoutContainer">
+        <div className="summaryBox">
+          <div className="summaryRow">
+            <h2>Price:</h2>
+            <p>{originalPrice.toFixed(2)}</p>
           </div>
-          <div className="popup">
-            <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout</button>
-            <span className="popuptext" id="basketPopup">Warning: Your basket is empty</span>
+          <div className="summaryRow">
+            <h2>Discount:</h2>
+            <p>{discount.toFixed(2)}</p>
+          </div>
+          <div className="line"></div>
+          <div className="summaryRow">
+            <h2>Total:</h2>
+            <p>{total.toFixed(2)}</p>
           </div>
         </div>
+        <div className="popup">
+          <button type="button" className="checkoutButton" onClick={navigateToCheckout}> Continue to checkout</button>
+          <span className="popuptext" id="basketPopup">Warning: Your basket is empty</span>
+        </div>
+      </div>
     );
   }
 

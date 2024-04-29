@@ -40,16 +40,16 @@ export function CheckoutPage() {
         loader.style.display = 'none';
       }
     }
+
     function beforUnloadHandler(event: BeforeUnloadEvent){
       event.preventDefault();
 
     }
+
     window.addEventListener("beforeunload",beforUnloadHandler);
 
     return () =>{
       window.removeEventListener("beforeunload",beforUnloadHandler);
-
-
     }
   }, [loading]);
 
@@ -103,7 +103,7 @@ export function CheckoutPage() {
 
   function openCheckoutPopUp(){
     setIsCheckPopupOpen(true);
-    }
+  }
     
 
   const onSubmitClick = () :void => {
@@ -153,8 +153,6 @@ export function CheckoutPage() {
   /*
         <form className="forms" id='forms' title="Payment form">
         </form>
-
-
   */
     
     return (
@@ -168,7 +166,7 @@ export function CheckoutPage() {
             <form className="forms" id='forms' title="Payment form">
             <ul>
               <li>
-                  <h3 className="Userinfo" id="Userinfo">Customer Information</h3>
+                <h3 className="Userinfo" id="Userinfo">Customer Information</h3>
               </li>
               <li>
                 <label htmlFor="firstName">First name*</label>
@@ -238,26 +236,26 @@ export function CheckoutPage() {
                 </div>
               </li>
             </ul>
-            </form>
-          </div>
-          <div className="paymentContainer">
-            <form className="forms" id='forms' title="Payment form">
-              <ul>
-                <li>
-                  <h3 className="Finalprice" id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</h3>
-               </li>
-               <li>
-                 <label htmlFor="kortnummer">Kortnummer*</label>
-                 <input type="text" id="kortnummer" name="kort_nummer"  required
-                       pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
-                </li>
-                <li>
-                 <label htmlFor="udloebsdato">MM/YY*</label>
-                  <input type="text" id="udloebsdato" name="kort_udloebsdato" required
-                   pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
-               </li>
-                <li>
-                 <label htmlFor="sikkerhedskode">Sikkerhedskode*</label>
+          </form>
+        </div>
+        <div className="paymentContainer">
+          <form className="forms" id='forms' title="Payment form">
+            <ul>
+              <li>
+                <h3 className="Finalprice" id="Finalprice">Final Price: {basket.totalPrice.priceAfterRebate} DKK</h3>
+              </li>
+              <li>
+                <label htmlFor="kortnummer">Kortnummer*</label>
+                <input type="text" id="kortnummer" name="kort_nummer"  required
+                  pattern="\s*\d{4}\s*\d{4}\s*\d{4}\s*\d{4}\s*"/>
+              </li>
+              <li>
+                <label htmlFor="udloebsdato">MM/YY*</label>
+                <input type="text" id="udloebsdato" name="kort_udloebsdato" required
+                pattern="(0[1-9]|1[0-2])\/([2-9][0-9])"/>
+              </li>
+              <li>
+                <label htmlFor="sikkerhedskode">Sikkerhedskode*</label>
                 <input type="text" id="sikkerhedskode" name="kort_sikkerhedskode" required pattern="\d{3}"/>
               </li>
               <div className='checkBoxContainer'>
@@ -271,21 +269,21 @@ export function CheckoutPage() {
                 </li>
               </div>
             </ul>
-            </form>
-            <button className="checkoutButton" id="checkoutButton" onClick={(e) => {
-              e.preventDefault(); // Prevent default form submission behavior
-              const form = document.getElementById("forms") as HTMLFormElement;
-              if (form.checkValidity()) {
-                onSubmitClick()
-              } else {
-                form.reportValidity()
-                console.log("Form is not valid. Try again")
-              }
-            }}
-            > Pay
-              <div className="loader" id="loader"></div>
-            </button>
-          </div>
+          </form>
+          <button className="checkoutButton" id="checkoutButton" onClick={(e) => {
+            e.preventDefault(); // Prevent default form submission behavior
+            const form = document.getElementById("forms") as HTMLFormElement;
+            if (form.checkValidity()) {
+              onSubmitClick()
+            } else {
+              form.reportValidity()
+              console.log("Form is not valid. Try again")
+            }
+          }}
+          > Pay
+            <div className="loader" id="loader"></div>
+          </button>
+        </div>
       </div>
     </div>
   )
