@@ -42,15 +42,15 @@ export function CheckoutPage() {
       }
     }
 
-    function beforUnloadHandler(event: BeforeUnloadEvent){
+    function beforeUnloadHandler(event: BeforeUnloadEvent){
       storeBasketInSession(basket);
       event.preventDefault();
 }
 
-    window.addEventListener("beforeunload",beforUnloadHandler);
+    window.addEventListener("beforeunload",beforeUnloadHandler);
 
     return () =>{
-      window.removeEventListener("beforeunload",beforUnloadHandler);
+      window.removeEventListener("beforeunload",beforeUnloadHandler);
     }
   }, [loading]);
 
@@ -151,11 +151,6 @@ export function CheckoutPage() {
     })
   }
 
-  /*
-        <form className="forms" id='forms' title="Payment form">
-        </form>
-  */
-    
     return (
     <div className="formsPage">
       <div className="popup_checkoutWarning">

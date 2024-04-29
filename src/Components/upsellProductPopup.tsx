@@ -4,7 +4,7 @@ import { useProductContext } from "../State/Productcontext";
 import "../StylingSheets/popup.css"
 import { ProductInfo } from "../TSReusedTypes/ReusedTypes";
 import "../Pages/index.css"
-import {ImageHandler} from"./ImageHanlder"
+import {ImageHandler} from "./ImageHandler.tsx"
 
 
 type popuptForUpsellProductprops={
