@@ -184,6 +184,11 @@ nav {
   transform: translateY(-2px);
 }
 
+.add-to-cart-button:active {
+  background-color: var(--button-background-color);
+  transform: scale(98%);
+}
+
 .landing-page-container{
   text-align: center;
   padding: 20px;
@@ -583,14 +588,14 @@ input {
   display: inline;
 
   /* Match form field borders */
-  border: 1px solid --text-secondary-color;
+  border: 1px solid var(--text-secondary-color);
   margin: 0.1em;
 
 }
 
 input:focus {
   /* Additional highlight for focused elements */
-  border-color: --text-secondary-color;
+  border-color: var(--text-secondary-color);
 }
 
 input:invalid {
@@ -598,7 +603,7 @@ input:invalid {
 }
 
 input:valid {
-  border: 2px solid --text-secondary-color;
+  border: 2px solid var(--text-secondary-color);
 }
 
 .checkBoxContainer {
@@ -674,7 +679,7 @@ input[type="number"] {border-radius: var(--radius-inputs); margin-top: 7px;}
   }
   .paymentContainer {
     margin-top: 10px;
-    margin-left: 0px;
+    margin-left: 0;
     flex-direction: column;
   }
 }
