@@ -5,6 +5,7 @@ import {submitOrder} from "../Networking/networking.ts";
 import {useBasketContext} from '../State/Basketcontext';
 import {getMunicipalities} from "../Networking/networking.ts"
 import { CheckoutPopUp } from '../Components/checkoutPopup.tsx';
+import { storeBasketInSession } from '../State/SessionStorage.ts';
 
 
 export function CheckoutPage() {
@@ -42,9 +43,9 @@ export function CheckoutPage() {
     }
 
     function beforUnloadHandler(event: BeforeUnloadEvent){
+      storeBasketInSession(basket);
       event.preventDefault();
-
-    }
+}
 
     window.addEventListener("beforeunload",beforUnloadHandler);
 
