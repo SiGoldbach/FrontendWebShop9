@@ -66,7 +66,6 @@ describe('CheckoutPage Component', () => {
         expect(emailInput.value).toContain( '@');
     });
 
-
     // FOLLOWING TEST TO MAKE SURE IT WAS NOT FAKE PASSING
     /*
     it('should fail if the first name field is not required', () => {
@@ -75,19 +74,5 @@ describe('CheckoutPage Component', () => {
         expect(firstNameInput).not.toBeRequired(); 
     });
     */
-      /*
-    it('validates zip code input against known zip codes', async () => {
-        render(<CheckoutPage />);
-        const zipInput = screen.getByLabelText(/Zip code\i);
-        
-        // Assuming '12345' is a valid zip code in your predefined data
-        await userEvent.type(zipInput, '12345');
-        fireEvent.blur(zipInput); 
-        
-        // Check if the validation message clears or not
-        expect(zipInput).toHaveValue('12345');
-        expect(zipInput.validationMessage).toBe('');
-      });
-      */
       
 });
