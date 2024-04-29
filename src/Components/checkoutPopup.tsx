@@ -5,12 +5,10 @@ import "../StylingSheets/popup.css"
 import "../Pages/index.css"
 
 
-type popuptForUpsellProductprops={
-  closePopUp: ()=>void;
-} 
+//type popuptForUpsellProductprops={closePopUp: ()=>void;} 
 
 
-export function CheckoutPopUp(props:popuptForUpsellProductprops){
+export function CheckoutPopUp(){
   //console.log("Checkout Popup was here!")
   const basketDispatchercontext= useBasketDispatchContext();
   const navigate = useNavigate();
@@ -24,7 +22,7 @@ export function CheckoutPopUp(props:popuptForUpsellProductprops){
   return(
     <div className="form-popup">
       <div className="text_and_image">
-        <button className="exit-button" onClick={props.closePopUp}> X</button>
+        <button className="exit-button" onClick={navigateToStore}> X</button>
         <h3 className="Ordersuccess" id="Ordersuccess">Order Successful, thank you!</h3>
         <p> Transaction was Successful and order has been placed </p>
 

@@ -99,9 +99,6 @@ export function CheckoutPage() {
 
     
   const [isPopCheckUpOpen,setIsCheckPopupOpen]= useState(false);
-  function closeCheckoutPopUp(){
-    setIsCheckPopupOpen(false);
-  }
 
 
   function openCheckoutPopUp(){
@@ -166,7 +163,7 @@ export function CheckoutPage() {
         <span className="warningText" id="checkoutPopup">An error occurred during order submission. Try again later.</span>
       </div>
       <div className="formsContainer">
-        {isPopCheckUpOpen && <CheckoutPopUp closePopUp={closeCheckoutPopUp} />}
+        {isPopCheckUpOpen && <CheckoutPopUp />}
           <div className="addressFormsContainer">
             <form className="forms" id='forms' title="Payment form">
             <ul>
