@@ -16,9 +16,6 @@ export function Navbar(){
             <li>
               <NavLink to="/cart">Home</NavLink>
             </li>
-            <li>
-              <NavLink to="/admin">Home</NavLink>
-            </li>
           </ul>
         </div>
       </nav>

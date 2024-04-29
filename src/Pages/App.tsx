@@ -6,7 +6,6 @@ import { getItems } from '../Networking/networking.ts'
 
 import LandingPage from './LandingPage.tsx'
 import ShoppingCart from './ShoppingCart.tsx'
-import Adminpanel from './Adminpanel.tsx'
 import CheckoutPage from "./checkoutPage.tsx";
 import { basketReducer, calculateItemPrices, calculateTotalPrice } from '../State/BasketState.tsx'
 import { BasketContext, BasketDispatchContext } from '../State/Basketcontext.ts'
@@ -40,7 +39,6 @@ function App():JSX.Element {
                     {/* Nav links */}
                     <Link to="/" className="navLink">Store</Link>
                     <Link to="/cart" className="navLink">Shopping Cart </Link>
-                    <Link to="/admin" className="navLink">Admin Panel </Link>
                   </nav>
                 </div>
               {/* Define routes */}
@@ -49,7 +47,6 @@ function App():JSX.Element {
                 <Route path="/store" element={<LandingPage/>} />
                 <Route path="/cart" element={<ShoppingCart/>} />
                 <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/admin" element={<Adminpanel />} />
                 <Route path="/bothForms" element={<CheckoutPage />} />
               </Routes>
               </ProductContext.Provider>

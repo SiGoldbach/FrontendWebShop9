@@ -6,7 +6,6 @@ import App from "../Pages/App";
 import LandingPage from "../Pages/LandingPage";
 import ShoppingCart from "../Pages/ShoppingCart";
 import CheckoutPage from "../Pages/checkoutPage";
-import Adminpanel from "../Pages/Adminpanel";
 
 //tests are around 50% AI generated
 
@@ -26,10 +25,7 @@ vi.mock('../Pages/checkoutPage', () => {
 
 });
   
-vi.mock('../Pages/Adminpanel', () => {
-    return { default: () => <div>Adminpanel</div> };
 
-});
 
 
 describe('LandingPage Routing', () => {
@@ -74,16 +70,3 @@ describe('CheckoutPage Routing', () => {
     });
 });
 
-
-describe('Adminpanel Routing', () => {
-    it('renders the AdminPanel when navigated to', () => {
-        render(
-            <MemoryRouter initialEntries={['/Adminpanel']}>
-                <Routes>
-                    <Route path="/adminpanel" element={<Adminpanel />} />
-                </Routes>
-            </MemoryRouter>
-        );
-        expect(screen.getByText('Adminpanel')).toBeInTheDocument();
-    });
-});
