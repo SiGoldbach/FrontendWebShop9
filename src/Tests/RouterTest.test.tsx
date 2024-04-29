@@ -1,8 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import {  describe, expect, it, vi } from "vitest";
-import { createMemoryHistory } from "history";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import App from "../Pages/App";
 import LandingPage from "../Pages/LandingPage";
 import ShoppingCart from "../Pages/ShoppingCart";
 import CheckoutPage from "../Pages/checkoutPage";
@@ -32,7 +30,7 @@ describe('LandingPage Routing', () => {
     it('renders the landing page heading', () => {
         render(
             <MemoryRouter initialEntries={['/']}>
-              <LandingPage products={[]} />
+              <LandingPage />
             </MemoryRouter>
         );
     

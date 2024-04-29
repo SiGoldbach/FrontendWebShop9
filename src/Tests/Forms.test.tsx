@@ -1,6 +1,5 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { render, screen, fireEvent, RenderOptions } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { CheckoutPage } from '../Pages/checkoutPage';
 
 import { describe, expect, it, vi } from 'vitest';
@@ -61,7 +60,7 @@ describe('CheckoutPage Component', () => {
     
     it('should have @ in input field', () => {
         renderWithProviders(<CheckoutPage />);
-        const emailInput = screen.getByLabelText(/Email\*/i);
+        const emailInput:HTMLInputElement = screen.getByLabelText(/Email\*/i);
         fireEvent.change(emailInput, { target: {value: 'user@example.com'}});
         expect(emailInput.value).toContain( '@');
     });
